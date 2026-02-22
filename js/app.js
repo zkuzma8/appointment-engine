@@ -1,5 +1,5 @@
 // ============================================
-// THE APPOINTMENT ENGINE™ — Shared JavaScript
+// THE APPOINTMENT ENGINE™ - Shared JavaScript
 // ============================================
 
 // Print / Save as PDF
@@ -60,14 +60,14 @@ function calculateIncome() {
       </div>
       <div class="mt-6 p-4 bg-[#1B2A4A]/5 rounded-xl border border-[#1B2A4A]/10">
         <p class="font-semibold text-[#1B2A4A]">Your Daily Plan:</p>
-        <p class="text-gray-700 mt-1">Make <strong>${dailyCalls} calls</strong> per day to hit <strong>$${monthlyGoal.toLocaleString()}</strong>/month. That's it. No magic — just math and discipline.</p>
+        <p class="text-gray-700 mt-1">Make <strong>${dailyCalls} calls</strong> per day to hit <strong>$${monthlyGoal.toLocaleString()}</strong>/month. That's it. No magic - just math and discipline.</p>
       </div>
     `;
     results.classList.remove('hidden');
   }
 }
 
-// Calendar — show day detail
+// Calendar - show day detail
 function showDayDetail(day) {
   const allDetails = document.querySelectorAll('.day-detail');
   allDetails.forEach(d => d.classList.add('hidden'));
@@ -79,16 +79,15 @@ function showDayDetail(day) {
   }
 }
 
-// Tracker — add row
+// Tracker - add row
 function addTrackerRow() {
   const tbody = document.getElementById('tracker-body');
   if (!tbody) return;
 
-  const today = new Date().toISOString().split('T')[0];
   const row = document.createElement('tr');
   row.className = 'border-b border-gray-200';
   row.innerHTML = `
-    <td class="p-3"><input type="date" value="${today}" class="w-full min-w-[120px] bg-transparent border-0 focus:ring-0"></td>
+    <td class="p-3"><input type="text" placeholder="MM/DD" class="w-full min-w-[120px] bg-transparent border-0 focus:ring-0"></td>
     <td class="p-3"><input type="number" value="0" min="0" class="w-16 text-center bg-gray-50 rounded border border-gray-200 tracker-calls" onchange="updateTrackerTotals()"></td>
     <td class="p-3"><input type="number" value="0" min="0" class="w-16 text-center bg-gray-50 rounded border border-gray-200 tracker-convos" onchange="updateTrackerTotals()"></td>
     <td class="p-3"><input type="number" value="0" min="0" class="w-16 text-center bg-gray-50 rounded border border-gray-200 tracker-appts" onchange="updateTrackerTotals()"></td>
@@ -98,7 +97,7 @@ function addTrackerRow() {
   tbody.appendChild(row);
 }
 
-// Tracker — update totals
+// Tracker - update totals
 function updateTrackerTotals() {
   const sum = (selector) => {
     let total = 0;

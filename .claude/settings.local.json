@@ -12,7 +12,12 @@
       "WebFetch(domain:bdcatalysts.com)",
       "WebFetch(domain:www.thecardonegroup.com)",
       "Bash(cd:*)",
-      "Bash(cd:)"
+      "Bash(cd:)",
+      "WebFetch(domain:www.garbermidland.com)",
+      "WebFetch(domain:www.garberlogos.com)",
+      "WebFetch(domain:www.garberchevrolet.com)",
+      "WebFetch(domain:www.garbercareers.com)",
+      "Bash(tail:*)"
     ]
   }
 }

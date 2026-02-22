@@ -1,23 +1,61 @@
 @media print {
+  /* Page setup */
+  @page {
+    margin: 0.6in;
+    size: letter;
+  }
+
   /* Hide non-printable elements */
-  nav, .no-print, .print-btn, .sidebar, .nav-mobile, footer .no-print,
-  button:not(.keep-print) {
+  nav,
+  .no-print,
+  .print-btn,
+  .nav-mobile,
+  footer,
+  button,
+  #mobile-nav {
     display: none !important;
   }
 
-  /* Reset backgrounds for printing */
-  body {
-    background: white !important;
-    color: black !important;
-    font-size: 11pt;
-    line-height: 1.5;
+  /* Reset everything for clean print */
+  * {
+    box-shadow: none !important;
+    text-shadow: none !important;
   }
 
-  /* Ensure content fills page */
-  .main-content, main {
+  body {
+    background: white !important;
+    color: #000 !important;
+    font-size: 11pt;
+    line-height: 1.6;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Reset all colored backgrounds to white */
+  section,
+  div,
+  main,
+  article {
+    background: white !important;
+    color: #000 !important;
+  }
+
+  /* Keep specific accent backgrounds for readability */
+  .bg-navy,
+  [class*="bg-navy"] {
+    background: #1B2A4A !important;
+    color: white !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Content fills page */
+  .main-content,
+  main {
     margin: 0 !important;
-    padding: 0 !important;
+    padding: 8pt 0 !important;
     max-width: 100% !important;
+    width: 100% !important;
   }
 
   /* Page breaks */
@@ -29,39 +67,104 @@
     page-break-inside: avoid;
   }
 
-  /* Script cards — keep together */
+  h1, h2, h3, h4 {
+    page-break-after: avoid;
+    color: #1B2A4A !important;
+  }
+
+  /* Script cards - keep together, clear borders */
   .script-card {
     page-break-inside: avoid;
-    border: 1px solid #ccc !important;
-    margin-bottom: 12pt;
-    padding: 10pt;
+    border: 1.5pt solid #999 !important;
+    margin-bottom: 10pt;
+    padding: 8pt 10pt;
+    background: white !important;
   }
 
-  /* Links — show URL */
-  a[href^="http"]::after {
-    content: " (" attr(href) ")";
-    font-size: 9pt;
-    color: #666;
+  /* Script text blocks - visible borders for print */
+  [class*="border-l-4"],
+  [class*="border-l"] {
+    border-left: 3pt solid #E8963E !important;
+    padding-left: 10pt;
+    margin-bottom: 8pt;
+    background: #fafafa !important;
+    color: #000 !important;
   }
 
-  /* Calendar grid */
-  .calendar-grid {
-    page-break-inside: avoid;
+  /* Don't print link URLs inline - too cluttered */
+  a[href]::after {
+    content: none !important;
   }
 
-  /* Tracker table */
+  a {
+    color: #000 !important;
+    text-decoration: none !important;
+  }
+
+  /* Grids - flatten for print */
+  .grid {
+    display: block !important;
+  }
+
+  .grid > * {
+    margin-bottom: 8pt;
+  }
+
+  /* Tables */
   table {
     width: 100% !important;
     border-collapse: collapse;
   }
 
   th, td {
-    border: 1px solid #ccc !important;
+    border: 1pt solid #999 !important;
     padding: 4pt 6pt;
+    font-size: 10pt;
+    color: #000 !important;
+    background: white !important;
+  }
+
+  th {
+    background: #eee !important;
+    font-weight: bold;
+  }
+
+  /* Inputs - show as plain text for print */
+  input {
+    border: none !important;
+    background: transparent !important;
     font-size: 10pt;
   }
 
-  /* Script cards — 2 per page for pocket reference */
+  input[type="number"] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+  }
+
+  /* Headers */
+  h1 { font-size: 18pt; margin-bottom: 6pt; }
+  h2 { font-size: 14pt; margin-bottom: 4pt; }
+  h3 { font-size: 12pt; margin-bottom: 3pt; }
+
+  /* Ensure text is readable - no colored text on white */
+  p, li, span, div {
+    color: #000 !important;
+  }
+
+  /* Except headings and labels that need distinction */
+  .text-accent,
+  [class*="text-accent"] {
+    color: #C07030 !important;
+  }
+
+  /* Phase badges and day badges - keep colors */
+  [class*="rounded-full"],
+  [class*="rounded-xl"][class*="text-white"] {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Script cards print layout - 2 per row */
   .script-cards-print .script-card {
     width: 48%;
     display: inline-block;
@@ -70,13 +173,37 @@
     font-size: 9pt;
   }
 
-  /* Headers */
-  h1 { font-size: 18pt; }
-  h2 { font-size: 14pt; }
-  h3 { font-size: 12pt; }
+  /* Fix overlapping in flex layouts */
+  .flex {
+    display: block !important;
+  }
 
-  /* Footer */
-  @page {
-    margin: 0.75in;
+  .flex > * {
+    margin-bottom: 6pt;
+  }
+
+  /* Sticky elements - unstick for print */
+  .sticky {
+    position: static !important;
+  }
+
+  /* Hidden elements that should show in print (calendar day details) */
+  .print-show {
+    display: block !important;
+  }
+
+  /* Reduce spacing between sections */
+  .py-16, .py-20, .py-12 {
+    padding-top: 12pt !important;
+    padding-bottom: 12pt !important;
+  }
+
+  .mb-12, .mb-8, .mb-6 {
+    margin-bottom: 8pt !important;
+  }
+
+  /* Images */
+  img {
+    max-width: 100% !important;
   }
 }
