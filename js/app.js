@@ -88,7 +88,7 @@ function addTrackerRow() {
   const row = document.createElement('tr');
   row.className = 'border-b border-gray-200';
   row.innerHTML = `
-    <td class="p-3"><input type="date" value="${today}" class="w-full bg-transparent border-0 focus:ring-0"></td>
+    <td class="p-3"><input type="date" value="${today}" class="w-full min-w-[120px] bg-transparent border-0 focus:ring-0"></td>
     <td class="p-3"><input type="number" value="0" min="0" class="w-16 text-center bg-gray-50 rounded border border-gray-200 tracker-calls" onchange="updateTrackerTotals()"></td>
     <td class="p-3"><input type="number" value="0" min="0" class="w-16 text-center bg-gray-50 rounded border border-gray-200 tracker-convos" onchange="updateTrackerTotals()"></td>
     <td class="p-3"><input type="number" value="0" min="0" class="w-16 text-center bg-gray-50 rounded border border-gray-200 tracker-appts" onchange="updateTrackerTotals()"></td>

@@ -11,7 +11,8 @@
       "WebFetch(domain:www.jvtn.com)",
       "WebFetch(domain:bdcatalysts.com)",
       "WebFetch(domain:www.thecardonegroup.com)",
-      "Bash(cd:*)"
+      "Bash(cd:*)",
+      "Bash(cd:)"
     ]
   }
 }
