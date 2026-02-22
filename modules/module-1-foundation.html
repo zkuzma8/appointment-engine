@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 1 – Foundation | The Appointment Engine™</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: '#1B2A4A',
+            accent: '#E8963E',
+            success: '#2ECC71',
+            danger: '#E74C3C',
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/print.css">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-900">
+
+  <!-- Navigation -->
+  <nav class="bg-navy text-white sticky top-0 z-50 shadow-lg no-print">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+      <a href="../index.html" class="flex items-center gap-2">
+        <span class="text-2xl">⚙️</span>
+        <span class="font-bold text-lg">The Appointment Engine<span class="text-accent">™</span></span>
+      </a>
+      <div class="hidden md:flex items-center gap-6 text-sm">
+        <a href="../index.html" class="hover:text-accent transition">Home</a>
+        <div class="relative group">
+          <button class="text-accent font-semibold">Modules ▾</button>
+          <div class="absolute top-full left-0 mt-2 bg-white text-gray-900 rounded-lg shadow-xl py-2 w-64 hidden group-hover:block">
+            <a href="module-1-foundation.html" class="block px-4 py-2 bg-gray-50 font-semibold text-accent">Module 1 – Foundation</a>
+            <a href="module-2-followup-system.html" class="block px-4 py-2 hover:bg-gray-50">Module 2 – 30-Day Follow-Up</a>
+            <a href="module-3-reasons-to-call.html" class="block px-4 py-2 hover:bg-gray-50">Module 3 – Reasons to Call</a>
+            <a href="module-4-objections.html" class="block px-4 py-2 hover:bg-gray-50">Module 4 – Objection Handling</a>
+            <a href="module-5-voicemail.html" class="block px-4 py-2 hover:bg-gray-50">Module 5 – Voicemail System</a>
+            <a href="module-6-metrics.html" class="block px-4 py-2 hover:bg-gray-50">Module 6 – Metrics & Income</a>
+          </div>
+        </div>
+        <div class="relative group">
+          <button class="hover:text-accent transition">Tools ▾</button>
+          <div class="absolute top-full left-0 mt-2 bg-white text-gray-900 rounded-lg shadow-xl py-2 w-64 hidden group-hover:block">
+            <a href="../tools/calendar.html" class="block px-4 py-2 hover:bg-gray-50">30-Day Calendar</a>
+            <a href="../tools/calculator.html" class="block px-4 py-2 hover:bg-gray-50">Income Calculator</a>
+            <a href="../tools/tracker.html" class="block px-4 py-2 hover:bg-gray-50">Activity Tracker</a>
+            <a href="../tools/scripts-cards.html" class="block px-4 py-2 hover:bg-gray-50">Script Cards</a>
+          </div>
+        </div>
+      </div>
+      <!-- Mobile toggle -->
+      <button class="md:hidden text-white" onclick="toggleMobileNav()">☰</button>
+    </div>
+    <!-- Mobile nav -->
+    <div id="mobile-nav" class="hidden md:hidden bg-navy border-t border-white/10 px-4 pb-4">
+      <a href="module-1-foundation.html" class="block py-2 text-sm text-accent font-semibold">Module 1 – Foundation</a>
+      <a href="module-2-followup-system.html" class="block py-2 text-sm">Module 2 – 30-Day Follow-Up</a>
+      <a href="module-3-reasons-to-call.html" class="block py-2 text-sm">Module 3 – Reasons to Call</a>
+      <a href="module-4-objections.html" class="block py-2 text-sm">Module 4 – Objection Handling</a>
+      <a href="module-5-voicemail.html" class="block py-2 text-sm">Module 5 – Voicemail System</a>
+      <a href="module-6-metrics.html" class="block py-2 text-sm">Module 6 – Metrics & Income</a>
+      <div class="border-t border-white/10 mt-2 pt-2">
+        <a href="../tools/calendar.html" class="block py-2 text-sm text-accent">30-Day Calendar</a>
+        <a href="../tools/calculator.html" class="block py-2 text-sm text-accent">Income Calculator</a>
+        <a href="../tools/tracker.html" class="block py-2 text-sm text-accent">Activity Tracker</a>
+        <a href="../tools/scripts-cards.html" class="block py-2 text-sm text-accent">Script Cards</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Module Header -->
+  <section class="bg-navy text-white">
+    <div class="max-w-4xl mx-auto px-4 py-16">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="bg-accent text-white text-sm font-bold px-3 py-1 rounded-full">MODULE 1</span>
+        <span class="text-white/50 text-sm">of 6</span>
+      </div>
+      <h1 class="text-3xl md:text-5xl font-black tracking-tight mb-4">
+        FOUNDATION:<br>THE DISCIPLINE FRAMEWORK
+      </h1>
+      <p class="text-lg md:text-xl text-white/70 max-w-2xl">
+        <strong class="text-white">Objective:</strong> Reframe follow-up as a predictable income system.
+      </p>
+    </div>
+  </section>
+
+  <!-- Module Content -->
+  <section class="max-w-4xl mx-auto px-4 py-12">
+
+    <!-- Video 1 -->
+    <div class="mb-10">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="bg-navy text-white text-xs font-bold px-3 py-1.5 rounded-full">VIDEO 1</span>
+        <h2 class="text-2xl font-bold text-navy">Welcome</h2>
+      </div>
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+        <div class="flex">
+          <div class="w-1.5 bg-accent shrink-0"></div>
+          <div class="p-6 md:p-8">
+            <p class="text-gray-700 leading-relaxed text-lg mb-6">
+              "Most salespeople don't have an income problem.<br>
+              They have a <strong class="text-navy">follow-up discipline problem</strong>.
+            </p>
+            <p class="text-gray-700 leading-relaxed text-lg mb-6">
+              The Appointment Engine exists to eliminate randomness from your business. When your activity is structured, your income becomes predictable.
+            </p>
+            <p class="text-gray-700 leading-relaxed text-lg mb-4">
+              This system gives you:
+            </p>
+            <ul class="space-y-3 mb-6">
+              <li class="flex items-start gap-3">
+                <span class="text-accent font-bold text-lg mt-0.5">&#8226;</span>
+                <span class="text-gray-700 text-lg">A 30-day follow-up framework</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-accent font-bold text-lg mt-0.5">&#8226;</span>
+                <span class="text-gray-700 text-lg">Defined reasons to call</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-accent font-bold text-lg mt-0.5">&#8226;</span>
+                <span class="text-gray-700 text-lg">Objection response structures</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-accent font-bold text-lg mt-0.5">&#8226;</span>
+                <span class="text-gray-700 text-lg">A measurable activity model</span>
+              </li>
+            </ul>
+            <p class="text-navy font-bold text-lg">
+              Predictable appointments create predictable income."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Video 2 -->
+    <div class="mb-12">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="bg-navy text-white text-xs font-bold px-3 py-1.5 rounded-full">VIDEO 2</span>
+        <h2 class="text-2xl font-bold text-navy">Why Salespeople Fail at Follow-Up</h2>
+      </div>
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+        <div class="flex">
+          <div class="w-1.5 bg-accent shrink-0"></div>
+          <div class="p-6 md:p-8">
+            <p class="text-gray-700 leading-relaxed text-lg mb-6">
+              "Salespeople stop too early.
+            </p>
+            <p class="text-gray-700 leading-relaxed text-lg mb-6">
+              Most deals close after the <strong class="text-navy">fifth contact</strong>.<br>
+              Most salespeople quit after the <strong class="text-danger">second</strong>.
+            </p>
+            <p class="text-navy font-bold text-lg">
+              That gap is your opportunity."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Key Takeaways -->
+    <div class="bg-navy/5 rounded-xl border border-navy/10 p-6 md:p-8 mb-12">
+      <h3 class="text-xl font-bold text-navy mb-4">
+        Summary
+      </h3>
+      <ul class="space-y-3">
+        <li class="flex items-start gap-3">
+          <span class="bg-navy text-white w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">1</span>
+          <span class="text-gray-700">Follow-up is not optional — it's the system that creates predictable income.</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="bg-navy text-white w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">2</span>
+          <span class="text-gray-700">Most salespeople quit after 2 contacts. Most deals close after 5. The gap between those numbers is where the money is.</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="bg-navy text-white w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">3</span>
+          <span class="text-gray-700">This system gives you a 30-day framework, call scripts, objection responses, and a way to measure all of it.</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="bg-navy text-white w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">4</span>
+          <span class="text-gray-700">Structure beats hustle. That's the whole point.</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Print Button -->
+    <div class="text-center mb-12 no-print">
+      <button onclick="printPage()" class="inline-flex items-center gap-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold px-6 py-3 rounded-xl transition border border-gray-200">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path>
+        </svg>
+        Print / Save as PDF
+      </button>
+    </div>
+
+    <!-- Module Navigation -->
+    <div class="flex items-center justify-between border-t border-gray-200 pt-8 no-print">
+      <!-- Previous (disabled for Module 1) -->
+      <span class="inline-flex items-center gap-2 text-gray-300 cursor-not-allowed font-semibold">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+        </svg>
+        Previous
+      </span>
+
+      <!-- Back to Home -->
+      <a href="../index.html" class="inline-flex items-center gap-2 text-navy hover:text-accent font-semibold transition">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0h4"></path>
+        </svg>
+        Back to Home
+      </a>
+
+      <!-- Next Module -->
+      <a href="module-2-followup-system.html" class="inline-flex items-center gap-2 bg-accent hover:bg-accent/90 text-white font-bold px-6 py-3 rounded-xl transition shadow-lg shadow-accent/25">
+        Next Module
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </a>
+    </div>
+
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-navy text-white/50 py-8">
+    <div class="max-w-6xl mx-auto px-4 text-center text-sm">
+      <p>The Appointment Engine™</p>
+    </div>
+  </footer>
+
+  <script src="../js/app.js"></script>
+</body>
+</html>

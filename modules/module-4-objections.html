@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 4 – Objection Handling Library | The Appointment Engine™</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: '#1B2A4A',
+            accent: '#E8963E',
+            success: '#2ECC71',
+            danger: '#E74C3C',
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/print.css">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-900">
+
+  <!-- Navigation -->
+  <nav class="bg-navy text-white sticky top-0 z-50 shadow-lg no-print">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+      <a href="../index.html" class="flex items-center gap-2">
+        <span class="text-2xl">&#9881;&#65039;</span>
+        <span class="font-bold text-lg">The Appointment Engine<span class="text-accent">&trade;</span></span>
+      </a>
+      <div class="hidden md:flex items-center gap-6 text-sm">
+        <a href="../index.html" class="hover:text-accent transition">Home</a>
+        <div class="relative group">
+          <button class="hover:text-accent transition">Modules &#9662;</button>
+          <div class="absolute top-full left-0 mt-2 bg-white text-gray-900 rounded-lg shadow-xl py-2 w-64 hidden group-hover:block">
+            <a href="module-1-foundation.html" class="block px-4 py-2 hover:bg-gray-50">Module 1 &ndash; Foundation</a>
+            <a href="module-2-followup-system.html" class="block px-4 py-2 hover:bg-gray-50">Module 2 &ndash; 30-Day Follow-Up</a>
+            <a href="module-3-reasons-to-call.html" class="block px-4 py-2 hover:bg-gray-50">Module 3 &ndash; Reasons to Call</a>
+            <a href="module-4-objections.html" class="block px-4 py-2 hover:bg-gray-50 text-accent font-semibold">Module 4 &ndash; Objection Handling</a>
+            <a href="module-5-voicemail.html" class="block px-4 py-2 hover:bg-gray-50">Module 5 &ndash; Voicemail System</a>
+            <a href="module-6-metrics.html" class="block px-4 py-2 hover:bg-gray-50">Module 6 &ndash; Metrics &amp; Income</a>
+          </div>
+        </div>
+        <div class="relative group">
+          <button class="hover:text-accent transition">Tools &#9662;</button>
+          <div class="absolute top-full left-0 mt-2 bg-white text-gray-900 rounded-lg shadow-xl py-2 w-64 hidden group-hover:block">
+            <a href="../tools/calendar.html" class="block px-4 py-2 hover:bg-gray-50">30-Day Calendar</a>
+            <a href="../tools/calculator.html" class="block px-4 py-2 hover:bg-gray-50">Income Calculator</a>
+            <a href="../tools/tracker.html" class="block px-4 py-2 hover:bg-gray-50">Activity Tracker</a>
+            <a href="../tools/scripts-cards.html" class="block px-4 py-2 hover:bg-gray-50">Script Cards</a>
+          </div>
+        </div>
+      </div>
+      <!-- Mobile toggle -->
+      <button class="md:hidden text-white" onclick="toggleMobileNav()">&#9776;</button>
+    </div>
+    <!-- Mobile nav -->
+    <div id="mobile-nav" class="hidden md:hidden bg-navy border-t border-white/10 px-4 pb-4">
+      <a href="module-1-foundation.html" class="block py-2 text-sm">Module 1 &ndash; Foundation</a>
+      <a href="module-2-followup-system.html" class="block py-2 text-sm">Module 2 &ndash; 30-Day Follow-Up</a>
+      <a href="module-3-reasons-to-call.html" class="block py-2 text-sm">Module 3 &ndash; Reasons to Call</a>
+      <a href="module-4-objections.html" class="block py-2 text-sm text-accent font-semibold">Module 4 &ndash; Objection Handling</a>
+      <a href="module-5-voicemail.html" class="block py-2 text-sm">Module 5 &ndash; Voicemail System</a>
+      <a href="module-6-metrics.html" class="block py-2 text-sm">Module 6 &ndash; Metrics &amp; Income</a>
+      <div class="border-t border-white/10 mt-2 pt-2">
+        <a href="../tools/calendar.html" class="block py-2 text-sm text-accent">30-Day Calendar</a>
+        <a href="../tools/calculator.html" class="block py-2 text-sm text-accent">Income Calculator</a>
+        <a href="../tools/tracker.html" class="block py-2 text-sm text-accent">Activity Tracker</a>
+        <a href="../tools/scripts-cards.html" class="block py-2 text-sm text-accent">Script Cards</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Module Header -->
+  <section class="bg-navy text-white">
+    <div class="max-w-4xl mx-auto px-4 py-16 text-center">
+      <div class="text-sm font-bold text-accent tracking-widest uppercase mb-3">Module 4</div>
+      <h1 class="text-3xl md:text-5xl font-black tracking-tight mb-4">Objection Handling Library</h1>
+      <p class="text-lg text-white/70 max-w-2xl mx-auto">
+        Master the 4-Step Formula to turn every objection into an appointment. Stop getting stuck &mdash; start redirecting.
+      </p>
+    </div>
+  </section>
+
+  <!-- Objective Bar -->
+  <div class="bg-accent/10 border-b border-accent/20">
+    <div class="max-w-4xl mx-auto px-4 py-4">
+      <div>
+        <span class="font-bold text-navy">Objective:</span>
+        <span class="text-gray-700">Learn the 4-step objection handling formula and apply it to the most common customer objections with ready-to-use scripts.</span>
+      </div>
+    </div>
+  </div>
+
+  <main class="max-w-4xl mx-auto px-4 py-12">
+
+    <!-- The 4-Step Formula -->
+    <section class="mb-16">
+      <h2 class="text-2xl font-bold text-navy mb-2 text-center">The 4-Step Formula</h2>
+      <p class="text-gray-500 text-center mb-8">Most objections follow the same pattern. Learn the four steps and you'll know what to say.</p>
+
+      <!-- Horizontal Steps Flow -->
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-0 relative">
+
+        <!-- Step 1 — Acknowledge -->
+        <div class="relative flex flex-col items-center text-center px-4">
+          <div class="w-16 h-16 bg-navy rounded-2xl flex items-center justify-center text-white text-2xl font-black mb-3 shadow-lg">
+            1
+          </div>
+          <div class="text-xs font-bold text-accent tracking-widest uppercase mb-1">Step 1</div>
+          <h3 class="font-bold text-navy text-lg mb-2">Acknowledge</h3>
+          <p class="text-gray-500 text-sm">Validate their concern. Show you heard them. No arguing, no defending.</p>
+          <!-- Arrow (hidden on mobile) -->
+          <div class="hidden md:block absolute top-8 -right-2 text-gray-300 text-2xl">&rarr;</div>
+        </div>
+
+        <!-- Step 2 — Clarify -->
+        <div class="relative flex flex-col items-center text-center px-4">
+          <div class="w-16 h-16 bg-navy rounded-2xl flex items-center justify-center text-white text-2xl font-black mb-3 shadow-lg">
+            2
+          </div>
+          <div class="text-xs font-bold text-accent tracking-widest uppercase mb-1">Step 2</div>
+          <h3 class="font-bold text-navy text-lg mb-2">Clarify</h3>
+          <p class="text-gray-500 text-sm">Ask a question to find the real issue underneath. Most objections hide the actual concern.</p>
+          <div class="hidden md:block absolute top-8 -right-2 text-gray-300 text-2xl">&rarr;</div>
+        </div>
+
+        <!-- Step 3 — Reframe -->
+        <div class="relative flex flex-col items-center text-center px-4">
+          <div class="w-16 h-16 bg-accent rounded-2xl flex items-center justify-center text-white text-2xl font-black mb-3 shadow-lg">
+            3
+          </div>
+          <div class="text-xs font-bold text-accent tracking-widest uppercase mb-1">Step 3</div>
+          <h3 class="font-bold text-navy text-lg mb-2">Reframe</h3>
+          <p class="text-gray-500 text-sm">Shift the perspective. Give them a new way to look at the situation that works in their favor.</p>
+          <div class="hidden md:block absolute top-8 -right-2 text-gray-300 text-2xl">&rarr;</div>
+        </div>
+
+        <!-- Step 4 — Close -->
+        <div class="relative flex flex-col items-center text-center px-4">
+          <div class="w-16 h-16 bg-success rounded-2xl flex items-center justify-center text-white text-2xl font-black mb-3 shadow-lg">
+            4
+          </div>
+          <div class="text-xs font-bold text-accent tracking-widest uppercase mb-1">Step 4</div>
+          <h3 class="font-bold text-navy text-lg mb-2">Close</h3>
+          <p class="text-gray-500 text-sm">Redirect back to the appointment. Every response should end with a next step.</p>
+        </div>
+
+      </div>
+
+      <!-- Connector bar (desktop only) -->
+      <div class="hidden md:block max-w-3xl mx-auto mt-2">
+        <div class="h-px bg-gray-300"></div>
+      </div>
+    </section>
+
+    <!-- Divider -->
+    <div class="border-t border-gray-200 mb-12"></div>
+
+    <!-- Objection Cards -->
+    <section>
+      <h2 class="text-2xl font-bold text-navy mb-8">Common Objections &amp; Scripts</h2>
+
+      <!-- Objection 1: "Just Looking" -->
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 mb-8 overflow-hidden no-break script-card">
+        <!-- Customer Says -->
+        <div class="bg-gray-50 px-6 py-4 border-b border-gray-100">
+          <div class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Customer Says</div>
+          <p class="text-xl font-semibold text-gray-500 italic">&ldquo;I&rsquo;m just looking.&rdquo;</p>
+        </div>
+        <!-- Your Response -->
+        <div class="p-6">
+          <div class="text-xs font-bold text-accent uppercase tracking-widest mb-3">Your Response</div>
+          <div class="border-l-4 border-accent bg-accent/5 rounded-r-lg p-5 mb-6">
+            <p class="text-navy font-semibold text-lg leading-relaxed">
+              &ldquo;I understand. Most customers start there. Just so I can help properly, are you comparing models or just exploring pricing?&rdquo;
+            </p>
+          </div>
+          <!-- Step Breakdown -->
+          <div class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">Step Breakdown</div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div class="flex items-start gap-3 bg-navy/5 rounded-lg p-3">
+              <span class="w-7 h-7 bg-navy rounded-lg flex items-center justify-center text-white text-xs font-bold flex-shrink-0">1</span>
+              <div>
+                <div class="font-semibold text-navy text-sm">Acknowledge</div>
+                <p class="text-gray-500 text-sm">&ldquo;I understand.&rdquo;</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3 bg-navy/5 rounded-lg p-3">
+              <span class="w-7 h-7 bg-navy rounded-lg flex items-center justify-center text-white text-xs font-bold flex-shrink-0">2</span>
+              <div>
+                <div class="font-semibold text-navy text-sm">Clarify</div>
+                <p class="text-gray-500 text-sm">&ldquo;Most customers start there.&rdquo; &mdash; normalizes their position</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3 bg-accent/10 rounded-lg p-3">
+              <span class="w-7 h-7 bg-accent rounded-lg flex items-center justify-center text-white text-xs font-bold flex-shrink-0">3</span>
+              <div>
+                <div class="font-semibold text-navy text-sm">Reframe</div>
+                <p class="text-gray-500 text-sm">&ldquo;Just so I can help properly&rdquo; &mdash; positions you as a guide, not a pusher</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3 bg-success/10 rounded-lg p-3">
+              <span class="w-7 h-7 bg-success rounded-lg flex items-center justify-center text-white text-xs font-bold flex-shrink-0">4</span>
+              <div>
+                <div class="font-semibold text-navy text-sm">Close</div>
+                <p class="text-gray-500 text-sm">&ldquo;Are you comparing models or just exploring pricing?&rdquo; &mdash; gives them two paths, both lead forward</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Objection 2: "Need to Think About It" -->
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 mb-8 overflow-hidden no-break script-card">
+        <!-- Customer Says -->
+        <div class="bg-gray-50 px-6 py-4 border-b border-gray-100">
+          <div class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Customer Says</div>
+          <p class="text-xl font-semibold text-gray-500 italic">&ldquo;I need to think about it.&rdquo;</p>
+        </div>
+        <!-- Your Response -->
+        <div class="p-6">
+          <div class="text-xs font-bold text-accent uppercase tracking-widest mb-3">Your Response</div>
+          <div class="border-l-4 border-accent bg-accent/5 rounded-r-lg p-5 mb-6">
+            <p class="text-navy font-semibold text-lg leading-relaxed">
+              &ldquo;Of course. Usually when someone says that, there&rsquo;s one specific thing they&rsquo;re unsure about. Is it the payment, the vehicle, or the timing?&rdquo;
+            </p>
+          </div>
+          <!-- Step Breakdown -->
+          <div class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">Step Breakdown</div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div class="flex items-start gap-3 bg-navy/5 rounded-lg p-3">
+              <span class="w-7 h-7 bg-navy rounded-lg flex items-center justify-center text-white text-xs font-bold flex-shrink-0">1</span>
+              <div>
+                <div class="font-semibold text-navy text-sm">Acknowledge</div>
+                <p class="text-gray-500 text-sm">&ldquo;Of course.&rdquo; &mdash; no pressure, no judgment</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3 bg-navy/5 rounded-lg p-3">
+              <span class="w-7 h-7 bg-navy rounded-lg flex items-center justify-center text-white text-xs font-bold flex-shrink-0">2</span>
+              <div>
+                <div class="font-semibold text-navy text-sm">Clarify</div>
+                <p class="text-gray-500 text-sm">&ldquo;Usually there&rsquo;s one specific thing&rdquo; &mdash; narrows the vague objection into something real</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3 bg-accent/10 rounded-lg p-3">
+              <span class="w-7 h-7 bg-accent rounded-lg flex items-center justify-center text-white text-xs font-bold flex-shrink-0">3</span>
+              <div>
+                <div class="font-semibold text-navy text-sm">Reframe</div>
+                <p class="text-gray-500 text-sm">Turns &ldquo;thinking&rdquo; into a solvable, specific concern</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3 bg-success/10 rounded-lg p-3">
+              <span class="w-7 h-7 bg-success rounded-lg flex items-center justify-center text-white text-xs font-bold flex-shrink-0">4</span>
+              <div>
+                <div class="font-semibold text-navy text-sm">Close</div>
+                <p class="text-gray-500 text-sm">&ldquo;Is it payment, vehicle, or timing?&rdquo; &mdash; three options, all answerable right now</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Objection 3: "Payment Too High" -->
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 mb-8 overflow-hidden no-break script-card">
+        <!-- Customer Says -->
+        <div class="bg-gray-50 px-6 py-4 border-b border-gray-100">
+          <div class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Customer Says</div>
+          <p class="text-xl font-semibold text-gray-500 italic">&ldquo;The payment is too high.&rdquo;</p>
+        </div>
+        <!-- Your Response -->
+        <div class="p-6">
+          <div class="text-xs font-bold text-accent uppercase tracking-widest mb-3">Your Response</div>
+          <div class="border-l-4 border-accent bg-accent/5 rounded-r-lg p-5 mb-6">
+            <p class="text-navy font-semibold text-lg leading-relaxed">
+              &ldquo;If we could adjust the structure to stay closer to your target, would everything else make sense?&rdquo;
+            </p>
+          </div>
+          <!-- Step Breakdown -->
+          <div class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">Step Breakdown</div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div class="flex items-start gap-3 bg-navy/5 rounded-lg p-3">
+              <span class="w-7 h-7 bg-navy rounded-lg flex items-center justify-center text-white text-xs font-bold flex-shrink-0">1</span>
+              <div>
+                <div class="font-semibold text-navy text-sm">Acknowledge</div>
+                <p class="text-gray-500 text-sm">Implied &mdash; you don&rsquo;t argue the number, you work with it</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3 bg-navy/5 rounded-lg p-3">
+              <span class="w-7 h-7 bg-navy rounded-lg flex items-center justify-center text-white text-xs font-bold flex-shrink-0">2</span>
+              <div>
+                <div class="font-semibold text-navy text-sm">Clarify</div>
+                <p class="text-gray-500 text-sm">&ldquo;Closer to your target&rdquo; &mdash; confirms what they actually want to pay</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3 bg-accent/10 rounded-lg p-3">
+              <span class="w-7 h-7 bg-accent rounded-lg flex items-center justify-center text-white text-xs font-bold flex-shrink-0">3</span>
+              <div>
+                <div class="font-semibold text-navy text-sm">Reframe</div>
+                <p class="text-gray-500 text-sm">&ldquo;Adjust the structure&rdquo; &mdash; shows flexibility without giving away profit</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3 bg-success/10 rounded-lg p-3">
+              <span class="w-7 h-7 bg-success rounded-lg flex items-center justify-center text-white text-xs font-bold flex-shrink-0">4</span>
+              <div>
+                <div class="font-semibold text-navy text-sm">Close</div>
+                <p class="text-gray-500 text-sm">&ldquo;Would everything else make sense?&rdquo; &mdash; isolates payment as the only barrier</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Objection 4: "Shopping Other Dealers" -->
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 mb-8 overflow-hidden no-break script-card">
+        <!-- Customer Says -->
+        <div class="bg-gray-50 px-6 py-4 border-b border-gray-100">
+          <div class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Customer Says</div>
+          <p class="text-xl font-semibold text-gray-500 italic">&ldquo;I&rsquo;m shopping other dealers.&rdquo;</p>
+        </div>
+        <!-- Your Response -->
+        <div class="p-6">
+          <div class="text-xs font-bold text-accent uppercase tracking-widest mb-3">Your Response</div>
+          <div class="border-l-4 border-accent bg-accent/5 rounded-r-lg p-5 mb-6">
+            <p class="text-navy font-semibold text-lg leading-relaxed">
+              &ldquo;That makes sense. While you&rsquo;re comparing, what&rsquo;s most important &mdash; price, vehicle availability, or the service experience?&rdquo;
+            </p>
+          </div>
+          <!-- Step Breakdown -->
+          <div class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">Step Breakdown</div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div class="flex items-start gap-3 bg-navy/5 rounded-lg p-3">
+              <span class="w-7 h-7 bg-navy rounded-lg flex items-center justify-center text-white text-xs font-bold flex-shrink-0">1</span>
+              <div>
+                <div class="font-semibold text-navy text-sm">Acknowledge</div>
+                <p class="text-gray-500 text-sm">&ldquo;That makes sense.&rdquo; &mdash; validates their smart buyer behavior</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3 bg-navy/5 rounded-lg p-3">
+              <span class="w-7 h-7 bg-navy rounded-lg flex items-center justify-center text-white text-xs font-bold flex-shrink-0">2</span>
+              <div>
+                <div class="font-semibold text-navy text-sm">Clarify</div>
+                <p class="text-gray-500 text-sm">&ldquo;What&rsquo;s most important?&rdquo; &mdash; discovers their real buying criteria</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3 bg-accent/10 rounded-lg p-3">
+              <span class="w-7 h-7 bg-accent rounded-lg flex items-center justify-center text-white text-xs font-bold flex-shrink-0">3</span>
+              <div>
+                <div class="font-semibold text-navy text-sm">Reframe</div>
+                <p class="text-gray-500 text-sm">&ldquo;While you&rsquo;re comparing&rdquo; &mdash; joins their process instead of fighting it</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3 bg-success/10 rounded-lg p-3">
+              <span class="w-7 h-7 bg-success rounded-lg flex items-center justify-center text-white text-xs font-bold flex-shrink-0">4</span>
+              <div>
+                <div class="font-semibold text-navy text-sm">Close</div>
+                <p class="text-gray-500 text-sm">&ldquo;Price, availability, or service?&rdquo; &mdash; three options, you can win on any of them</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Key Takeaway -->
+    <section class="bg-navy text-white rounded-xl p-8 mb-12">
+      <h3 class="font-bold text-xl mb-3">The Point</h3>
+      <p class="text-white/80 leading-relaxed">
+        An objection means they're still talking to you. That's a good thing. The worst thing you can do is argue. The best thing you can do is <strong class="text-accent">acknowledge, clarify, reframe, and redirect</strong>. Every objection is a doorway to the appointment.
+      </p>
+    </section>
+
+    <!-- Print Button -->
+    <div class="text-center mb-12 no-print">
+      <button onclick="printPage()" class="inline-flex items-center gap-2 bg-navy hover:bg-navy/90 text-white font-bold px-6 py-3 rounded-xl transition shadow-md">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path>
+        </svg>
+        Print / Save as PDF
+      </button>
+    </div>
+
+    <!-- Navigation -->
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 border-t border-gray-200 no-print">
+      <a href="module-3-reasons-to-call.html" class="inline-flex items-center gap-2 text-navy font-semibold hover:text-accent transition">
+        &larr; Module 3: Reasons to Call
+      </a>
+      <a href="../index.html" class="text-gray-400 hover:text-navy font-medium transition">
+        Back to Home
+      </a>
+      <a href="module-5-voicemail.html" class="inline-flex items-center gap-2 text-navy font-semibold hover:text-accent transition">
+        Module 5: Voicemail System &rarr;
+      </a>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-navy text-white/50 py-8 mt-12">
+    <div class="max-w-6xl mx-auto px-4 text-center text-sm">
+      <p>The Appointment Engine&trade;</p>
+    </div>
+  </footer>
+
+  <script src="../js/app.js"></script>
+</body>
+</html>

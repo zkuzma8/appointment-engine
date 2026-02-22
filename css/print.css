@@ -1,0 +1,82 @@
+@media print {
+  /* Hide non-printable elements */
+  nav, .no-print, .print-btn, .sidebar, .nav-mobile, footer .no-print,
+  button:not(.keep-print) {
+    display: none !important;
+  }
+
+  /* Reset backgrounds for printing */
+  body {
+    background: white !important;
+    color: black !important;
+    font-size: 11pt;
+    line-height: 1.5;
+  }
+
+  /* Ensure content fills page */
+  .main-content, main {
+    margin: 0 !important;
+    padding: 0 !important;
+    max-width: 100% !important;
+  }
+
+  /* Page breaks */
+  .page-break {
+    page-break-before: always;
+  }
+
+  .no-break {
+    page-break-inside: avoid;
+  }
+
+  /* Script cards — keep together */
+  .script-card {
+    page-break-inside: avoid;
+    border: 1px solid #ccc !important;
+    margin-bottom: 12pt;
+    padding: 10pt;
+  }
+
+  /* Links — show URL */
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 9pt;
+    color: #666;
+  }
+
+  /* Calendar grid */
+  .calendar-grid {
+    page-break-inside: avoid;
+  }
+
+  /* Tracker table */
+  table {
+    width: 100% !important;
+    border-collapse: collapse;
+  }
+
+  th, td {
+    border: 1px solid #ccc !important;
+    padding: 4pt 6pt;
+    font-size: 10pt;
+  }
+
+  /* Script cards — 2 per page for pocket reference */
+  .script-cards-print .script-card {
+    width: 48%;
+    display: inline-block;
+    vertical-align: top;
+    margin: 1%;
+    font-size: 9pt;
+  }
+
+  /* Headers */
+  h1 { font-size: 18pt; }
+  h2 { font-size: 14pt; }
+  h3 { font-size: 12pt; }
+
+  /* Footer */
+  @page {
+    margin: 0.75in;
+  }
+}

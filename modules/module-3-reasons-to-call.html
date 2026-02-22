@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 3 – Strategic Reasons to Call | The Appointment Engine™</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: '#1B2A4A',
+            accent: '#E8963E',
+            success: '#2ECC71',
+            danger: '#E74C3C',
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/print.css">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-900">
+
+  <!-- Navigation -->
+  <nav class="bg-navy text-white sticky top-0 z-50 shadow-lg no-print">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+      <a href="../index.html" class="flex items-center gap-2">
+        <span class="text-2xl">⚙️</span>
+        <span class="font-bold text-lg">The Appointment Engine<span class="text-accent">™</span></span>
+      </a>
+      <div class="hidden md:flex items-center gap-6 text-sm">
+        <a href="../index.html" class="hover:text-accent transition">Home</a>
+        <div class="relative group">
+          <button class="hover:text-accent transition">Modules ▾</button>
+          <div class="absolute top-full left-0 mt-2 bg-white text-gray-900 rounded-lg shadow-xl py-2 w-64 hidden group-hover:block">
+            <a href="module-1-foundation.html" class="block px-4 py-2 hover:bg-gray-50">Module 1 – Foundation</a>
+            <a href="module-2-followup-system.html" class="block px-4 py-2 hover:bg-gray-50">Module 2 – 30-Day Follow-Up</a>
+            <a href="module-3-reasons-to-call.html" class="block px-4 py-2 hover:bg-gray-50 text-accent font-semibold">Module 3 – Reasons to Call</a>
+            <a href="module-4-objections.html" class="block px-4 py-2 hover:bg-gray-50">Module 4 – Objection Handling</a>
+            <a href="module-5-voicemail.html" class="block px-4 py-2 hover:bg-gray-50">Module 5 – Voicemail System</a>
+            <a href="module-6-metrics.html" class="block px-4 py-2 hover:bg-gray-50">Module 6 – Metrics & Income</a>
+          </div>
+        </div>
+        <div class="relative group">
+          <button class="hover:text-accent transition">Tools ▾</button>
+          <div class="absolute top-full left-0 mt-2 bg-white text-gray-900 rounded-lg shadow-xl py-2 w-64 hidden group-hover:block">
+            <a href="../tools/calendar.html" class="block px-4 py-2 hover:bg-gray-50">30-Day Calendar</a>
+            <a href="../tools/calculator.html" class="block px-4 py-2 hover:bg-gray-50">Income Calculator</a>
+            <a href="../tools/tracker.html" class="block px-4 py-2 hover:bg-gray-50">Activity Tracker</a>
+            <a href="../tools/scripts-cards.html" class="block px-4 py-2 hover:bg-gray-50">Script Cards</a>
+          </div>
+        </div>
+      </div>
+      <!-- Mobile toggle -->
+      <button class="md:hidden text-white" onclick="toggleMobileNav()">☰</button>
+    </div>
+    <!-- Mobile nav -->
+    <div id="mobile-nav" class="hidden md:hidden bg-navy border-t border-white/10 px-4 pb-4">
+      <a href="module-1-foundation.html" class="block py-2 text-sm">Module 1 – Foundation</a>
+      <a href="module-2-followup-system.html" class="block py-2 text-sm">Module 2 – 30-Day Follow-Up</a>
+      <a href="module-3-reasons-to-call.html" class="block py-2 text-sm text-accent font-semibold">Module 3 – Reasons to Call</a>
+      <a href="module-4-objections.html" class="block py-2 text-sm">Module 4 – Objection Handling</a>
+      <a href="module-5-voicemail.html" class="block py-2 text-sm">Module 5 – Voicemail System</a>
+      <a href="module-6-metrics.html" class="block py-2 text-sm">Module 6 – Metrics & Income</a>
+      <div class="border-t border-white/10 mt-2 pt-2">
+        <a href="../tools/calendar.html" class="block py-2 text-sm text-accent">30-Day Calendar</a>
+        <a href="../tools/calculator.html" class="block py-2 text-sm text-accent">Income Calculator</a>
+        <a href="../tools/tracker.html" class="block py-2 text-sm text-accent">Activity Tracker</a>
+        <a href="../tools/scripts-cards.html" class="block py-2 text-sm text-accent">Script Cards</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Module Header -->
+  <section class="bg-navy text-white">
+    <div class="max-w-4xl mx-auto px-4 py-16 text-center">
+      <div class="text-sm font-bold text-accent tracking-widest uppercase mb-3">Module 3</div>
+      <h1 class="text-3xl md:text-5xl font-black tracking-tight mb-4">
+        Strategic Reasons to Call
+      </h1>
+      <p class="text-lg md:text-xl text-white/70 max-w-2xl mx-auto">
+        Never run out of reasons to call. These are legitimate, value-driven reasons to contact customers — each with a complete script ready to use.
+      </p>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <section class="max-w-4xl mx-auto px-4 py-12">
+
+    <!-- Intro -->
+    <div class="bg-white rounded-xl p-6 md:p-8 shadow-sm border border-gray-100 mb-10">
+      <h2 class="text-xl font-bold text-navy mb-3">The Problem</h2>
+      <p class="text-gray-700 leading-relaxed">
+        Most salespeople stop calling because they feel like they don't have a reason. "I don't want to bother them." The truth is: you're not bothering anyone when you bring <strong>real value</strong>. Four call types. Four real reasons to pick up the phone. Pick the one that fits, use the script, and set the appointment.
+      </p>
+    </div>
+
+    <!-- Reason Cards -->
+    <div class="space-y-8">
+
+      <!-- 1. Inventory Call -->
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+        <div class="p-6 md:p-8">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="bg-accent text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold">1</span>
+            <h3 class="text-2xl font-bold text-navy">Inventory Call</h3>
+          </div>
+          <!-- Script -->
+          <div class="border-l-4 border-accent bg-accent/5 rounded-r-lg p-5 mb-5">
+            <p class="text-gray-800 italic leading-relaxed text-lg">
+              "Hey [Name], this is [Your Name] over at [Dealership]. I wanted to reach out because we just took in something similar to what you were looking for and I wanted to let you know before it gets advertised heavily. Do you have a couple of minutes so I can tell you about it?"
+            </p>
+          </div>
+          <!-- When to use -->
+          <div class="flex items-start gap-3 bg-navy/5 rounded-lg p-4">
+            <span class="text-accent font-bold text-sm mt-0.5 whitespace-nowrap">WHEN TO USE:</span>
+            <p class="text-gray-700 text-sm leading-relaxed">
+              When new trade-ins arrive or fresh inventory matches a customer's previous interest. Check your CRM for customers who looked at similar vehicles — this call feels personal and timely.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Equity Call -->
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+        <div class="p-6 md:p-8">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="bg-accent text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold">2</span>
+            <h3 class="text-2xl font-bold text-navy">Equity Call</h3>
+          </div>
+          <!-- Script -->
+          <div class="border-l-4 border-accent bg-accent/5 rounded-r-lg p-5 mb-5">
+            <p class="text-gray-800 italic leading-relaxed text-lg">
+              "Hey [Name], this is [Your Name] at [Dealership]. I'm reaching out because market values have shifted recently and your vehicle may have some positive equity right now. If we could look at upgrading you into something newer at a similar monthly payment, would that be worth reviewing together?"
+            </p>
+          </div>
+          <!-- When to use -->
+          <div class="flex items-start gap-3 bg-navy/5 rounded-lg p-4">
+            <span class="text-accent font-bold text-sm mt-0.5 whitespace-nowrap">WHEN TO USE:</span>
+            <p class="text-gray-700 text-sm leading-relaxed">
+              When market values increase, typically during spring/summer or when interest rates change. Also great for customers 18-24 months into their loan — their equity position may have improved significantly.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Service Lane Call -->
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+        <div class="p-6 md:p-8">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="bg-accent text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold">3</span>
+            <h3 class="text-2xl font-bold text-navy">Service Lane Call</h3>
+          </div>
+          <!-- Script -->
+          <div class="border-l-4 border-accent bg-accent/5 rounded-r-lg p-5 mb-5">
+            <p class="text-gray-800 italic leading-relaxed text-lg">
+              "Hey [Name], this is [Your Name] in sales. I see your vehicle is here for service today. While it's being taken care of, I can quickly run some upgrade numbers for you — just so you're aware of your current options. No pressure at all, just information. Would you have a few minutes while you wait?"
+            </p>
+          </div>
+          <!-- When to use -->
+          <div class="flex items-start gap-3 bg-navy/5 rounded-lg p-4">
+            <span class="text-accent font-bold text-sm mt-0.5 whitespace-nowrap">WHEN TO USE:</span>
+            <p class="text-gray-700 text-sm leading-relaxed">
+              When a customer's vehicle is in for service — this is a warm handoff opportunity. The customer is already on-site and in a car-related mindset. Coordinate with your service team daily to identify these opportunities.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. Anniversary Call -->
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+        <div class="p-6 md:p-8">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="bg-accent text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold">4</span>
+            <h3 class="text-2xl font-bold text-navy">Anniversary Call</h3>
+          </div>
+          <!-- Script -->
+          <div class="border-l-4 border-accent bg-accent/5 rounded-r-lg p-5 mb-5">
+            <p class="text-gray-800 italic leading-relaxed text-lg">
+              "Hey [Name], this is [Your Name] from [Dealership]. I just wanted to personally thank you again for your business and make sure everything is still going great with your [Vehicle]. Is there anything at all I can help you with?"
+            </p>
+          </div>
+          <!-- When to use -->
+          <div class="flex items-start gap-3 bg-navy/5 rounded-lg p-4">
+            <span class="text-accent font-bold text-sm mt-0.5 whitespace-nowrap">WHEN TO USE:</span>
+            <p class="text-gray-700 text-sm leading-relaxed">
+              At 30, 60, and 90 days after purchase, and again at the 1-year anniversary. These calls build loyalty, generate referrals, and keep you top-of-mind when they (or someone they know) are ready to buy again.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Note -->
+    <p class="mt-10 text-gray-700 leading-relaxed">
+      <strong class="text-navy">Note:</strong> rotate your reasons between calls so each one feels fresh. Keep notes in your CRM about which reason you used last. The goal is always the same: <strong>set the appointment</strong>.
+    </p>
+
+    <!-- Print Button -->
+    <div class="mt-10 text-center no-print">
+      <button onclick="printPage()" class="inline-flex items-center gap-2 bg-navy hover:bg-navy/90 text-white font-bold px-8 py-3 rounded-xl transition shadow-md">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path>
+        </svg>
+        Print / Save as PDF
+      </button>
+    </div>
+
+    <!-- Module Navigation -->
+    <div class="mt-12 flex flex-col sm:flex-row items-center justify-between gap-4 no-print">
+      <a href="module-2-followup-system.html" class="inline-flex items-center gap-2 text-navy hover:text-accent font-semibold transition">
+        ← Module 2: 30-Day Follow-Up
+      </a>
+      <a href="../index.html" class="inline-flex items-center gap-2 text-gray-500 hover:text-navy font-medium transition">
+        Back to Home
+      </a>
+      <a href="module-4-objections.html" class="inline-flex items-center gap-2 text-navy hover:text-accent font-semibold transition">
+        Module 4: Objection Handling →
+      </a>
+    </div>
+
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-navy text-white/50 py-8">
+    <div class="max-w-6xl mx-auto px-4 text-center text-sm">
+      <p>The Appointment Engine™</p>
+    </div>
+  </footer>
+
+  <script src="../js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 2 — The 30-Day Follow-Up System | The Appointment Engine™</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: '#1B2A4A',
+            accent: '#E8963E',
+            success: '#2ECC71',
+            danger: '#E74C3C',
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/print.css">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .phase-red { --phase-color: #E74C3C; }
+    .phase-orange { --phase-color: #E8963E; }
+    .phase-blue { --phase-color: #3498DB; }
+    .phase-navy { --phase-color: #1B2A4A; }
+    .script-card { border-left: 4px solid var(--phase-color); }
+    .day-badge { background-color: var(--phase-color); }
+    .phase-tag { background-color: var(--phase-color); }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-900">
+
+  <!-- Navigation -->
+  <nav class="bg-navy text-white sticky top-0 z-50 shadow-lg no-print">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+      <a href="../index.html" class="flex items-center gap-2">
+        <span class="text-2xl">&#9881;&#65039;</span>
+        <span class="font-bold text-lg">The Appointment Engine<span class="text-accent">&#8482;</span></span>
+      </a>
+      <div class="hidden md:flex items-center gap-6 text-sm">
+        <a href="../index.html" class="hover:text-accent transition">Home</a>
+        <div class="relative group">
+          <button class="text-accent font-semibold">Modules &#9662;</button>
+          <div class="absolute top-full left-0 mt-2 bg-white text-gray-900 rounded-lg shadow-xl py-2 w-64 hidden group-hover:block">
+            <a href="module-1-foundation.html" class="block px-4 py-2 hover:bg-gray-50">Module 1 &ndash; Foundation</a>
+            <a href="module-2-followup-system.html" class="block px-4 py-2 bg-accent/10 text-accent font-semibold">Module 2 &ndash; 30-Day Follow-Up</a>
+            <a href="module-3-reasons-to-call.html" class="block px-4 py-2 hover:bg-gray-50">Module 3 &ndash; Reasons to Call</a>
+            <a href="module-4-objections.html" class="block px-4 py-2 hover:bg-gray-50">Module 4 &ndash; Objection Handling</a>
+            <a href="module-5-voicemail.html" class="block px-4 py-2 hover:bg-gray-50">Module 5 &ndash; Voicemail System</a>
+            <a href="module-6-metrics.html" class="block px-4 py-2 hover:bg-gray-50">Module 6 &ndash; Metrics &amp; Income</a>
+          </div>
+        </div>
+        <div class="relative group">
+          <button class="hover:text-accent transition">Tools &#9662;</button>
+          <div class="absolute top-full left-0 mt-2 bg-white text-gray-900 rounded-lg shadow-xl py-2 w-64 hidden group-hover:block">
+            <a href="../tools/calendar.html" class="block px-4 py-2 hover:bg-gray-50">30-Day Calendar</a>
+            <a href="../tools/calculator.html" class="block px-4 py-2 hover:bg-gray-50">Income Calculator</a>
+            <a href="../tools/tracker.html" class="block px-4 py-2 hover:bg-gray-50">Activity Tracker</a>
+            <a href="../tools/scripts-cards.html" class="block px-4 py-2 hover:bg-gray-50">Script Cards</a>
+          </div>
+        </div>
+      </div>
+      <!-- Mobile toggle -->
+      <button class="md:hidden text-white" onclick="toggleMobileNav()">&#9776;</button>
+    </div>
+    <!-- Mobile nav -->
+    <div id="mobile-nav" class="hidden md:hidden bg-navy border-t border-white/10 px-4 pb-4">
+      <a href="module-1-foundation.html" class="block py-2 text-sm">Module 1 &ndash; Foundation</a>
+      <a href="module-2-followup-system.html" class="block py-2 text-sm text-accent font-semibold">Module 2 &ndash; 30-Day Follow-Up</a>
+      <a href="module-3-reasons-to-call.html" class="block py-2 text-sm">Module 3 &ndash; Reasons to Call</a>
+      <a href="module-4-objections.html" class="block py-2 text-sm">Module 4 &ndash; Objection Handling</a>
+      <a href="module-5-voicemail.html" class="block py-2 text-sm">Module 5 &ndash; Voicemail System</a>
+      <a href="module-6-metrics.html" class="block py-2 text-sm">Module 6 &ndash; Metrics &amp; Income</a>
+      <div class="border-t border-white/10 mt-2 pt-2">
+        <a href="../tools/calendar.html" class="block py-2 text-sm text-accent">30-Day Calendar</a>
+        <a href="../tools/calculator.html" class="block py-2 text-sm text-accent">Income Calculator</a>
+        <a href="../tools/tracker.html" class="block py-2 text-sm text-accent">Activity Tracker</a>
+        <a href="../tools/scripts-cards.html" class="block py-2 text-sm text-accent">Script Cards</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Module Header -->
+  <section class="bg-navy text-white">
+    <div class="max-w-5xl mx-auto px-4 py-16 text-center">
+      <div class="inline-block bg-accent/20 text-accent font-bold text-sm px-4 py-1 rounded-full mb-4 tracking-wider">MODULE 2</div>
+      <h1 class="text-3xl md:text-5xl font-black tracking-tight mb-4">
+        THE 30-DAY<br>FOLLOW-UP SYSTEM
+      </h1>
+      <p class="text-lg md:text-xl text-white/70 max-w-2xl mx-auto">
+        A complete day-by-day roadmap with scripts for calls, voicemails, and texts &mdash; from first contact to close.
+      </p>
+      <div class="mt-6 flex flex-wrap justify-center gap-3">
+        <button onclick="printPage()" class="bg-white/10 hover:bg-white/20 text-white font-semibold px-5 py-2 rounded-lg text-sm transition no-print">
+          Print / Save as PDF
+        </button>
+        <a href="../tools/calendar.html" class="bg-accent hover:bg-accent/90 text-white font-semibold px-5 py-2 rounded-lg text-sm transition no-print">
+          Open 30-Day Calendar Tool
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Phase Timeline -->
+  <section class="max-w-5xl mx-auto px-4 py-10 no-print">
+    <h2 class="text-xl font-bold text-center mb-6">The 4 Phases of Follow-Up</h2>
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-0">
+      <!-- Phase 1 -->
+      <div class="relative bg-[#E74C3C] text-white p-5 md:rounded-l-xl">
+        <div class="text-xs font-bold uppercase tracking-wider opacity-80 mb-1">Phase 1</div>
+        <div class="text-lg font-black">Days 1&ndash;3</div>
+        <div class="text-sm font-semibold mt-1">Speed &amp; Urgency</div>
+        <p class="text-xs mt-2 opacity-90">Respond fast. Set the tone. Establish contact before the competition does.</p>
+        <div class="hidden md:block absolute top-1/2 -right-2 w-4 h-4 bg-[#E74C3C] rotate-45 -translate-y-1/2 z-10"></div>
+      </div>
+      <!-- Phase 2 -->
+      <div class="relative bg-[#E8963E] text-white p-5">
+        <div class="text-xs font-bold uppercase tracking-wider opacity-80 mb-1">Phase 2</div>
+        <div class="text-lg font-black">Days 4&ndash;10</div>
+        <div class="text-sm font-semibold mt-1">Value Reinforcement</div>
+        <p class="text-xs mt-2 opacity-90">Bring value with every touch. Updates, pricing, new inventory &mdash; give them a reason.</p>
+        <div class="hidden md:block absolute top-1/2 -right-2 w-4 h-4 bg-[#E8963E] rotate-45 -translate-y-1/2 z-10"></div>
+      </div>
+      <!-- Phase 3 -->
+      <div class="relative bg-[#3498DB] text-white p-5">
+        <div class="text-xs font-bold uppercase tracking-wider opacity-80 mb-1">Phase 3</div>
+        <div class="text-lg font-black">Days 11&ndash;20</div>
+        <div class="text-sm font-semibold mt-1">Pattern Interruption</div>
+        <p class="text-xs mt-2 opacity-90">Change the approach. Ask different questions. Break through the noise.</p>
+        <div class="hidden md:block absolute top-1/2 -right-2 w-4 h-4 bg-[#3498DB] rotate-45 -translate-y-1/2 z-10"></div>
+      </div>
+      <!-- Phase 4 -->
+      <div class="bg-[#1B2A4A] text-white p-5 md:rounded-r-xl">
+        <div class="text-xs font-bold uppercase tracking-wider opacity-80 mb-1">Phase 4</div>
+        <div class="text-lg font-black">Days 21&ndash;30</div>
+        <div class="text-sm font-semibold mt-1">Professional Persistence</div>
+        <p class="text-xs mt-2 opacity-90">Close the loop professionally. Either book the appointment or close the file.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Scripts Content -->
+  <section class="max-w-4xl mx-auto px-4 pb-16">
+
+    <!-- ================================================ -->
+    <!-- PHASE 1: SPEED & URGENCY (Days 1-3) -->
+    <!-- ================================================ -->
+    <div class="mb-12">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="bg-[#E74C3C] text-white text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full">Phase 1</div>
+        <h2 class="text-2xl font-bold">Speed &amp; Urgency</h2>
+        <span class="text-gray-400 text-sm">Days 1&ndash;3</span>
+      </div>
+
+      <!-- DAY 1 -->
+      <div class="phase-red mb-8">
+        <div class="flex items-start gap-4">
+          <div class="day-badge text-white font-black text-lg w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg">
+            DAY<br><span class="text-xl">1</span>
+          </div>
+          <div class="flex-1">
+            <h3 class="text-lg font-bold mb-1">First Contact &mdash; Internet Lead Example</h3>
+            <p class="text-gray-500 text-sm mb-4">The goal: make contact within 5 minutes. Speed wins deals.</p>
+
+            <!-- CALL -->
+            <div class="script-card bg-white rounded-xl p-5 shadow-sm border border-gray-100 mb-3">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="bg-[#E74C3C]/10 text-[#E74C3C] text-xs font-bold px-2 py-1 rounded">&#128222; CALL</span>
+              </div>
+              <blockquote class="text-gray-700 italic leading-relaxed border-l-0">
+                "Hey <strong>[Name]</strong>, this is Tyler at <strong>[Dealership]</strong>. You inquired about the <strong>[Vehicle]</strong>. I wanted to see what stood out to you about it."
+              </blockquote>
+              <p class="text-xs text-gray-400 mt-3"><strong>Why this works:</strong> Open-ended question that gets them talking about what they want &mdash; not a yes/no that lets them dismiss you.</p>
+            </div>
+
+            <!-- VOICEMAIL -->
+            <div class="script-card bg-white rounded-xl p-5 shadow-sm border border-gray-100 mb-3">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="bg-[#E74C3C]/10 text-[#E74C3C] text-xs font-bold px-2 py-1 rounded">&#128172; IF NO ANSWER &mdash; VOICEMAIL</span>
+              </div>
+              <blockquote class="text-gray-700 italic leading-relaxed border-l-0">
+                "Hi <strong>[Name]</strong>, Tyler at <strong>[Dealership]</strong>. I'm calling about the <strong>[Vehicle]</strong> you looked at. I'll send you a quick text as well."
+              </blockquote>
+              <p class="text-xs text-gray-400 mt-3"><strong>Key:</strong> Under 20 seconds. Name, reason, next step. Then hang up &mdash; don't ramble.</p>
+            </div>
+
+            <!-- TEXT -->
+            <div class="script-card bg-white rounded-xl p-5 shadow-sm border border-gray-100">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="bg-[#E74C3C]/10 text-[#E74C3C] text-xs font-bold px-2 py-1 rounded">&#128241; TEXT</span>
+              </div>
+              <blockquote class="text-gray-700 italic leading-relaxed border-l-0">
+                "Hey <strong>[Name]</strong>, it's Tyler at <strong>[Dealership]</strong>. Just tried you regarding the <strong>[Vehicle]</strong>. When's a good time to connect?"
+              </blockquote>
+              <p class="text-xs text-gray-400 mt-3"><strong>Why this works:</strong> Short, personal, ends with a question. Gives them an easy way to respond.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DAY 2 -->
+      <div class="phase-red mb-8">
+        <div class="flex items-start gap-4">
+          <div class="day-badge text-white font-black text-lg w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg">
+            DAY<br><span class="text-xl">2</span>
+          </div>
+          <div class="flex-1">
+            <h3 class="text-lg font-bold mb-1">Same-Day Follow-Up</h3>
+            <p class="text-gray-500 text-sm mb-4">They didn't respond yesterday. Call again &mdash; most reps stop here. Don't be most reps.</p>
+
+            <!-- CALL -->
+            <div class="script-card bg-white rounded-xl p-5 shadow-sm border border-gray-100 mb-3">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="bg-[#E74C3C]/10 text-[#E74C3C] text-xs font-bold px-2 py-1 rounded">&#128222; CALL</span>
+              </div>
+              <blockquote class="text-gray-700 italic leading-relaxed border-l-0">
+                "Hey <strong>[Name]</strong>, Tyler again at <strong>[Dealership]</strong>. I reached out yesterday about the <strong>[Vehicle]</strong>. I've got some availability today if you'd like to come see it in person &mdash; does this afternoon or tomorrow morning work better?"
+              </blockquote>
+              <p class="text-xs text-gray-400 mt-3"><strong>Why this works:</strong> Assumptive close with two time options. Not "do you want to come in?" but "which time works?"</p>
+            </div>
+
+            <!-- TEXT -->
+            <div class="script-card bg-white rounded-xl p-5 shadow-sm border border-gray-100">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="bg-[#E74C3C]/10 text-[#E74C3C] text-xs font-bold px-2 py-1 rounded">&#128241; TEXT</span>
+              </div>
+              <blockquote class="text-gray-700 italic leading-relaxed border-l-0">
+                "Hey <strong>[Name]</strong>, just checking in &mdash; the <strong>[Vehicle]</strong> is still available. I can have it pulled up and ready for you. What time works today?"
+              </blockquote>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DAY 3 -->
+      <div class="phase-red mb-8">
+        <div class="flex items-start gap-4">
+          <div class="day-badge text-white font-black text-lg w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg">
+            DAY<br><span class="text-xl">3</span>
+          </div>
+          <div class="flex-1">
+            <h3 class="text-lg font-bold mb-1">Urgency Touch</h3>
+            <p class="text-gray-500 text-sm mb-4">Create urgency without being pushy. Real information creates real urgency.</p>
+
+            <!-- CALL -->
+            <div class="script-card bg-white rounded-xl p-5 shadow-sm border border-gray-100 mb-3">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="bg-[#E74C3C]/10 text-[#E74C3C] text-xs font-bold px-2 py-1 rounded">&#128222; CALL</span>
+              </div>
+              <blockquote class="text-gray-700 italic leading-relaxed border-l-0">
+                "Hey <strong>[Name]</strong>, Tyler at <strong>[Dealership]</strong>. Quick heads-up &mdash; we've had a couple of other inquiries on the <strong>[Vehicle]</strong>. I wanted to give you first shot before it goes. Can you swing by today or tomorrow?"
+              </blockquote>
+              <p class="text-xs text-gray-400 mt-3"><strong>Why this works:</strong> Scarcity is real in automotive. If the vehicle has interest, tell them. Honest urgency converts.</p>
+            </div>
+
+            <!-- TEXT -->
+            <div class="script-card bg-white rounded-xl p-5 shadow-sm border border-gray-100">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="bg-[#E74C3C]/10 text-[#E74C3C] text-xs font-bold px-2 py-1 rounded">&#128241; TEXT</span>
+              </div>
+              <blockquote class="text-gray-700 italic leading-relaxed border-l-0">
+                "Hey <strong>[Name]</strong>, wanted to let you know we've had some interest on the <strong>[Vehicle]</strong>. I'd hate for you to miss out &mdash; want me to hold it for you?"
+              </blockquote>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================================================ -->
+    <!-- PHASE 2: VALUE REINFORCEMENT (Days 4-10) -->
+    <!-- ================================================ -->
+    <div class="mb-12">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="bg-[#E8963E] text-white text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full">Phase 2</div>
+        <h2 class="text-2xl font-bold">Value Reinforcement</h2>
+        <span class="text-gray-400 text-sm">Days 4&ndash;10</span>
+      </div>
+
+      <!-- DAY 5 -->
+      <div class="phase-orange mb-8">
+        <div class="flex items-start gap-4">
+          <div class="day-badge text-white font-black text-lg w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg">
+            DAY<br><span class="text-xl">5</span>
+          </div>
+          <div class="flex-1">
+            <h3 class="text-lg font-bold mb-1">Pricing Update</h3>
+            <p class="text-gray-500 text-sm mb-4">Bring real value &mdash; not "just checking in." New information earns the right to call.</p>
+
+            <!-- CALL -->
+            <div class="script-card bg-white rounded-xl p-5 shadow-sm border border-gray-100 mb-3">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="bg-[#E8963E]/10 text-[#E8963E] text-xs font-bold px-2 py-1 rounded">&#128222; CALL</span>
+              </div>
+              <blockquote class="text-gray-700 italic leading-relaxed border-l-0">
+                "Hey <strong>[Name]</strong>, quick update &mdash; we just adjusted pricing on a few models similar to what you looked at."
+              </blockquote>
+              <p class="text-xs text-gray-400 mt-3"><strong>Why this works:</strong> You're not asking for anything. You're giving information. People respond to value, not pressure.</p>
+            </div>
+
+            <!-- TEXT -->
+            <div class="script-card bg-white rounded-xl p-5 shadow-sm border border-gray-100">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="bg-[#E8963E]/10 text-[#E8963E] text-xs font-bold px-2 py-1 rounded">&#128241; TEXT</span>
+              </div>
+              <blockquote class="text-gray-700 italic leading-relaxed border-l-0">
+                "Hey <strong>[Name]</strong>, some new pricing just came through on the <strong>[Vehicle]</strong> and similar models. Want me to send you the updated numbers?"
+              </blockquote>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DAY 7 -->
+      <div class="phase-orange mb-8">
+        <div class="flex items-start gap-4">
+          <div class="day-badge text-white font-black text-lg w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg">
+            DAY<br><span class="text-xl">7</span>
+          </div>
+          <div class="flex-1">
+            <h3 class="text-lg font-bold mb-1">Alternative Vehicle</h3>
+            <p class="text-gray-500 text-sm mb-4">Maybe their first choice wasn't perfect. Offer an alternative that might fit better.</p>
+
+            <!-- CALL -->
+            <div class="script-card bg-white rounded-xl p-5 shadow-sm border border-gray-100 mb-3">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="bg-[#E8963E]/10 text-[#E8963E] text-xs font-bold px-2 py-1 rounded">&#128222; CALL</span>
+              </div>
+              <blockquote class="text-gray-700 italic leading-relaxed border-l-0">
+                "Hey <strong>[Name]</strong>, Tyler at <strong>[Dealership]</strong>. We just got a <strong>[Similar Vehicle]</strong> in that I thought you might like &mdash; similar to what you were looking at but with <strong>[key difference]</strong>. Worth a look?"
+              </blockquote>
+              <p class="text-xs text-gray-400 mt-3"><strong>Why this works:</strong> Shows you're paying attention and actively working for them. This is sales as a service.</p>
+            </div>
+
+            <!-- TEXT -->
+            <div class="script-card bg-white rounded-xl p-5 shadow-sm border border-gray-100">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="bg-[#E8963E]/10 text-[#E8963E] text-xs font-bold px-2 py-1 rounded">&#128241; TEXT</span>
+              </div>
+              <blockquote class="text-gray-700 italic leading-relaxed border-l-0">
+                "Hey <strong>[Name]</strong>, we just got something in I thought of you &mdash; a <strong>[Similar Vehicle]</strong>. Want me to send pics?"
+              </blockquote>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DAY 10 -->
+      <div class="phase-orange mb-8">
+        <div class="flex items-start gap-4">
+          <div class="day-badge text-white font-black text-lg w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg">
+            DAY<br><span class="text-xl">10</span>
+          </div>
+          <div class="flex-1">
+            <h3 class="text-lg font-bold mb-1">Value Recap</h3>
+            <p class="text-gray-500 text-sm mb-4">Summarize the value you've offered. Transition from "push" to "pull."</p>
+
+            <!-- CALL -->
+            <div class="script-card bg-white rounded-xl p-5 shadow-sm border border-gray-100 mb-3">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="bg-[#E8963E]/10 text-[#E8963E] text-xs font-bold px-2 py-1 rounded">&#128222; CALL</span>
+              </div>
+              <blockquote class="text-gray-700 italic leading-relaxed border-l-0">
+                "Hey <strong>[Name]</strong>, Tyler here. I've sent over some options and updates over the last week. I don't want to be a pest &mdash; just want to make sure you have everything you need to make a good decision. Anything I can help with?"
+              </blockquote>
+              <p class="text-xs text-gray-400 mt-3"><strong>Why this works:</strong> Self-aware and respectful. Positions you as a resource, not a nuisance.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================================================ -->
+    <!-- PHASE 3: PATTERN INTERRUPTION (Days 11-20) -->
+    <!-- ================================================ -->
+    <div class="mb-12">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="bg-[#3498DB] text-white text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full">Phase 3</div>
+        <h2 class="text-2xl font-bold">Pattern Interruption</h2>
+        <span class="text-gray-400 text-sm">Days 11&ndash;20</span>
+      </div>
+
+      <!-- DAY 12 -->
+      <div class="phase-blue mb-8">
+        <div class="flex items-start gap-4">
+          <div class="day-badge text-white font-black text-lg w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg">
+            DAY<br><span class="text-xl">12</span>
+          </div>
+          <div class="flex-1">
+            <h3 class="text-lg font-bold mb-1">Pattern Interrupt</h3>
+            <p class="text-gray-500 text-sm mb-4">Stop selling. Start asking. A direct question forces a decision &mdash; not another "let me think about it."</p>
+
+            <!-- CALL -->
+            <div class="script-card bg-white rounded-xl p-5 shadow-sm border border-gray-100 mb-3">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="bg-[#3498DB]/10 text-[#3498DB] text-xs font-bold px-2 py-1 rounded">&#128222; CALL</span>
+              </div>
+              <blockquote class="text-gray-700 italic leading-relaxed border-l-0">
+                "Hey <strong>[Name]</strong>, quick question &mdash; are you still considering upgrading your vehicle this month?"
+              </blockquote>
+              <p class="text-xs text-gray-400 mt-3"><strong>Why this works:</strong> Forces a yes or no. If yes, you re-engage. If no, you find out why and adjust. Either way, you get real information.</p>
+            </div>
+
+            <!-- TEXT -->
+            <div class="script-card bg-white rounded-xl p-5 shadow-sm border border-gray-100">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="bg-[#3498DB]/10 text-[#3498DB] text-xs font-bold px-2 py-1 rounded">&#128241; TEXT</span>
+              </div>
+              <blockquote class="text-gray-700 italic leading-relaxed border-l-0">
+                "Hey <strong>[Name]</strong>, quick one &mdash; still in the market or have you put it on hold?"
+              </blockquote>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DAY 15 -->
+      <div class="phase-blue mb-8">
+        <div class="flex items-start gap-4">
+          <div class="day-badge text-white font-black text-lg w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg">
+            DAY<br><span class="text-xl">15</span>
+          </div>
+          <div class="flex-1">
+            <h3 class="text-lg font-bold mb-1">The "Honest Check-In"</h3>
+            <p class="text-gray-500 text-sm mb-4">Transparent and human. Drop the salesperson act.</p>
+
+            <!-- CALL -->
+            <div class="script-card bg-white rounded-xl p-5 shadow-sm border border-gray-100 mb-3">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="bg-[#3498DB]/10 text-[#3498DB] text-xs font-bold px-2 py-1 rounded">&#128222; CALL</span>
+              </div>
+              <blockquote class="text-gray-700 italic leading-relaxed border-l-0">
+                "Hey <strong>[Name]</strong>, I'll be straight with you &mdash; I know you've been getting my messages. I'm not trying to pressure you. I just want to know if I should keep looking for options for you or if you've gone in a different direction."
+              </blockquote>
+              <p class="text-xs text-gray-400 mt-3"><strong>Why this works:</strong> Radical honesty disarms people. They expect pressure &mdash; you give them respect. That's memorable.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DAY 18 -->
+      <div class="phase-blue mb-8">
+        <div class="flex items-start gap-4">
+          <div class="day-badge text-white font-black text-lg w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg">
+            DAY<br><span class="text-xl">18</span>
+          </div>
+          <div class="flex-1">
+            <h3 class="text-lg font-bold mb-1">The Third-Party Approach</h3>
+            <p class="text-gray-500 text-sm mb-4">Use social proof. People trust what other people are doing.</p>
+
+            <!-- TEXT -->
+            <div class="script-card bg-white rounded-xl p-5 shadow-sm border border-gray-100">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="bg-[#3498DB]/10 text-[#3498DB] text-xs font-bold px-2 py-1 rounded">&#128241; TEXT</span>
+              </div>
+              <blockquote class="text-gray-700 italic leading-relaxed border-l-0">
+                "Hey <strong>[Name]</strong>, had a customer come in yesterday looking at the same <strong>[Vehicle]</strong> you liked. Reminded me of you &mdash; is that something you're still interested in?"
+              </blockquote>
+              <p class="text-xs text-gray-400 mt-3"><strong>Why this works:</strong> Subtle social proof. Someone else wants what they want. Creates urgency without direct pressure.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================================================ -->
+    <!-- PHASE 4: PROFESSIONAL PERSISTENCE (Days 21-30) -->
+    <!-- ================================================ -->
+    <div class="mb-12">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="bg-[#1B2A4A] text-white text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full">Phase 4</div>
+        <h2 class="text-2xl font-bold">Professional Persistence</h2>
+        <span class="text-gray-400 text-sm">Days 21&ndash;30</span>
+      </div>
+
+      <!-- DAY 22 -->
+      <div class="phase-navy mb-8">
+        <div class="flex items-start gap-4">
+          <div class="day-badge text-white font-black text-lg w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg">
+            DAY<br><span class="text-xl">22</span>
+          </div>
+          <div class="flex-1">
+            <h3 class="text-lg font-bold mb-1">Last Value Touch</h3>
+            <p class="text-gray-500 text-sm mb-4">One more piece of genuine value before the closing sequence.</p>
+
+            <!-- CALL -->
+            <div class="script-card bg-white rounded-xl p-5 shadow-sm border border-gray-100 mb-3">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="bg-[#1B2A4A]/10 text-[#1B2A4A] text-xs font-bold px-2 py-1 rounded">&#128222; CALL</span>
+              </div>
+              <blockquote class="text-gray-700 italic leading-relaxed border-l-0">
+                "Hey <strong>[Name]</strong>, Tyler here. I know it's been a few weeks &mdash; just wanted to let you know we have some month-end incentives coming up that could save you some money on the <strong>[Vehicle]</strong>. Worth a conversation?"
+              </blockquote>
+              <p class="text-xs text-gray-400 mt-3"><strong>Why this works:</strong> Month-end incentives are real and time-limited. Genuine value with natural urgency.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DAY 25 -->
+      <div class="phase-navy mb-8">
+        <div class="flex items-start gap-4">
+          <div class="day-badge text-white font-black text-lg w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg">
+            DAY<br><span class="text-xl">25</span>
+          </div>
+          <div class="flex-1">
+            <h3 class="text-lg font-bold mb-1">The "Close or Continue" Call</h3>
+            <p class="text-gray-500 text-sm mb-4">The most important call of the entire sequence. Give them an out &mdash; and watch how many come back.</p>
+
+            <!-- CALL -->
+            <div class="script-card bg-white rounded-xl p-5 shadow-sm border border-gray-100 mb-3">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="bg-[#1B2A4A]/10 text-[#1B2A4A] text-xs font-bold px-2 py-1 rounded">&#128222; CALL</span>
+              </div>
+              <blockquote class="text-gray-700 italic leading-relaxed border-l-0">
+                "Hey <strong>[Name]</strong>, I haven't heard back and I don't want to over-contact you. Should I close your file or is timing just not right yet?"
+              </blockquote>
+              <p class="text-xs text-gray-400 mt-3"><strong>Why this works:</strong> This is the "breakup" script. Psychologically, people don't want to lose options. Many will re-engage when they think the door is closing.</p>
+            </div>
+
+            <!-- TEXT -->
+            <div class="script-card bg-white rounded-xl p-5 shadow-sm border border-gray-100">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="bg-[#1B2A4A]/10 text-[#1B2A4A] text-xs font-bold px-2 py-1 rounded">&#128241; TEXT</span>
+              </div>
+              <blockquote class="text-gray-700 italic leading-relaxed border-l-0">
+                "Hey <strong>[Name]</strong>, I'm going to close your file unless I hear back. No hard feelings either way &mdash; just don't want to keep bugging you. Should I keep you on my list or close it out?"
+              </blockquote>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DAY 30 -->
+      <div class="phase-navy mb-8">
+        <div class="flex items-start gap-4">
+          <div class="day-badge text-white font-black text-lg w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg">
+            DAY<br><span class="text-xl">30</span>
+          </div>
+          <div class="flex-1">
+            <h3 class="text-lg font-bold mb-1">Final Professional Close</h3>
+            <p class="text-gray-500 text-sm mb-4">The last touch. Professional, clean, and door left open.</p>
+
+            <!-- TEXT -->
+            <div class="script-card bg-white rounded-xl p-5 shadow-sm border border-gray-100">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="bg-[#1B2A4A]/10 text-[#1B2A4A] text-xs font-bold px-2 py-1 rounded">&#128241; TEXT</span>
+              </div>
+              <blockquote class="text-gray-700 italic leading-relaxed border-l-0">
+                "Hey <strong>[Name]</strong>, Tyler here. I'm closing out your file today. If anything changes down the road, you've got my number. I'll always take care of you. Good luck with everything!"
+              </blockquote>
+              <p class="text-xs text-gray-400 mt-3"><strong>Why this ends well:</strong> Professional. No guilt. The door stays open. Many customers come back weeks or months later because you treated them with respect.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Key Principles Box -->
+    <div class="bg-navy text-white rounded-2xl p-8 mb-10">
+      <h3 class="text-xl font-bold mb-4">The Rules</h3>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="flex items-start gap-3">
+          <span class="text-accent font-bold text-lg">01</span>
+          <div>
+            <div class="font-semibold">Speed Wins</div>
+            <p class="text-white/60 text-sm">The first 5 minutes after an inquiry are worth more than the next 5 days.</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-3">
+          <span class="text-accent font-bold text-lg">02</span>
+          <div>
+            <div class="font-semibold">Never "Just Check In"</div>
+            <p class="text-white/60 text-sm">Every touch needs a reason. Pricing, inventory, incentives &mdash; bring value or don't call.</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-3">
+          <span class="text-accent font-bold text-lg">03</span>
+          <div>
+            <div class="font-semibold">Multi-Channel Always</div>
+            <p class="text-white/60 text-sm">Call + voicemail + text. Three touches in one attempt triples your contact rate.</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-3">
+          <span class="text-accent font-bold text-lg">04</span>
+          <div>
+            <div class="font-semibold">Close the File Professionally</div>
+            <p class="text-white/60 text-sm">The breakup script works. Give them an out and many will come back.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calendar Tool CTA -->
+    <div class="bg-accent/10 border border-accent/20 rounded-2xl p-8 text-center mb-10 no-print">
+      <h3 class="text-xl font-bold mb-2">Full 30-Day Calendar</h3>
+      <p class="text-gray-600 mb-4">All 30 days with every script laid out.</p>
+      <a href="../tools/calendar.html" class="inline-block bg-accent hover:bg-accent/90 text-white font-bold px-6 py-3 rounded-xl transition shadow-lg shadow-accent/25">
+        Open 30-Day Calendar Tool &rarr;
+      </a>
+    </div>
+
+  </section>
+
+  <!-- Module Navigation -->
+  <section class="bg-gray-100 no-print">
+    <div class="max-w-4xl mx-auto px-4 py-8">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+        <a href="module-1-foundation.html" class="flex items-center gap-2 text-navy hover:text-accent transition font-semibold">
+          <span>&larr;</span> Module 1: Foundation
+        </a>
+        <a href="../index.html" class="text-gray-500 hover:text-navy transition font-medium text-sm">
+          Back to Home
+        </a>
+        <a href="module-3-reasons-to-call.html" class="flex items-center gap-2 text-navy hover:text-accent transition font-semibold">
+          Module 3: Reasons to Call <span>&rarr;</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-navy text-white/50 py-8">
+    <div class="max-w-6xl mx-auto px-4 text-center text-sm">
+      <p>The Appointment Engine&#8482;</p>
+    </div>
+  </footer>
+
+  <script src="../js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Script Cards | The Appointment Engine™</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: '#1B2A4A',
+            accent: '#E8963E',
+            success: '#2ECC71',
+            danger: '#E74C3C',
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/print.css">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-900">
+
+  <!-- Navigation -->
+  <nav class="bg-navy text-white sticky top-0 z-50 shadow-lg no-print">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+      <a href="../index.html" class="flex items-center gap-2">
+        <span class="text-2xl">⚙️</span>
+        <span class="font-bold text-lg">The Appointment Engine<span class="text-accent">™</span></span>
+      </a>
+      <div class="hidden md:flex items-center gap-6 text-sm">
+        <a href="../index.html" class="hover:text-accent transition">Home</a>
+        <div class="relative group">
+          <button class="hover:text-accent transition">Modules ▾</button>
+          <div class="absolute top-full left-0 mt-2 bg-white text-gray-900 rounded-lg shadow-xl py-2 w-64 hidden group-hover:block">
+            <a href="../modules/module-1-foundation.html" class="block px-4 py-2 hover:bg-gray-50">Module 1 – Foundation</a>
+            <a href="../modules/module-2-followup-system.html" class="block px-4 py-2 hover:bg-gray-50">Module 2 – 30-Day Follow-Up</a>
+            <a href="../modules/module-3-reasons-to-call.html" class="block px-4 py-2 hover:bg-gray-50">Module 3 – Reasons to Call</a>
+            <a href="../modules/module-4-objections.html" class="block px-4 py-2 hover:bg-gray-50">Module 4 – Objection Handling</a>
+            <a href="../modules/module-5-voicemail.html" class="block px-4 py-2 hover:bg-gray-50">Module 5 – Voicemail System</a>
+            <a href="../modules/module-6-metrics.html" class="block px-4 py-2 hover:bg-gray-50">Module 6 – Metrics & Income</a>
+          </div>
+        </div>
+        <div class="relative group">
+          <button class="text-accent font-semibold">Tools ▾</button>
+          <div class="absolute top-full left-0 mt-2 bg-white text-gray-900 rounded-lg shadow-xl py-2 w-64 hidden group-hover:block">
+            <a href="calendar.html" class="block px-4 py-2 hover:bg-gray-50">30-Day Calendar</a>
+            <a href="calculator.html" class="block px-4 py-2 hover:bg-gray-50">Income Calculator</a>
+            <a href="tracker.html" class="block px-4 py-2 hover:bg-gray-50">Activity Tracker</a>
+            <a href="scripts-cards.html" class="block px-4 py-2 bg-gray-50 font-semibold text-accent">Script Cards</a>
+          </div>
+        </div>
+      </div>
+      <!-- Mobile toggle -->
+      <button class="md:hidden text-white" onclick="toggleMobileNav()">☰</button>
+    </div>
+    <!-- Mobile nav -->
+    <div id="mobile-nav" class="hidden md:hidden bg-navy border-t border-white/10 px-4 pb-4">
+      <a href="../modules/module-1-foundation.html" class="block py-2 text-sm">Module 1 – Foundation</a>
+      <a href="../modules/module-2-followup-system.html" class="block py-2 text-sm">Module 2 – 30-Day Follow-Up</a>
+      <a href="../modules/module-3-reasons-to-call.html" class="block py-2 text-sm">Module 3 – Reasons to Call</a>
+      <a href="../modules/module-4-objections.html" class="block py-2 text-sm">Module 4 – Objection Handling</a>
+      <a href="../modules/module-5-voicemail.html" class="block py-2 text-sm">Module 5 – Voicemail System</a>
+      <a href="../modules/module-6-metrics.html" class="block py-2 text-sm">Module 6 – Metrics & Income</a>
+      <div class="border-t border-white/10 mt-2 pt-2">
+        <a href="calendar.html" class="block py-2 text-sm text-accent">30-Day Calendar</a>
+        <a href="calculator.html" class="block py-2 text-sm text-accent">Income Calculator</a>
+        <a href="tracker.html" class="block py-2 text-sm text-accent">Activity Tracker</a>
+        <a href="scripts-cards.html" class="block py-2 text-sm text-accent font-semibold">Script Cards</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <section class="bg-navy text-white">
+    <div class="max-w-5xl mx-auto px-4 py-12 text-center">
+      <h1 class="text-3xl md:text-5xl font-black tracking-tight mb-3">Script Reference Cards</h1>
+      <p class="text-lg text-white/70 max-w-xl mx-auto">Quick-reference scripts. Print and keep at your desk.</p>
+    </div>
+  </section>
+
+  <!-- Print Button -->
+  <div class="max-w-6xl mx-auto px-4 pt-8 no-print">
+    <button onclick="printPage()" class="bg-accent hover:bg-accent/90 text-white font-semibold px-6 py-3 rounded-lg transition text-sm shadow-md shadow-accent/20">
+      Print Script Cards
+    </button>
+  </div>
+
+  <!-- Script Cards Grid -->
+  <main class="max-w-6xl mx-auto px-4 py-8 script-cards-print">
+    <div class="grid md:grid-cols-2 gap-6">
+
+      <!-- CARD 1: Internet Lead — Day 1 -->
+      <div class="script-card no-break bg-white rounded-xl shadow-sm border-l-4 border-accent p-6">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="text-xs font-bold uppercase tracking-wider text-white bg-accent px-2.5 py-1 rounded-full">Follow-Up</span>
+          <span class="text-xs text-gray-400">Card 1</span>
+        </div>
+        <h3 class="font-bold text-navy text-lg mb-4">Internet Lead — Day 1</h3>
+        <div class="space-y-3">
+          <div>
+            <div class="text-xs font-bold uppercase text-gray-400 mb-1">Call</div>
+            <p class="text-sm text-gray-700 leading-relaxed">"Hey <span class="text-accent font-semibold">[Name]</span>, this is Tyler at <span class="text-accent font-semibold">[Dealership]</span>. You inquired about the <span class="text-accent font-semibold">[Vehicle]</span>. I wanted to see what stood out to you about it."</p>
+          </div>
+          <div>
+            <div class="text-xs font-bold uppercase text-gray-400 mb-1">Voicemail</div>
+            <p class="text-sm text-gray-700 leading-relaxed">"Hi <span class="text-accent font-semibold">[Name]</span>, Tyler at <span class="text-accent font-semibold">[Dealership]</span>. I'm calling about the <span class="text-accent font-semibold">[Vehicle]</span> you looked at. I'll send you a quick text as well."</p>
+          </div>
+          <div>
+            <div class="text-xs font-bold uppercase text-gray-400 mb-1">Text</div>
+            <p class="text-sm text-gray-700 leading-relaxed">"Hey <span class="text-accent font-semibold">[Name]</span>, it's Tyler at <span class="text-accent font-semibold">[Dealership]</span>. Just tried you regarding the <span class="text-accent font-semibold">[Vehicle]</span>. When's a good time to connect?"</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 2: Value Follow-Up -->
+      <div class="script-card no-break bg-white rounded-xl shadow-sm border-l-4 border-accent p-6">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="text-xs font-bold uppercase tracking-wider text-white bg-accent px-2.5 py-1 rounded-full">Follow-Up</span>
+          <span class="text-xs text-gray-400">Card 2</span>
+        </div>
+        <h3 class="font-bold text-navy text-lg mb-4">Value Follow-Up</h3>
+        <div>
+          <div class="text-xs font-bold uppercase text-gray-400 mb-1">Call</div>
+          <p class="text-sm text-gray-700 leading-relaxed">"Hey <span class="text-accent font-semibold">[Name]</span>, quick update — we just adjusted pricing on a few models similar to what you looked at."</p>
+        </div>
+      </div>
+
+      <!-- CARD 3: Pattern Interrupt -->
+      <div class="script-card no-break bg-white rounded-xl shadow-sm border-l-4 border-accent p-6">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="text-xs font-bold uppercase tracking-wider text-white bg-accent px-2.5 py-1 rounded-full">Follow-Up</span>
+          <span class="text-xs text-gray-400">Card 3</span>
+        </div>
+        <h3 class="font-bold text-navy text-lg mb-4">Pattern Interrupt</h3>
+        <div>
+          <div class="text-xs font-bold uppercase text-gray-400 mb-1">Call</div>
+          <p class="text-sm text-gray-700 leading-relaxed">"Hey <span class="text-accent font-semibold">[Name]</span>, quick question — are you still considering upgrading your vehicle this month?"</p>
+        </div>
+      </div>
+
+      <!-- CARD 4: Professional Close -->
+      <div class="script-card no-break bg-white rounded-xl shadow-sm border-l-4 border-accent p-6">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="text-xs font-bold uppercase tracking-wider text-white bg-accent px-2.5 py-1 rounded-full">Follow-Up</span>
+          <span class="text-xs text-gray-400">Card 4</span>
+        </div>
+        <h3 class="font-bold text-navy text-lg mb-4">Professional Close</h3>
+        <div>
+          <div class="text-xs font-bold uppercase text-gray-400 mb-1">Call</div>
+          <p class="text-sm text-gray-700 leading-relaxed">"Hey <span class="text-accent font-semibold">[Name]</span>, I haven't heard back and I don't want to over-contact you. Should I close your file or is timing just not right yet?"</p>
+        </div>
+      </div>
+
+      <!-- CARD 5: Inventory Call -->
+      <div class="script-card no-break bg-white rounded-xl shadow-sm border-l-4 border-[#3498DB] p-6">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="text-xs font-bold uppercase tracking-wider text-white bg-[#3498DB] px-2.5 py-1 rounded-full">Strategic</span>
+          <span class="text-xs text-gray-400">Card 5</span>
+        </div>
+        <h3 class="font-bold text-navy text-lg mb-4">Inventory Call</h3>
+        <div>
+          <div class="text-xs font-bold uppercase text-gray-400 mb-1">Call</div>
+          <p class="text-sm text-gray-700 leading-relaxed">"Hey <span class="text-[#3498DB] font-semibold">[Name]</span>, we just took in something similar to what you were looking for and I wanted to reach out before it gets advertised heavily."</p>
+        </div>
+      </div>
+
+      <!-- CARD 6: Equity Call -->
+      <div class="script-card no-break bg-white rounded-xl shadow-sm border-l-4 border-[#3498DB] p-6">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="text-xs font-bold uppercase tracking-wider text-white bg-[#3498DB] px-2.5 py-1 rounded-full">Strategic</span>
+          <span class="text-xs text-gray-400">Card 6</span>
+        </div>
+        <h3 class="font-bold text-navy text-lg mb-4">Equity Call</h3>
+        <div>
+          <div class="text-xs font-bold uppercase text-gray-400 mb-1">Call</div>
+          <p class="text-sm text-gray-700 leading-relaxed">"Market values shifted and your vehicle may have positive equity. If we could upgrade you at a similar payment, would it be worth reviewing?"</p>
+        </div>
+      </div>
+
+      <!-- CARD 7: Service Lane Call -->
+      <div class="script-card no-break bg-white rounded-xl shadow-sm border-l-4 border-[#3498DB] p-6">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="text-xs font-bold uppercase tracking-wider text-white bg-[#3498DB] px-2.5 py-1 rounded-full">Strategic</span>
+          <span class="text-xs text-gray-400">Card 7</span>
+        </div>
+        <h3 class="font-bold text-navy text-lg mb-4">Service Lane Call</h3>
+        <div>
+          <div class="text-xs font-bold uppercase text-gray-400 mb-1">Call</div>
+          <p class="text-sm text-gray-700 leading-relaxed">"While your vehicle is here for service, I can quickly run upgrade numbers so you're aware of your options."</p>
+        </div>
+      </div>
+
+      <!-- CARD 8: Anniversary Call -->
+      <div class="script-card no-break bg-white rounded-xl shadow-sm border-l-4 border-[#3498DB] p-6">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="text-xs font-bold uppercase tracking-wider text-white bg-[#3498DB] px-2.5 py-1 rounded-full">Strategic</span>
+          <span class="text-xs text-gray-400">Card 8</span>
+        </div>
+        <h3 class="font-bold text-navy text-lg mb-4">Anniversary Call</h3>
+        <div>
+          <div class="text-xs font-bold uppercase text-gray-400 mb-1">Call</div>
+          <p class="text-sm text-gray-700 leading-relaxed">"Just wanted to personally thank you again for your business and make sure everything is still going great."</p>
+        </div>
+      </div>
+
+      <!-- CARD 9: Objection — "Just Looking" -->
+      <div class="script-card no-break bg-white rounded-xl shadow-sm border-l-4 border-danger p-6">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="text-xs font-bold uppercase tracking-wider text-white bg-danger px-2.5 py-1 rounded-full">Objection</span>
+          <span class="text-xs text-gray-400">Card 9</span>
+        </div>
+        <h3 class="font-bold text-navy text-lg mb-4">"Just Looking"</h3>
+        <div>
+          <div class="text-xs font-bold uppercase text-gray-400 mb-1">Response</div>
+          <p class="text-sm text-gray-700 leading-relaxed">"I understand. Most customers start there. Just so I can help properly, are you comparing models or just exploring pricing?"</p>
+        </div>
+      </div>
+
+      <!-- CARD 10: Objection — "Need to Think About It" -->
+      <div class="script-card no-break bg-white rounded-xl shadow-sm border-l-4 border-danger p-6">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="text-xs font-bold uppercase tracking-wider text-white bg-danger px-2.5 py-1 rounded-full">Objection</span>
+          <span class="text-xs text-gray-400">Card 10</span>
+        </div>
+        <h3 class="font-bold text-navy text-lg mb-4">"Need to Think About It"</h3>
+        <div>
+          <div class="text-xs font-bold uppercase text-gray-400 mb-1">Response</div>
+          <p class="text-sm text-gray-700 leading-relaxed">"Of course. Usually when someone says that, there's one specific thing they're unsure about. Is it payment, vehicle, or timing?"</p>
+        </div>
+      </div>
+
+      <!-- CARD 11: Objection — "Payment Too High" -->
+      <div class="script-card no-break bg-white rounded-xl shadow-sm border-l-4 border-danger p-6">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="text-xs font-bold uppercase tracking-wider text-white bg-danger px-2.5 py-1 rounded-full">Objection</span>
+          <span class="text-xs text-gray-400">Card 11</span>
+        </div>
+        <h3 class="font-bold text-navy text-lg mb-4">"Payment Too High"</h3>
+        <div>
+          <div class="text-xs font-bold uppercase text-gray-400 mb-1">Response</div>
+          <p class="text-sm text-gray-700 leading-relaxed">"If we could adjust structure to stay closer to your target, would everything else make sense?"</p>
+        </div>
+      </div>
+
+      <!-- CARD 12: Objection — "Shopping Other Dealers" -->
+      <div class="script-card no-break bg-white rounded-xl shadow-sm border-l-4 border-danger p-6">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="text-xs font-bold uppercase tracking-wider text-white bg-danger px-2.5 py-1 rounded-full">Objection</span>
+          <span class="text-xs text-gray-400">Card 12</span>
+        </div>
+        <h3 class="font-bold text-navy text-lg mb-4">"Shopping Other Dealers"</h3>
+        <div>
+          <div class="text-xs font-bold uppercase text-gray-400 mb-1">Response</div>
+          <p class="text-sm text-gray-700 leading-relaxed">"That makes sense. While you're comparing, what's most important — price, vehicle availability, or service experience?"</p>
+        </div>
+      </div>
+
+      <!-- CARD 13: Voicemail Template -->
+      <div class="script-card no-break bg-white rounded-xl shadow-sm border-l-4 border-navy p-6 md:col-span-2">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="text-xs font-bold uppercase tracking-wider text-white bg-navy px-2.5 py-1 rounded-full">Voicemail</span>
+          <span class="text-xs text-gray-400">Card 13</span>
+        </div>
+        <h3 class="font-bold text-navy text-lg mb-4">Voicemail Template — The 4-Step Formula</h3>
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <div class="text-xs font-bold uppercase text-gray-400 mb-3">The 4 Steps</div>
+            <div class="space-y-2">
+              <div class="flex items-start gap-3">
+                <span class="flex-shrink-0 w-7 h-7 bg-navy text-white rounded-full flex items-center justify-center text-xs font-bold">1</span>
+                <div>
+                  <p class="text-sm font-semibold text-navy">Name</p>
+                  <p class="text-xs text-gray-500">State your name and dealership</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-3">
+                <span class="flex-shrink-0 w-7 h-7 bg-navy text-white rounded-full flex items-center justify-center text-xs font-bold">2</span>
+                <div>
+                  <p class="text-sm font-semibold text-navy">Reason</p>
+                  <p class="text-xs text-gray-500">One sentence why you're calling</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-3">
+                <span class="flex-shrink-0 w-7 h-7 bg-accent text-white rounded-full flex items-center justify-center text-xs font-bold">3</span>
+                <div>
+                  <p class="text-sm font-semibold text-navy">Call to Action</p>
+                  <p class="text-xs text-gray-500">Tell them what to do next</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-3">
+                <span class="flex-shrink-0 w-7 h-7 bg-danger text-white rounded-full flex items-center justify-center text-xs font-bold">4</span>
+                <div>
+                  <p class="text-sm font-semibold text-danger">Stop</p>
+                  <p class="text-xs text-gray-500">Don't ramble. End the message.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="text-xs font-bold uppercase text-gray-400 mb-3">Example</div>
+            <div class="bg-navy/5 rounded-lg p-4 border border-navy/10">
+              <p class="text-sm text-gray-700 leading-relaxed italic">"Hi <span class="text-navy font-semibold">[Name]</span>, Tyler at <span class="text-navy font-semibold">[Dealership]</span>. Calling about your vehicle inquiry. When you get a moment, give me a call at <span class="text-navy font-semibold">[number]</span>. I'll keep it quick."</p>
+            </div>
+            <div class="mt-3 p-3 bg-accent/10 rounded-lg border border-accent/20">
+              <p class="text-xs text-gray-600"><strong class="text-accent">Rule:</strong> Keep every voicemail under 20 seconds. If you have to think about what to say next — hang up.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Category Legend -->
+  <section class="max-w-6xl mx-auto px-4 pb-12 no-print">
+    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+      <h3 class="font-bold text-navy mb-4">Category Legend</h3>
+      <div class="flex flex-wrap gap-6 text-sm">
+        <div class="flex items-center gap-2">
+          <span class="w-4 h-4 rounded bg-accent"></span>
+          <span class="text-gray-700">Follow-Up Scripts (Cards 1–4)</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="w-4 h-4 rounded bg-[#3498DB]"></span>
+          <span class="text-gray-700">Strategic Calls (Cards 5–8)</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="w-4 h-4 rounded bg-danger"></span>
+          <span class="text-gray-700">Objection Handling (Cards 9–12)</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="w-4 h-4 rounded bg-navy"></span>
+          <span class="text-gray-700">Voicemail Template (Card 13)</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-navy text-white/50 py-8">
+    <div class="max-w-6xl mx-auto px-4 text-center text-sm">
+      <p>The Appointment Engine™</p>
+    </div>
+  </footer>
+
+  <script src="../js/app.js"></script>
+</body>
+</html>

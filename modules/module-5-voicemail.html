@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 5 – Voicemail System | The Appointment Engine™</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: '#1B2A4A',
+            accent: '#E8963E',
+            success: '#2ECC71',
+            danger: '#E74C3C',
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/print.css">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    @keyframes sweep {
+      from { stroke-dashoffset: 251; }
+      to { stroke-dashoffset: 0; }
+    }
+    .stopwatch-ring {
+      stroke-dasharray: 251;
+      stroke-dashoffset: 251;
+      animation: sweep 20s linear infinite;
+      transform-origin: center;
+      transform: rotate(-90deg);
+    }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-900">
+
+  <!-- Navigation -->
+  <nav class="bg-navy text-white sticky top-0 z-50 shadow-lg no-print">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+      <a href="../index.html" class="flex items-center gap-2">
+        <span class="text-2xl">⚙️</span>
+        <span class="font-bold text-lg">The Appointment Engine<span class="text-accent">™</span></span>
+      </a>
+      <div class="hidden md:flex items-center gap-6 text-sm">
+        <a href="../index.html" class="hover:text-accent transition">Home</a>
+        <div class="relative group">
+          <button class="text-accent font-semibold">Modules ▾</button>
+          <div class="absolute top-full left-0 mt-2 bg-white text-gray-900 rounded-lg shadow-xl py-2 w-64 hidden group-hover:block">
+            <a href="module-1-foundation.html" class="block px-4 py-2 hover:bg-gray-50">Module 1 – Foundation</a>
+            <a href="module-2-followup-system.html" class="block px-4 py-2 hover:bg-gray-50">Module 2 – 30-Day Follow-Up</a>
+            <a href="module-3-reasons-to-call.html" class="block px-4 py-2 hover:bg-gray-50">Module 3 – Reasons to Call</a>
+            <a href="module-4-objections.html" class="block px-4 py-2 hover:bg-gray-50">Module 4 – Objection Handling</a>
+            <a href="module-5-voicemail.html" class="block px-4 py-2 bg-gray-50 font-semibold text-accent">Module 5 – Voicemail System</a>
+            <a href="module-6-metrics.html" class="block px-4 py-2 hover:bg-gray-50">Module 6 – Metrics & Income</a>
+          </div>
+        </div>
+        <div class="relative group">
+          <button class="hover:text-accent transition">Tools ▾</button>
+          <div class="absolute top-full left-0 mt-2 bg-white text-gray-900 rounded-lg shadow-xl py-2 w-64 hidden group-hover:block">
+            <a href="../tools/calendar.html" class="block px-4 py-2 hover:bg-gray-50">30-Day Calendar</a>
+            <a href="../tools/calculator.html" class="block px-4 py-2 hover:bg-gray-50">Income Calculator</a>
+            <a href="../tools/tracker.html" class="block px-4 py-2 hover:bg-gray-50">Activity Tracker</a>
+            <a href="../tools/scripts-cards.html" class="block px-4 py-2 hover:bg-gray-50">Script Cards</a>
+          </div>
+        </div>
+      </div>
+      <!-- Mobile toggle -->
+      <button class="md:hidden text-white" onclick="toggleMobileNav()">☰</button>
+    </div>
+    <!-- Mobile nav -->
+    <div id="mobile-nav" class="hidden md:hidden bg-navy border-t border-white/10 px-4 pb-4">
+      <a href="module-1-foundation.html" class="block py-2 text-sm">Module 1 – Foundation</a>
+      <a href="module-2-followup-system.html" class="block py-2 text-sm">Module 2 – 30-Day Follow-Up</a>
+      <a href="module-3-reasons-to-call.html" class="block py-2 text-sm">Module 3 – Reasons to Call</a>
+      <a href="module-4-objections.html" class="block py-2 text-sm">Module 4 – Objection Handling</a>
+      <a href="module-5-voicemail.html" class="block py-2 text-sm text-accent font-semibold">Module 5 – Voicemail System</a>
+      <a href="module-6-metrics.html" class="block py-2 text-sm">Module 6 – Metrics & Income</a>
+      <div class="border-t border-white/10 mt-2 pt-2">
+        <a href="../tools/calendar.html" class="block py-2 text-sm text-accent">30-Day Calendar</a>
+        <a href="../tools/calculator.html" class="block py-2 text-sm text-accent">Income Calculator</a>
+        <a href="../tools/tracker.html" class="block py-2 text-sm text-accent">Activity Tracker</a>
+        <a href="../tools/scripts-cards.html" class="block py-2 text-sm text-accent">Script Cards</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Module Header -->
+  <section class="bg-navy text-white">
+    <div class="max-w-4xl mx-auto px-4 py-16">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="bg-accent text-white text-sm font-bold px-3 py-1 rounded-full">MODULE 5</span>
+        <span class="text-white/50 text-sm">of 6</span>
+      </div>
+      <h1 class="text-3xl md:text-5xl font-black tracking-tight mb-4">
+        VOICEMAIL SYSTEM:<br>THE 20-SECOND FRAMEWORK
+      </h1>
+      <p class="text-lg md:text-xl text-white/70 max-w-2xl">
+        <strong class="text-white">Objective:</strong> Leave voicemails that get callbacks.
+      </p>
+    </div>
+  </section>
+
+  <!-- Module Content -->
+  <section class="max-w-4xl mx-auto px-4 py-12">
+
+    <!-- The Rule -->
+    <div class="mb-12">
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+        <div class="flex">
+          <div class="w-1.5 bg-accent shrink-0"></div>
+          <div class="p-6 md:p-8">
+            <p class="text-gray-700 leading-relaxed text-lg mb-4">
+              "Most voicemails fail because they're too long, too vague, or too desperate.
+            </p>
+            <p class="text-gray-700 leading-relaxed text-lg mb-4">
+              The fix is simple: <strong class="text-navy">20 seconds. 4 parts. Every time.</strong>
+            </p>
+            <p class="text-gray-700 leading-relaxed text-lg">
+              If you can't say it in 20 seconds, you're saying too much."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stopwatch Visual + 20-Second Framework -->
+    <div class="mb-12">
+      <h2 class="text-2xl font-bold text-navy mb-6 text-center">The 20-Second Framework</h2>
+
+      <!-- Stopwatch Visual -->
+      <div class="flex justify-center mb-10">
+        <div class="relative w-48 h-48 md:w-56 md:h-56">
+          <!-- Outer ring background -->
+          <svg class="w-full h-full" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="40" fill="none" stroke="#E5E7EB" stroke-width="6"></circle>
+            <circle cx="50" cy="50" r="40" fill="none" stroke="#E8963E" stroke-width="6" class="stopwatch-ring"></circle>
+          </svg>
+          <!-- Center text -->
+          <div class="absolute inset-0 flex flex-col items-center justify-center">
+            <span class="text-4xl md:text-5xl font-black text-navy">20</span>
+            <span class="text-sm font-bold text-gray-400 uppercase tracking-wider">seconds</span>
+          </div>
+          <!-- Top tick mark (12 o'clock) -->
+          <div class="absolute top-1 left-1/2 -translate-x-1/2 w-1 h-4 bg-navy rounded-full"></div>
+        </div>
+      </div>
+
+      <!-- 4 Steps Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <!-- Step 1 -->
+        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 relative overflow-hidden no-break">
+          <div class="flex items-start gap-4">
+            <div class="bg-navy text-white w-12 h-12 rounded-full flex items-center justify-center text-xl font-black shrink-0">1</div>
+            <div>
+              <h3 class="text-lg font-bold text-navy mb-1">Name</h3>
+              <p class="text-gray-600">Who you are. First name, dealership. Nothing else.</p>
+              <p class="text-accent font-semibold text-sm mt-2">~3 seconds</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 relative overflow-hidden no-break">
+          <div class="flex items-start gap-4">
+            <div class="bg-navy text-white w-12 h-12 rounded-full flex items-center justify-center text-xl font-black shrink-0">2</div>
+            <div>
+              <h3 class="text-lg font-bold text-navy mb-1">Reason</h3>
+              <p class="text-gray-600">Why you're calling. One sentence. Be specific.</p>
+              <p class="text-accent font-semibold text-sm mt-2">~5 seconds</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 relative overflow-hidden no-break">
+          <div class="flex items-start gap-4">
+            <div class="bg-navy text-white w-12 h-12 rounded-full flex items-center justify-center text-xl font-black shrink-0">3</div>
+            <div>
+              <h3 class="text-lg font-bold text-navy mb-1">Call to Action</h3>
+              <p class="text-gray-600">What they should do next. Give your number. Keep it easy.</p>
+              <p class="text-accent font-semibold text-sm mt-2">~7 seconds</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 relative overflow-hidden no-break">
+          <div class="flex items-start gap-4">
+            <div class="bg-danger text-white w-12 h-12 rounded-full flex items-center justify-center text-xl font-black shrink-0">4</div>
+            <div>
+              <h3 class="text-lg font-bold text-danger mb-1">Stop Talking</h3>
+              <p class="text-gray-600">End it. Don't ramble. Don't repeat. Just stop.</p>
+              <p class="text-accent font-semibold text-sm mt-2">~5 seconds</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Example Voicemail Script Card -->
+    <div class="mb-12">
+      <h2 class="text-2xl font-bold text-navy mb-6">Example Voicemail</h2>
+      <div class="bg-navy rounded-xl shadow-lg p-6 md:p-8 script-card no-break">
+        <div class="flex items-center gap-2 mb-4">
+          <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+          </svg>
+          <span class="text-accent font-bold text-sm uppercase tracking-wider">Voicemail Script</span>
+        </div>
+        <p class="text-white text-xl md:text-2xl leading-relaxed font-medium">
+          "Hi <span class="text-accent">[Name]</span>, Tyler at <span class="text-accent">[Dealership]</span>. Calling about your vehicle inquiry. When you get a moment, give me a call at <span class="text-accent">[number]</span>. I'll keep it quick."
+        </p>
+      </div>
+    </div>
+
+    <!-- Annotated Breakdown -->
+    <div class="mb-12">
+      <h2 class="text-2xl font-bold text-navy mb-6">Breakdown: Which Part Is Which</h2>
+      <div class="space-y-3">
+        <!-- Part 1 -->
+        <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden no-break">
+          <div class="flex">
+            <div class="w-1.5 bg-navy shrink-0"></div>
+            <div class="p-5 flex items-start gap-4 w-full">
+              <div class="bg-navy text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shrink-0">1</div>
+              <div class="flex-1">
+                <span class="text-sm font-bold text-navy uppercase tracking-wider">Name</span>
+                <p class="text-gray-800 text-lg mt-1">"Hi <strong class="text-accent">[Name]</strong>, Tyler at <strong class="text-accent">[Dealership]</strong>."</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Arrow -->
+        <div class="text-center text-gray-300">
+          <svg class="w-6 h-6 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+          </svg>
+        </div>
+
+        <!-- Part 2 -->
+        <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden no-break">
+          <div class="flex">
+            <div class="w-1.5 bg-navy shrink-0"></div>
+            <div class="p-5 flex items-start gap-4 w-full">
+              <div class="bg-navy text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shrink-0">2</div>
+              <div class="flex-1">
+                <span class="text-sm font-bold text-navy uppercase tracking-wider">Reason</span>
+                <p class="text-gray-800 text-lg mt-1">"Calling about your <strong class="text-accent">vehicle inquiry</strong>."</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Arrow -->
+        <div class="text-center text-gray-300">
+          <svg class="w-6 h-6 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+          </svg>
+        </div>
+
+        <!-- Part 3 -->
+        <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden no-break">
+          <div class="flex">
+            <div class="w-1.5 bg-accent shrink-0"></div>
+            <div class="p-5 flex items-start gap-4 w-full">
+              <div class="bg-accent text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shrink-0">3</div>
+              <div class="flex-1">
+                <span class="text-sm font-bold text-accent uppercase tracking-wider">Call to Action</span>
+                <p class="text-gray-800 text-lg mt-1">"When you get a moment, give me a call at <strong class="text-accent">[number]</strong>."</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Arrow -->
+        <div class="text-center text-gray-300">
+          <svg class="w-6 h-6 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+          </svg>
+        </div>
+
+        <!-- Part 4 -->
+        <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden no-break">
+          <div class="flex">
+            <div class="w-1.5 bg-danger shrink-0"></div>
+            <div class="p-5 flex items-start gap-4 w-full">
+              <div class="bg-danger text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shrink-0">4</div>
+              <div class="flex-1">
+                <span class="text-sm font-bold text-danger uppercase tracking-wider">Stop Talking</span>
+                <p class="text-gray-800 text-lg mt-1">"I'll keep it quick." <span class="text-gray-400 italic">— Done. Hang up.</span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Common Mistakes -->
+    <div class="mb-12">
+      <div class="bg-danger/5 rounded-xl border border-danger/15 p-6 md:p-8 no-break">
+        <h3 class="text-xl font-bold text-danger mb-5">Common Mistakes</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="flex items-start gap-3">
+            <span class="text-danger font-bold text-lg mt-0.5">&#10007;</span>
+            <div>
+              <p class="font-semibold text-gray-900">Too long (over 20 seconds)</p>
+              <p class="text-gray-600 text-sm mt-1">If they wanted a long conversation, they would have answered the phone. Keep it tight.</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="text-danger font-bold text-lg mt-0.5">&#10007;</span>
+            <div>
+              <p class="font-semibold text-gray-900">No clear call to action</p>
+              <p class="text-gray-600 text-sm mt-1">If you don't tell them what to do, they won't do anything. Always give a next step.</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="text-danger font-bold text-lg mt-0.5">&#10007;</span>
+            <div>
+              <p class="font-semibold text-gray-900">Rambling or repeating information</p>
+              <p class="text-gray-600 text-sm mt-1">Say it once. Don't repeat your name, number, or reason. Once is enough.</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="text-danger font-bold text-lg mt-0.5">&#10007;</span>
+            <div>
+              <p class="font-semibold text-gray-900">Sounding desperate or overly salesy</p>
+              <p class="text-gray-600 text-sm mt-1">You're offering value, not begging. Calm, confident, professional. That's it.</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="text-danger font-bold text-lg mt-0.5">&#10007;</span>
+            <div>
+              <p class="font-semibold text-gray-900">Leaving your phone number too fast</p>
+              <p class="text-gray-600 text-sm mt-1">Slow down on the digits. If they have to replay the message to catch your number, most won't bother.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pro Tips -->
+    <div class="mb-12">
+      <div class="bg-success/5 rounded-xl border border-success/15 p-6 md:p-8 no-break">
+        <h3 class="text-xl font-bold text-success mb-5">What Helps</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="flex items-start gap-3">
+            <span class="text-success font-bold text-lg mt-0.5">&#10003;</span>
+            <div>
+              <p class="font-semibold text-gray-900">Smile while you talk</p>
+              <p class="text-gray-600 text-sm mt-1">It sounds crazy, but smiling changes your tone. People can hear it. You'll sound warmer and more approachable.</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="text-success font-bold text-lg mt-0.5">&#10003;</span>
+            <div>
+              <p class="font-semibold text-gray-900">Stand up for more energy</p>
+              <p class="text-gray-600 text-sm mt-1">Standing opens your diaphragm and adds natural energy to your voice. Sit down = flat delivery.</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="text-success font-bold text-lg mt-0.5">&#10003;</span>
+            <div>
+              <p class="font-semibold text-gray-900">Practice until it's natural, not scripted</p>
+              <p class="text-gray-600 text-sm mt-1">Read it 10 times. Then say it without reading. It should feel like a conversation, not a performance.</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="text-success font-bold text-lg mt-0.5">&#10003;</span>
+            <div>
+              <p class="font-semibold text-gray-900">Always leave a voicemail</p>
+              <p class="text-gray-600 text-sm mt-1">Even if they never call back, it builds familiarity. When you finally connect, they'll recognize your name.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Key Takeaways -->
+    <div class="bg-navy/5 rounded-xl border border-navy/10 p-6 md:p-8 mb-12 no-break">
+      <h3 class="text-xl font-bold text-navy mb-4">Summary</h3>
+      <ul class="space-y-3">
+        <li class="flex items-start gap-3">
+          <span class="bg-success text-white w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">1</span>
+          <span class="text-gray-700">Every voicemail has exactly 4 parts: Name, Reason, Call to Action, Stop Talking.</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="bg-success text-white w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">2</span>
+          <span class="text-gray-700">20 seconds max. If you can't say it in 20 seconds, you're saying too much.</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="bg-success text-white w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">3</span>
+          <span class="text-gray-700">Always leave a voicemail. It builds familiarity even if they don't call back.</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="bg-success text-white w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">4</span>
+          <span class="text-gray-700">Sound confident, not desperate. You're offering value, not begging for attention.</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Print Button -->
+    <div class="text-center mb-12 no-print">
+      <button onclick="printPage()" class="inline-flex items-center gap-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold px-6 py-3 rounded-xl transition border border-gray-200">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path>
+        </svg>
+        Print / Save as PDF
+      </button>
+    </div>
+
+    <!-- Module Navigation -->
+    <div class="flex items-center justify-between border-t border-gray-200 pt-8 no-print">
+      <!-- Previous Module -->
+      <a href="module-4-objections.html" class="inline-flex items-center gap-2 text-navy hover:text-accent font-semibold transition">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+        </svg>
+        Module 4
+      </a>
+
+      <!-- Back to Home -->
+      <a href="../index.html" class="inline-flex items-center gap-2 text-navy hover:text-accent font-semibold transition">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0h4"></path>
+        </svg>
+        Back to Home
+      </a>
+
+      <!-- Next Module -->
+      <a href="module-6-metrics.html" class="inline-flex items-center gap-2 bg-accent hover:bg-accent/90 text-white font-bold px-6 py-3 rounded-xl transition shadow-lg shadow-accent/25">
+        Module 6
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </a>
+    </div>
+
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-navy text-white/50 py-8">
+    <div class="max-w-6xl mx-auto px-4 text-center text-sm">
+      <p>The Appointment Engine™</p>
+    </div>
+  </footer>
+
+  <script src="../js/app.js"></script>
+</body>
+</html>

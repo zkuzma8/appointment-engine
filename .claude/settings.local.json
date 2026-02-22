@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "WebFetch(domain:grantcardone.com)",
+      "WebFetch(domain:elliott247.com)",
+      "WebFetch(domain:www.joeverde.com)",
+      "WebFetch(domain:www.sandler.com)",
+      "WebFetch(domain:www.jmagroup.com)",
+      "WebFetch(domain:cardoneuniversity.com)",
+      "WebFetch(domain:www.jvtn.com)",
+      "WebFetch(domain:bdcatalysts.com)",
+      "WebFetch(domain:www.thecardonegroup.com)",
+      "Bash(cd:*)"
+    ]
+  }
+}
