@@ -24,16 +24,12 @@
   <link rel="stylesheet" href="../css/print.css">
   <style>
     body { font-family: 'Inter', sans-serif; }
-    @keyframes sweep {
-      from { stroke-dashoffset: 251; }
-      to { stroke-dashoffset: 0; }
-    }
     .stopwatch-ring {
       stroke-dasharray: 251;
       stroke-dashoffset: 251;
-      animation: sweep 20s linear infinite;
       transform: rotate(-90deg);
       transform-origin: 50px 50px;
+      transition: stroke-dashoffset 1s linear;
     }
   </style>
 </head>
@@ -133,22 +129,64 @@
       <h2 class="text-2xl font-bold text-navy mb-6 text-center">The 20-Second Framework</h2>
 
       <!-- Stopwatch Visual -->
-      <div class="flex justify-center mb-10">
-        <div class="relative w-48 h-48 md:w-56 md:h-56">
-          <!-- Outer ring background -->
+      <div class="flex flex-col items-center mb-10">
+        <div class="relative w-48 h-48 md:w-56 md:h-56 mb-4">
           <svg class="w-full h-full" viewBox="0 0 100 100">
             <circle cx="50" cy="50" r="40" fill="none" stroke="#E5E7EB" stroke-width="6"></circle>
-            <circle cx="50" cy="50" r="40" fill="none" stroke="#E8963E" stroke-width="6" class="stopwatch-ring"></circle>
+            <circle id="timer-ring" cx="50" cy="50" r="40" fill="none" stroke="#E8963E" stroke-width="6" class="stopwatch-ring"></circle>
           </svg>
-          <!-- Center text -->
           <div class="absolute inset-0 flex flex-col items-center justify-center">
-            <span class="text-4xl md:text-5xl font-black text-navy">20</span>
+            <span id="timer-number" class="text-4xl md:text-5xl font-black text-navy">20</span>
             <span class="text-sm font-bold text-gray-400 uppercase tracking-wider">seconds</span>
           </div>
-          <!-- Top tick mark (12 o'clock) -->
-          <div class="absolute top-1 left-1/2 -translate-x-1/2 w-1 h-4 bg-navy rounded-full"></div>
         </div>
+        <button id="timer-btn" onclick="startTimer()" class="bg-accent hover:bg-accent/90 text-white font-bold px-6 py-2.5 rounded-lg transition cursor-pointer text-sm no-print">
+          Start Timer
+        </button>
       </div>
+
+      <script>
+        let timerInterval = null;
+        let timeLeft = 20;
+        const TOTAL = 20;
+        const CIRCUMFERENCE = 251;
+
+        function startTimer() {
+          const btn = document.getElementById('timer-btn');
+          const num = document.getElementById('timer-number');
+          const ring = document.getElementById('timer-ring');
+
+          if (timerInterval) {
+            clearInterval(timerInterval);
+            timerInterval = null;
+            timeLeft = TOTAL;
+            num.textContent = TOTAL;
+            ring.style.strokeDashoffset = CIRCUMFERENCE;
+            ring.style.stroke = '#E8963E';
+            btn.textContent = 'Start Timer';
+            return;
+          }
+
+          btn.textContent = 'Reset';
+          timerInterval = setInterval(function() {
+            timeLeft--;
+            num.textContent = timeLeft;
+            ring.style.strokeDashoffset = CIRCUMFERENCE - ((TOTAL - timeLeft) / TOTAL) * CIRCUMFERENCE;
+
+            if (timeLeft <= 5) {
+              ring.style.stroke = '#E74C3C';
+            }
+
+            if (timeLeft <= 0) {
+              clearInterval(timerInterval);
+              timerInterval = null;
+              num.textContent = '0';
+              btn.textContent = 'Start Again';
+              ring.style.strokeDashoffset = 0;
+            }
+          }, 1000);
+        }
+      </script>
 
       <!-- 4 Steps Grid -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
