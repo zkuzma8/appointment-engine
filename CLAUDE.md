@@ -53,26 +53,13 @@ modules/
   module-5-voicemail.html               # Voicemail System (20-sec timer)
   module-6-metrics.html                 # Metrics & Income Formula
 tools/
-  calendar.html                         # 30-Day Calendar (click day = script)
-  calculator.html                       # Income Calculator (reverse-engineer goals)
+  calendar.html                         # 30-Day Calendar (6 touchpoints, 36 scripts)
+  calculator.html                       # Income Calculator + Daily Discipline Log
   tracker.html                          # Daily Activity Tracker (editable table)
-  scripts-cards.html                    # 13 Printable Script Reference Cards
+  scripts-cards.html                    # 15 Printable Script Reference Cards
+docs/
+  architecture.md                       # Calendar, calculator, script cards architecture
 ```
-
-## Calendar Phases
-- Days 1-3: Red #E74C3C (Speed & Urgency)
-- Days 4-10: Orange #E8963E (Value Reinforcement)
-- Days 11-20: Blue #3498DB (Pattern Interruption)
-- Days 21-30: Navy #1B2A4A (Professional Persistence)
-- Days 27, 29: Rest days (no contact)
-
-## Calculator Fields
-- Monthly income goal ($)
-- Average commission per unit ($)
-- Close rate (%)
-- Show rate (%)
-- Conversation-to-appointment rate (%)
-- Output: daily calls needed (based on 22 working days)
 
 ## Testing
 - Use Playwright for visual and functional testing
@@ -80,3 +67,6 @@ tools/
 - Check: cursor-pointer on all clickable elements
 - Check: no mobile overflow at 375px
 - Check: print mode hides nav and buttons
+- Check: calendar channel filter tabs work (ALL/CALL/VM/TEXT/EMAIL)
+- Check: discipline log appears after calculator submit
+- Check: 36 scripts in calendar, 15 cards in script cards

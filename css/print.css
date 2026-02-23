@@ -141,6 +141,49 @@
     appearance: textfield;
   }
 
+  /* Checkboxes - visible with border for discipline log */
+  input[type="checkbox"] {
+    display: inline-block !important;
+    width: 12pt !important;
+    height: 12pt !important;
+    border: 1.5pt solid #666 !important;
+    background: white !important;
+    -webkit-appearance: none;
+    appearance: none;
+    vertical-align: middle;
+    margin: 1pt;
+  }
+
+  /* Discipline log checklist print */
+  #discipline-log {
+    page-break-inside: avoid;
+  }
+
+  #discipline-log .grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+    gap: 8pt;
+  }
+
+  #discipline-log .grid > div {
+    border: 1pt solid #ccc !important;
+    padding: 8pt;
+    background: white !important;
+  }
+
+  /* Calendar print - show all script items */
+  .script-item {
+    display: block !important;
+  }
+
+  .script-item.hidden {
+    display: block !important;
+  }
+
+  .channel-tabs {
+    display: none !important;
+  }
+
   /* Headers */
   h1 { font-size: 18pt; margin-bottom: 6pt; }
   h2 { font-size: 14pt; margin-bottom: 4pt; }

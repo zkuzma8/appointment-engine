@@ -34,6 +34,14 @@ function calculateIncome() {
   const dailyCalls = Math.ceil(conversationsNeeded / 22); // 22 working days
 
   const results = document.getElementById('calc-results');
+  // Discipline log breakdown
+  const freshLeads = Math.ceil(dailyCalls * 0.35);
+  const pipeline = Math.ceil(dailyCalls * 0.30);
+  const serviceLane = Math.ceil(dailyCalls * 0.20);
+  const pastCustomers = dailyCalls - freshLeads - pipeline - serviceLane;
+  const dailyTexts = dailyCalls;
+  const dailyEmails = Math.max(1, Math.round(dailyCalls * 0.25));
+
   if (results) {
     results.innerHTML = `
       <div class="grid grid-cols-1 md:grid-cols-5 gap-4 text-center">
@@ -65,6 +73,111 @@ function calculateIncome() {
     `;
     results.classList.remove('hidden');
   }
+
+  // Generate discipline log
+  const logContainer = document.getElementById('discipline-log');
+  if (logContainer) {
+    logContainer.innerHTML = `
+      <h3 class="text-xl font-bold text-[#1B2A4A] mb-2">Your Daily Discipline Log</h3>
+      <p class="text-gray-500 text-sm mb-6">Print this out. Check each box as you go. ${dailyCalls} calls, ${dailyTexts} texts, ${dailyEmails} emails per day.</p>
+      <div class="grid md:grid-cols-2 gap-6">
+        <!-- Fresh Leads -->
+        <div class="bg-white rounded-xl border border-gray-200 p-5">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-3 h-3 rounded-full bg-[#E74C3C] flex-shrink-0"></div>
+            <h4 class="font-bold text-[#1B2A4A]">Fresh Leads</h4>
+            <span class="text-xs text-gray-400 ml-auto">35%</span>
+          </div>
+          <p class="text-xs text-gray-500 mb-3">New internet leads, phone-ups, walk-in follow-ups</p>
+          <div class="space-y-2">
+            ${buildCheckboxes('Calls', freshLeads)}
+            ${buildCheckboxes('Texts', freshLeads)}
+            ${buildCheckboxes('Emails', Math.max(1, Math.round(freshLeads * 0.25)))}
+          </div>
+        </div>
+        <!-- Pipeline Follow-Up -->
+        <div class="bg-white rounded-xl border border-gray-200 p-5">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-3 h-3 rounded-full bg-[#E8963E] flex-shrink-0"></div>
+            <h4 class="font-bold text-[#1B2A4A]">Pipeline Follow-Up</h4>
+            <span class="text-xs text-gray-400 ml-auto">30%</span>
+          </div>
+          <p class="text-xs text-gray-500 mb-3">Customers in your 30-day follow-up sequence</p>
+          <div class="space-y-2">
+            ${buildCheckboxes('Calls', pipeline)}
+            ${buildCheckboxes('Texts', pipeline)}
+            ${buildCheckboxes('Emails', Math.max(1, Math.round(pipeline * 0.25)))}
+          </div>
+        </div>
+        <!-- Service Lane -->
+        <div class="bg-white rounded-xl border border-gray-200 p-5">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-3 h-3 rounded-full bg-[#3498DB] flex-shrink-0"></div>
+            <h4 class="font-bold text-[#1B2A4A]">Service Lane</h4>
+            <span class="text-xs text-gray-400 ml-auto">20%</span>
+          </div>
+          <p class="text-xs text-gray-500 mb-3">Customers in for service - upgrade opportunity</p>
+          <div class="space-y-2">
+            ${buildCheckboxes('Calls', serviceLane)}
+            ${buildCheckboxes('Texts', serviceLane)}
+          </div>
+        </div>
+        <!-- Past Customers -->
+        <div class="bg-white rounded-xl border border-gray-200 p-5">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-3 h-3 rounded-full bg-[#1B2A4A] flex-shrink-0"></div>
+            <h4 class="font-bold text-[#1B2A4A]">Past Customers</h4>
+            <span class="text-xs text-gray-400 ml-auto">15%</span>
+          </div>
+          <p class="text-xs text-gray-500 mb-3">Equity calls, anniversary calls, referral asks</p>
+          <div class="space-y-2">
+            ${buildCheckboxes('Calls', pastCustomers)}
+            ${buildCheckboxes('Texts', pastCustomers)}
+          </div>
+        </div>
+      </div>
+      <div class="mt-6 p-4 bg-gray-50 rounded-xl border border-gray-200 text-center">
+        <p class="text-sm text-gray-600"><strong>Daily Totals:</strong> ${dailyCalls} calls + ${dailyTexts} texts + ${dailyEmails} emails</p>
+      </div>
+    `;
+    logContainer.classList.remove('hidden');
+  }
+}
+
+// Build checkbox row for discipline log
+function buildCheckboxes(label, count) {
+  if (count <= 0) return '';
+  let boxes = '';
+  for (let i = 0; i < count; i++) {
+    boxes += '<input type="checkbox" class="w-4 h-4 rounded border-gray-300 cursor-pointer">';
+  }
+  return `<div class="flex items-center gap-2 flex-wrap"><span class="text-xs font-semibold text-gray-500 w-12">${label}</span>${boxes}</div>`;
+}
+
+// Calendar - filter scripts by channel
+function filterChannel(day, channel) {
+  const panel = document.getElementById('day-' + day);
+  if (!panel) return;
+  const scripts = panel.querySelectorAll('.script-item');
+  const tabs = panel.querySelectorAll('.channel-tab');
+
+  tabs.forEach(function(tab) {
+    tab.classList.remove('bg-[#1B2A4A]', 'text-white');
+    tab.classList.add('bg-gray-200', 'text-gray-700');
+  });
+  const activeTab = panel.querySelector('[data-channel="' + channel + '"]');
+  if (activeTab) {
+    activeTab.classList.remove('bg-gray-200', 'text-gray-700');
+    activeTab.classList.add('bg-[#1B2A4A]', 'text-white');
+  }
+
+  scripts.forEach(function(script) {
+    if (channel === 'all' || script.dataset.type === channel) {
+      script.classList.remove('hidden');
+    } else {
+      script.classList.add('hidden');
+    }
+  });
 }
 
 // Calendar - show day detail

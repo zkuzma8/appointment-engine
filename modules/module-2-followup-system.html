@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Module 2 - The 30-Day Follow-Up System | The Appointment Engine™</title>
+  <title>Module 2 - The 30-Day Follow-Up System | The Appointment Engine&#8482;</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -31,6 +31,19 @@
     .script-card { border-left: 4px solid var(--phase-color); }
     .day-badge { background-color: var(--phase-color); }
     .phase-tag { background-color: var(--phase-color); }
+    .channel-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .channel-label-call { background: rgba(27,42,74,0.1); color: #1B2A4A; }
+    .channel-label-vm { background: rgba(107,114,128,0.1); color: #6B7280; }
+    .channel-label-text { background: rgba(46,204,113,0.1); color: #1a9a52; }
+    .channel-label-email { background: rgba(232,150,62,0.1); color: #c77a2e; }
   </style>
 </head>
 <body class="bg-gray-50 text-gray-900">
@@ -38,30 +51,29 @@
   <!-- Navigation -->
   <nav class="bg-navy text-white sticky top-0 z-50 shadow-lg no-print">
     <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
-      <a href="../index.html" class="flex items-center gap-2">
-        
+      <a href="../index.html" class="flex items-center gap-2 cursor-pointer">
         <span class="font-bold text-lg">The Appointment Engine<span class="text-accent">&#8482;</span></span>
       </a>
       <div class="hidden md:flex items-center gap-6 text-sm">
-        <a href="../index.html" class="hover:text-accent transition">Home</a>
+        <a href="../index.html" class="hover:text-accent transition cursor-pointer">Home</a>
         <div class="relative group">
           <button class="text-accent font-semibold cursor-pointer">Modules &#9662;</button>
           <div class="absolute top-full left-0 mt-2 bg-white text-gray-900 rounded-lg shadow-xl py-2 w-64 hidden group-hover:block">
-            <a href="module-1-foundation.html" class="block px-4 py-2 hover:bg-gray-50">Module 1 - Foundation</a>
-            <a href="module-2-followup-system.html" class="block px-4 py-2 bg-accent/10 text-accent font-semibold">Module 2 - 30-Day Follow-Up</a>
-            <a href="module-3-reasons-to-call.html" class="block px-4 py-2 hover:bg-gray-50">Module 3 - Reasons to Call</a>
-            <a href="module-4-objections.html" class="block px-4 py-2 hover:bg-gray-50">Module 4 - Objection Handling</a>
-            <a href="module-5-voicemail.html" class="block px-4 py-2 hover:bg-gray-50">Module 5 - Voicemail System</a>
-            <a href="module-6-metrics.html" class="block px-4 py-2 hover:bg-gray-50">Module 6 - Metrics &amp; Income</a>
+            <a href="module-1-foundation.html" class="block px-4 py-2 hover:bg-gray-50 cursor-pointer">Module 1 - Foundation</a>
+            <a href="module-2-followup-system.html" class="block px-4 py-2 bg-accent/10 text-accent font-semibold cursor-pointer">Module 2 - 30-Day Follow-Up</a>
+            <a href="module-3-reasons-to-call.html" class="block px-4 py-2 hover:bg-gray-50 cursor-pointer">Module 3 - Reasons to Call</a>
+            <a href="module-4-objections.html" class="block px-4 py-2 hover:bg-gray-50 cursor-pointer">Module 4 - Objection Handling</a>
+            <a href="module-5-voicemail.html" class="block px-4 py-2 hover:bg-gray-50 cursor-pointer">Module 5 - Voicemail System</a>
+            <a href="module-6-metrics.html" class="block px-4 py-2 hover:bg-gray-50 cursor-pointer">Module 6 - Metrics &amp; Income</a>
           </div>
         </div>
         <div class="relative group">
           <button class="hover:text-accent transition cursor-pointer">Tools &#9662;</button>
           <div class="absolute top-full left-0 mt-2 bg-white text-gray-900 rounded-lg shadow-xl py-2 w-64 hidden group-hover:block">
-            <a href="../tools/calendar.html" class="block px-4 py-2 hover:bg-gray-50">30-Day Calendar</a>
-            <a href="../tools/calculator.html" class="block px-4 py-2 hover:bg-gray-50">Income Calculator</a>
-            <a href="../tools/tracker.html" class="block px-4 py-2 hover:bg-gray-50">Activity Tracker</a>
-            <a href="../tools/scripts-cards.html" class="block px-4 py-2 hover:bg-gray-50">Script Cards</a>
+            <a href="../tools/calendar.html" class="block px-4 py-2 hover:bg-gray-50 cursor-pointer">30-Day Calendar</a>
+            <a href="../tools/calculator.html" class="block px-4 py-2 hover:bg-gray-50 cursor-pointer">Income Calculator</a>
+            <a href="../tools/tracker.html" class="block px-4 py-2 hover:bg-gray-50 cursor-pointer">Activity Tracker</a>
+            <a href="../tools/scripts-cards.html" class="block px-4 py-2 hover:bg-gray-50 cursor-pointer">Script Cards</a>
           </div>
         </div>
       </div>
@@ -70,17 +82,17 @@
     </div>
     <!-- Mobile nav -->
     <div id="mobile-nav" class="hidden md:hidden bg-navy border-t border-white/10 px-4 pb-4">
-      <a href="module-1-foundation.html" class="block py-3 text-sm">Module 1 - Foundation</a>
-      <a href="module-2-followup-system.html" class="block py-3 text-sm text-accent font-semibold">Module 2 - 30-Day Follow-Up</a>
-      <a href="module-3-reasons-to-call.html" class="block py-3 text-sm">Module 3 - Reasons to Call</a>
-      <a href="module-4-objections.html" class="block py-3 text-sm">Module 4 - Objection Handling</a>
-      <a href="module-5-voicemail.html" class="block py-3 text-sm">Module 5 - Voicemail System</a>
-      <a href="module-6-metrics.html" class="block py-3 text-sm">Module 6 - Metrics &amp; Income</a>
+      <a href="module-1-foundation.html" class="block py-3 text-sm cursor-pointer">Module 1 - Foundation</a>
+      <a href="module-2-followup-system.html" class="block py-3 text-sm text-accent font-semibold cursor-pointer">Module 2 - 30-Day Follow-Up</a>
+      <a href="module-3-reasons-to-call.html" class="block py-3 text-sm cursor-pointer">Module 3 - Reasons to Call</a>
+      <a href="module-4-objections.html" class="block py-3 text-sm cursor-pointer">Module 4 - Objection Handling</a>
+      <a href="module-5-voicemail.html" class="block py-3 text-sm cursor-pointer">Module 5 - Voicemail System</a>
+      <a href="module-6-metrics.html" class="block py-3 text-sm cursor-pointer">Module 6 - Metrics &amp; Income</a>
       <div class="border-t border-white/10 mt-2 pt-2">
-        <a href="../tools/calendar.html" class="block py-3 text-sm text-accent">30-Day Calendar</a>
-        <a href="../tools/calculator.html" class="block py-3 text-sm text-accent">Income Calculator</a>
-        <a href="../tools/tracker.html" class="block py-3 text-sm text-accent">Activity Tracker</a>
-        <a href="../tools/scripts-cards.html" class="block py-3 text-sm text-accent">Script Cards</a>
+        <a href="../tools/calendar.html" class="block py-3 text-sm text-accent cursor-pointer">30-Day Calendar</a>
+        <a href="../tools/calculator.html" class="block py-3 text-sm text-accent cursor-pointer">Income Calculator</a>
+        <a href="../tools/tracker.html" class="block py-3 text-sm text-accent cursor-pointer">Activity Tracker</a>
+        <a href="../tools/scripts-cards.html" class="block py-3 text-sm text-accent cursor-pointer">Script Cards</a>
       </div>
     </div>
   </nav>
@@ -93,7 +105,7 @@
         THE 30-DAY<br>FOLLOW-UP SYSTEM
       </h1>
       <p class="text-lg md:text-xl text-white/70 max-w-2xl mx-auto">
-        A complete day-by-day roadmap with scripts for calls, voicemails, and texts - from first contact to close.
+        6 strategic touchpoints with scripts for calls, texts, voicemails, and emails - from first contact to close.
       </p>
       <div class="mt-6 flex flex-wrap justify-center gap-3">
         <button onclick="printPage()" class="bg-white/10 hover:bg-white/20 text-white font-semibold px-5 py-2 rounded-lg text-sm transition no-print cursor-pointer">
@@ -113,7 +125,7 @@
       <!-- Phase 1 -->
       <div class="relative bg-[#E74C3C] text-white p-5 md:rounded-l-xl">
         <div class="text-xs font-bold uppercase tracking-wider opacity-80 mb-1">Phase 1</div>
-        <div class="text-lg font-black">Days 1-3</div>
+        <div class="text-lg font-black">Days 1-2</div>
         <div class="text-sm font-semibold mt-1">Speed &amp; Urgency</div>
         <p class="text-xs mt-2 opacity-90">Respond fast. Set the tone. Establish contact before the competition does.</p>
         <div class="hidden md:block absolute top-1/2 -right-2 w-4 h-4 bg-[#E74C3C] rotate-45 -translate-y-1/2 z-10"></div>
@@ -121,7 +133,7 @@
       <!-- Phase 2 -->
       <div class="relative bg-[#E8963E] text-white p-5">
         <div class="text-xs font-bold uppercase tracking-wider opacity-80 mb-1">Phase 2</div>
-        <div class="text-lg font-black">Days 4-10</div>
+        <div class="text-lg font-black">Day 5</div>
         <div class="text-sm font-semibold mt-1">Value Reinforcement</div>
         <p class="text-xs mt-2 opacity-90">Bring value with every touch. Updates, pricing, new inventory - give them a reason.</p>
         <div class="hidden md:block absolute top-1/2 -right-2 w-4 h-4 bg-[#E8963E] rotate-45 -translate-y-1/2 z-10"></div>
@@ -129,7 +141,7 @@
       <!-- Phase 3 -->
       <div class="relative bg-[#3498DB] text-white p-5">
         <div class="text-xs font-bold uppercase tracking-wider opacity-80 mb-1">Phase 3</div>
-        <div class="text-lg font-black">Days 11-20</div>
+        <div class="text-lg font-black">Day 12</div>
         <div class="text-sm font-semibold mt-1">Pattern Interruption</div>
         <p class="text-xs mt-2 opacity-90">Change the approach. Ask different questions. Break through the noise.</p>
         <div class="hidden md:block absolute top-1/2 -right-2 w-4 h-4 bg-[#3498DB] rotate-45 -translate-y-1/2 z-10"></div>
@@ -137,9 +149,35 @@
       <!-- Phase 4 -->
       <div class="bg-[#1B2A4A] text-white p-5 md:rounded-r-xl">
         <div class="text-xs font-bold uppercase tracking-wider opacity-80 mb-1">Phase 4</div>
-        <div class="text-lg font-black">Days 21-30</div>
+        <div class="text-lg font-black">Days 25, 30</div>
         <div class="text-sm font-semibold mt-1">Professional Persistence</div>
         <p class="text-xs mt-2 opacity-90">Close the loop professionally. Either book the appointment or close the file.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why 6 Touchpoints -->
+  <section class="max-w-4xl mx-auto px-4 pb-10">
+    <div class="bg-navy/5 border border-navy/10 rounded-2xl p-6 md:p-8">
+      <h2 class="text-xl font-bold text-navy mb-3">Why 6 Touchpoints Instead of 28</h2>
+      <p class="text-gray-600 mb-4">Most follow-up systems burn out both the salesperson and the customer. Calling every single day for a month isn't persistence - it's noise. Here's the difference:</p>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="bg-white rounded-xl p-4 border border-gray-100">
+          <div class="font-semibold text-navy mb-1">Fewer touches, more impact</div>
+          <p class="text-sm text-gray-600">Each touchpoint has a specific purpose and multiple script options. You're not just "checking in" - you have real reasons to reach out.</p>
+        </div>
+        <div class="bg-white rounded-xl p-4 border border-gray-100">
+          <div class="font-semibold text-navy mb-1">Strategic silence works</div>
+          <p class="text-sm text-gray-600">The gaps between touchpoints let the customer feel space, not pressure. When you do reach out, it means something.</p>
+        </div>
+        <div class="bg-white rounded-xl p-4 border border-gray-100">
+          <div class="font-semibold text-navy mb-1">Multi-channel every time</div>
+          <p class="text-sm text-gray-600">Instead of one text on Day 6 and one call on Day 7, each touchpoint gives you call, text, voicemail, and email options.</p>
+        </div>
+        <div class="bg-white rounded-xl p-4 border border-gray-100">
+          <div class="font-semibold text-navy mb-1">Actually sustainable</div>
+          <p class="text-sm text-gray-600">6 touchpoints per customer means you can follow this system for every lead, not just the ones you remember.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -148,13 +186,13 @@
   <section class="max-w-4xl mx-auto px-4 pb-16">
 
     <!-- ================================================ -->
-    <!-- PHASE 1: SPEED & URGENCY (Days 1-3) -->
+    <!-- PHASE 1: SPEED & URGENCY (Days 1-2) -->
     <!-- ================================================ -->
     <div class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="bg-[#E74C3C] text-white text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full">Phase 1</div>
         <h2 class="text-2xl font-bold">Speed &amp; Urgency</h2>
-        <span class="text-gray-400 text-sm">Days 1-3</span>
+        <span class="text-gray-400 text-sm">Days 1-2</span>
       </div>
 
       <!-- DAY 1 -->
@@ -164,13 +202,13 @@
             DAY<br><span class="text-lg font-black">1</span>
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-bold mb-1">First Contact - Internet Lead Example</h3>
-            <p class="text-gray-500 text-sm mb-4">The goal: make contact within 5 minutes. Speed wins deals.</p>
+            <h3 class="text-lg font-bold mb-1">First Contact</h3>
+            <p class="text-gray-500 text-sm mb-4">The goal: make contact within 5 minutes. Speed wins deals. Hit them across every channel.</p>
 
             <!-- CALL -->
             <div class="script-card bg-white rounded-xl p-5 shadow-sm border border-gray-100 mb-3">
               <div class="flex items-center gap-2 mb-3">
-                <span class="bg-[#E74C3C]/10 text-[#E74C3C] text-xs font-bold px-2 py-1 rounded">&#128222; CALL</span>
+                <span class="channel-label channel-label-call">CALL</span>
               </div>
               <blockquote class="text-gray-700 italic leading-relaxed border-l-0">
                 "Hey <strong>[Name]</strong>, this is Tyler at <strong>Garber Chevrolet Midland</strong>. You inquired about the <strong>[Vehicle]</strong>. I wanted to see what stood out to you about it."
@@ -181,7 +219,7 @@
             <!-- VOICEMAIL -->
             <div class="script-card bg-white rounded-xl p-5 shadow-sm border border-gray-100 mb-3">
               <div class="flex items-center gap-2 mb-3">
-                <span class="bg-[#E74C3C]/10 text-[#E74C3C] text-xs font-bold px-2 py-1 rounded">&#128172; IF NO ANSWER - VOICEMAIL</span>
+                <span class="channel-label channel-label-vm">VOICEMAIL</span>
               </div>
               <blockquote class="text-gray-700 italic leading-relaxed border-l-0">
                 "Hi <strong>[Name]</strong>, Tyler at <strong>Garber Chevrolet Midland</strong>. I'm calling about the <strong>[Vehicle]</strong> you looked at. I'll send you a quick text as well."
@@ -190,14 +228,24 @@
             </div>
 
             <!-- TEXT -->
-            <div class="script-card bg-white rounded-xl p-5 shadow-sm border border-gray-100">
+            <div class="script-card bg-white rounded-xl p-5 shadow-sm border border-gray-100 mb-3">
               <div class="flex items-center gap-2 mb-3">
-                <span class="bg-[#E74C3C]/10 text-[#E74C3C] text-xs font-bold px-2 py-1 rounded">&#128241; TEXT</span>
+                <span class="channel-label channel-label-text">TEXT</span>
               </div>
               <blockquote class="text-gray-700 italic leading-relaxed border-l-0">
                 "Hey <strong>[Name]</strong>, it's Tyler at <strong>Garber Chevrolet Midland</strong>. Just tried you regarding the <strong>[Vehicle]</strong>. When's a good time to connect?"
               </blockquote>
               <p class="text-xs text-gray-400 mt-3"><strong>Why this works:</strong> Short, personal, ends with a question. Gives them an easy way to respond.</p>
+            </div>
+
+            <!-- EMAIL -->
+            <div class="script-card bg-white rounded-xl p-5 shadow-sm border border-gray-100">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="channel-label channel-label-email">EMAIL</span>
+              </div>
+              <blockquote class="text-gray-700 italic leading-relaxed border-l-0">
+                "Hi <strong>[Name]</strong>, thanks for your interest in the <strong>[Vehicle]</strong>. I'm Tyler at Garber Chevrolet Midland. I have this vehicle on the lot right now. What's the best way to reach you - call or text?"
+              </blockquote>
             </div>
           </div>
         </div>
@@ -216,55 +264,21 @@
             <!-- CALL -->
             <div class="script-card bg-white rounded-xl p-5 shadow-sm border border-gray-100 mb-3">
               <div class="flex items-center gap-2 mb-3">
-                <span class="bg-[#E74C3C]/10 text-[#E74C3C] text-xs font-bold px-2 py-1 rounded">&#128222; CALL</span>
+                <span class="channel-label channel-label-call">CALL</span>
               </div>
               <blockquote class="text-gray-700 italic leading-relaxed border-l-0">
-                "Hey <strong>[Name]</strong>, Tyler again at <strong>Garber Chevrolet Midland</strong>. I reached out yesterday about the <strong>[Vehicle]</strong>. I've got some availability today if you'd like to come see it in person - does this afternoon or tomorrow morning work better?"
+                "Hey <strong>[Name]</strong>, Tyler again at <strong>Garber Chevrolet Midland</strong>. Following up on your inquiry about the <strong>[Vehicle]</strong>. Did you have a chance to look at the details I sent over?"
               </blockquote>
-              <p class="text-xs text-gray-400 mt-3"><strong>Why this works:</strong> Assumptive close with two time options. Not "do you want to come in?" but "which time works?"</p>
+              <p class="text-xs text-gray-400 mt-3"><strong>Why this works:</strong> References yesterday's contact. Shows consistency without being pushy.</p>
             </div>
 
             <!-- TEXT -->
             <div class="script-card bg-white rounded-xl p-5 shadow-sm border border-gray-100">
               <div class="flex items-center gap-2 mb-3">
-                <span class="bg-[#E74C3C]/10 text-[#E74C3C] text-xs font-bold px-2 py-1 rounded">&#128241; TEXT</span>
+                <span class="channel-label channel-label-text">TEXT</span>
               </div>
               <blockquote class="text-gray-700 italic leading-relaxed border-l-0">
-                "Hey <strong>[Name]</strong>, just checking in - the <strong>[Vehicle]</strong> is still available. I can have it pulled up and ready for you. What time works today?"
-              </blockquote>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- DAY 3 -->
-      <div class="phase-red mb-8">
-        <div class="flex items-start gap-4">
-          <div class="day-badge text-white font-bold text-xs w-14 h-14 rounded-xl flex flex-col items-center justify-center flex-shrink-0 shadow-lg leading-tight">
-            DAY<br><span class="text-lg font-black">3</span>
-          </div>
-          <div class="flex-1">
-            <h3 class="text-lg font-bold mb-1">Urgency Touch</h3>
-            <p class="text-gray-500 text-sm mb-4">Create urgency without being pushy. Real information creates real urgency.</p>
-
-            <!-- CALL -->
-            <div class="script-card bg-white rounded-xl p-5 shadow-sm border border-gray-100 mb-3">
-              <div class="flex items-center gap-2 mb-3">
-                <span class="bg-[#E74C3C]/10 text-[#E74C3C] text-xs font-bold px-2 py-1 rounded">&#128222; CALL</span>
-              </div>
-              <blockquote class="text-gray-700 italic leading-relaxed border-l-0">
-                "Hey <strong>[Name]</strong>, Tyler at <strong>Garber Chevrolet Midland</strong>. Quick heads-up - we've had a couple of other inquiries on the <strong>[Vehicle]</strong>. I wanted to give you first shot before it goes. Can you swing by today or tomorrow?"
-              </blockquote>
-              <p class="text-xs text-gray-400 mt-3"><strong>Why this works:</strong> Scarcity is real in automotive. If the vehicle has interest, tell them. Honest urgency converts.</p>
-            </div>
-
-            <!-- TEXT -->
-            <div class="script-card bg-white rounded-xl p-5 shadow-sm border border-gray-100">
-              <div class="flex items-center gap-2 mb-3">
-                <span class="bg-[#E74C3C]/10 text-[#E74C3C] text-xs font-bold px-2 py-1 rounded">&#128241; TEXT</span>
-              </div>
-              <blockquote class="text-gray-700 italic leading-relaxed border-l-0">
-                "Hey <strong>[Name]</strong>, wanted to let you know we've had some interest on the <strong>[Vehicle]</strong>. I'd hate for you to miss out - want me to hold it for you?"
+                "<strong>[Name]</strong>, the <strong>[Vehicle]</strong> you looked at is getting a lot of attention. Wanted to give you first shot before we push it out more."
               </blockquote>
             </div>
           </div>
@@ -272,14 +286,20 @@
       </div>
     </div>
 
+    <!-- Silence Gap -->
+    <div class="bg-gray-100 rounded-xl p-6 mb-12 text-center">
+      <div class="text-gray-400 text-sm font-semibold uppercase tracking-wider mb-2">Days 3-4: No Contact</div>
+      <p class="text-gray-500 text-sm">Give them breathing room. Two days of silence after two days of contact makes your next touchpoint feel intentional, not desperate.</p>
+    </div>
+
     <!-- ================================================ -->
-    <!-- PHASE 2: VALUE REINFORCEMENT (Days 4-10) -->
+    <!-- PHASE 2: VALUE REINFORCEMENT (Day 5) -->
     <!-- ================================================ -->
     <div class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="bg-[#E8963E] text-white text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full">Phase 2</div>
         <h2 class="text-2xl font-bold">Value Reinforcement</h2>
-        <span class="text-gray-400 text-sm">Days 4-10</span>
+        <span class="text-gray-400 text-sm">Day 5</span>
       </div>
 
       <!-- DAY 5 -->
@@ -295,7 +315,7 @@
             <!-- CALL -->
             <div class="script-card bg-white rounded-xl p-5 shadow-sm border border-gray-100 mb-3">
               <div class="flex items-center gap-2 mb-3">
-                <span class="bg-[#E8963E]/10 text-[#E8963E] text-xs font-bold px-2 py-1 rounded">&#128222; CALL</span>
+                <span class="channel-label channel-label-call">CALL</span>
               </div>
               <blockquote class="text-gray-700 italic leading-relaxed border-l-0">
                 "Hey <strong>[Name]</strong>, quick update - we just adjusted pricing on a few models similar to what you looked at."
@@ -304,85 +324,43 @@
             </div>
 
             <!-- TEXT -->
-            <div class="script-card bg-white rounded-xl p-5 shadow-sm border border-gray-100">
-              <div class="flex items-center gap-2 mb-3">
-                <span class="bg-[#E8963E]/10 text-[#E8963E] text-xs font-bold px-2 py-1 rounded">&#128241; TEXT</span>
-              </div>
-              <blockquote class="text-gray-700 italic leading-relaxed border-l-0">
-                "Hey <strong>[Name]</strong>, some new pricing just came through on the <strong>[Vehicle]</strong> and similar models. Want me to send you the updated numbers?"
-              </blockquote>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- DAY 7 -->
-      <div class="phase-orange mb-8">
-        <div class="flex items-start gap-4">
-          <div class="day-badge text-white font-bold text-xs w-14 h-14 rounded-xl flex flex-col items-center justify-center flex-shrink-0 shadow-lg leading-tight">
-            DAY<br><span class="text-lg font-black">7</span>
-          </div>
-          <div class="flex-1">
-            <h3 class="text-lg font-bold mb-1">Alternative Vehicle</h3>
-            <p class="text-gray-500 text-sm mb-4">Maybe their first choice wasn't perfect. Offer an alternative that might fit better.</p>
-
-            <!-- CALL -->
             <div class="script-card bg-white rounded-xl p-5 shadow-sm border border-gray-100 mb-3">
               <div class="flex items-center gap-2 mb-3">
-                <span class="bg-[#E8963E]/10 text-[#E8963E] text-xs font-bold px-2 py-1 rounded">&#128222; CALL</span>
+                <span class="channel-label channel-label-text">TEXT</span>
               </div>
               <blockquote class="text-gray-700 italic leading-relaxed border-l-0">
-                "Hey <strong>[Name]</strong>, Tyler at <strong>Garber Chevrolet Midland</strong>. We just got a <strong>[Similar Vehicle]</strong> in that I thought you might like - similar to what you were looking at but with <strong>[key difference]</strong>. Worth a look?"
+                "Hey <strong>[Name]</strong>, heads up - some pricing adjustments just came through on models like the one you were looking at. Worth a look."
               </blockquote>
-              <p class="text-xs text-gray-400 mt-3"><strong>Why this works:</strong> Shows you're paying attention and actively working for them. This is sales as a service.</p>
             </div>
 
-            <!-- TEXT -->
+            <!-- EMAIL -->
             <div class="script-card bg-white rounded-xl p-5 shadow-sm border border-gray-100">
               <div class="flex items-center gap-2 mb-3">
-                <span class="bg-[#E8963E]/10 text-[#E8963E] text-xs font-bold px-2 py-1 rounded">&#128241; TEXT</span>
+                <span class="channel-label channel-label-email">EMAIL</span>
               </div>
               <blockquote class="text-gray-700 italic leading-relaxed border-l-0">
-                "Hey <strong>[Name]</strong>, we just got something in I thought of you - a <strong>[Similar Vehicle]</strong>. Want me to send pics?"
+                "Hi <strong>[Name]</strong>, I wanted to let you know we just got some pricing adjustments on models like the <strong>[Vehicle]</strong>. I put together some additional details including current incentives. If you'd like me to send those over, just reply or give me a call."
               </blockquote>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- DAY 10 -->
-      <div class="phase-orange mb-8">
-        <div class="flex items-start gap-4">
-          <div class="day-badge text-white font-bold text-xs w-14 h-14 rounded-xl flex flex-col items-center justify-center flex-shrink-0 shadow-lg leading-tight">
-            DAY<br><span class="text-lg font-black">10</span>
-          </div>
-          <div class="flex-1">
-            <h3 class="text-lg font-bold mb-1">Value Recap</h3>
-            <p class="text-gray-500 text-sm mb-4">Summarize the value you've offered. Transition from "push" to "pull."</p>
-
-            <!-- CALL -->
-            <div class="script-card bg-white rounded-xl p-5 shadow-sm border border-gray-100 mb-3">
-              <div class="flex items-center gap-2 mb-3">
-                <span class="bg-[#E8963E]/10 text-[#E8963E] text-xs font-bold px-2 py-1 rounded">&#128222; CALL</span>
-              </div>
-              <blockquote class="text-gray-700 italic leading-relaxed border-l-0">
-                "Hey <strong>[Name]</strong>, Tyler here. I've sent over some options and updates over the last week. I don't want to be a pest - just want to make sure you have everything you need to make a good decision. Anything I can help with?"
-              </blockquote>
-              <p class="text-xs text-gray-400 mt-3"><strong>Why this works:</strong> Self-aware and respectful. Positions you as a resource, not a nuisance.</p>
             </div>
           </div>
         </div>
       </div>
     </div>
 
+    <!-- Silence Gap -->
+    <div class="bg-gray-100 rounded-xl p-6 mb-12 text-center">
+      <div class="text-gray-400 text-sm font-semibold uppercase tracking-wider mb-2">Days 6-11: No Contact</div>
+      <p class="text-gray-500 text-sm">A full week of silence. If they're interested, this gap gives them space to come to you. If they're not, the next touchpoint will use a completely different approach.</p>
+    </div>
+
     <!-- ================================================ -->
-    <!-- PHASE 3: PATTERN INTERRUPTION (Days 11-20) -->
+    <!-- PHASE 3: PATTERN INTERRUPTION (Day 12) -->
     <!-- ================================================ -->
     <div class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="bg-[#3498DB] text-white text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full">Phase 3</div>
         <h2 class="text-2xl font-bold">Pattern Interruption</h2>
-        <span class="text-gray-400 text-sm">Days 11-20</span>
+        <span class="text-gray-400 text-sm">Day 12</span>
       </div>
 
       <!-- DAY 12 -->
@@ -398,7 +376,7 @@
             <!-- CALL -->
             <div class="script-card bg-white rounded-xl p-5 shadow-sm border border-gray-100 mb-3">
               <div class="flex items-center gap-2 mb-3">
-                <span class="bg-[#3498DB]/10 text-[#3498DB] text-xs font-bold px-2 py-1 rounded">&#128222; CALL</span>
+                <span class="channel-label channel-label-call">CALL</span>
               </div>
               <blockquote class="text-gray-700 italic leading-relaxed border-l-0">
                 "Hey <strong>[Name]</strong>, quick question - are you still considering upgrading your vehicle this month?"
@@ -409,97 +387,31 @@
             <!-- TEXT -->
             <div class="script-card bg-white rounded-xl p-5 shadow-sm border border-gray-100">
               <div class="flex items-center gap-2 mb-3">
-                <span class="bg-[#3498DB]/10 text-[#3498DB] text-xs font-bold px-2 py-1 rounded">&#128241; TEXT</span>
+                <span class="channel-label channel-label-text">TEXT</span>
               </div>
               <blockquote class="text-gray-700 italic leading-relaxed border-l-0">
-                "Hey <strong>[Name]</strong>, quick one - still in the market or have you put it on hold?"
+                "Hey <strong>[Name]</strong>, still thinking about that upgrade? Just curious where you're at."
               </blockquote>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- DAY 15 -->
-      <div class="phase-blue mb-8">
-        <div class="flex items-start gap-4">
-          <div class="day-badge text-white font-bold text-xs w-14 h-14 rounded-xl flex flex-col items-center justify-center flex-shrink-0 shadow-lg leading-tight">
-            DAY<br><span class="text-lg font-black">15</span>
-          </div>
-          <div class="flex-1">
-            <h3 class="text-lg font-bold mb-1">The "Honest Check-In"</h3>
-            <p class="text-gray-500 text-sm mb-4">Transparent and human. Drop the salesperson act.</p>
-
-            <!-- CALL -->
-            <div class="script-card bg-white rounded-xl p-5 shadow-sm border border-gray-100 mb-3">
-              <div class="flex items-center gap-2 mb-3">
-                <span class="bg-[#3498DB]/10 text-[#3498DB] text-xs font-bold px-2 py-1 rounded">&#128222; CALL</span>
-              </div>
-              <blockquote class="text-gray-700 italic leading-relaxed border-l-0">
-                "Hey <strong>[Name]</strong>, I'll be straight with you - I know you've been getting my messages. I'm not trying to pressure you. I just want to know if I should keep looking for options for you or if you've gone in a different direction."
-              </blockquote>
-              <p class="text-xs text-gray-400 mt-3"><strong>Why this works:</strong> Radical honesty disarms people. They expect pressure - you give them respect. That's memorable.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- DAY 18 -->
-      <div class="phase-blue mb-8">
-        <div class="flex items-start gap-4">
-          <div class="day-badge text-white font-bold text-xs w-14 h-14 rounded-xl flex flex-col items-center justify-center flex-shrink-0 shadow-lg leading-tight">
-            DAY<br><span class="text-lg font-black">18</span>
-          </div>
-          <div class="flex-1">
-            <h3 class="text-lg font-bold mb-1">The Third-Party Approach</h3>
-            <p class="text-gray-500 text-sm mb-4">Use social proof. People trust what other people are doing.</p>
-
-            <!-- TEXT -->
-            <div class="script-card bg-white rounded-xl p-5 shadow-sm border border-gray-100">
-              <div class="flex items-center gap-2 mb-3">
-                <span class="bg-[#3498DB]/10 text-[#3498DB] text-xs font-bold px-2 py-1 rounded">&#128241; TEXT</span>
-              </div>
-              <blockquote class="text-gray-700 italic leading-relaxed border-l-0">
-                "Hey <strong>[Name]</strong>, had a customer come in yesterday looking at the same <strong>[Vehicle]</strong> you liked. Reminded me of you - is that something you're still interested in?"
-              </blockquote>
-              <p class="text-xs text-gray-400 mt-3"><strong>Why this works:</strong> Subtle social proof. Someone else wants what they want. Creates urgency without direct pressure.</p>
             </div>
           </div>
         </div>
       </div>
     </div>
 
+    <!-- Silence Gap -->
+    <div class="bg-gray-100 rounded-xl p-6 mb-12 text-center">
+      <div class="text-gray-400 text-sm font-semibold uppercase tracking-wider mb-2">Days 13-24: No Contact</div>
+      <p class="text-gray-500 text-sm">Nearly two weeks of silence. This is the hardest part for most salespeople. Trust the process. The final two touchpoints are your strongest plays.</p>
+    </div>
+
     <!-- ================================================ -->
-    <!-- PHASE 4: PROFESSIONAL PERSISTENCE (Days 21-30) -->
+    <!-- PHASE 4: PROFESSIONAL PERSISTENCE (Days 25, 30) -->
     <!-- ================================================ -->
     <div class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="bg-[#1B2A4A] text-white text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full">Phase 4</div>
         <h2 class="text-2xl font-bold">Professional Persistence</h2>
-        <span class="text-gray-400 text-sm">Days 21-30</span>
-      </div>
-
-      <!-- DAY 22 -->
-      <div class="phase-navy mb-8">
-        <div class="flex items-start gap-4">
-          <div class="day-badge text-white font-bold text-xs w-14 h-14 rounded-xl flex flex-col items-center justify-center flex-shrink-0 shadow-lg leading-tight">
-            DAY<br><span class="text-lg font-black">22</span>
-          </div>
-          <div class="flex-1">
-            <h3 class="text-lg font-bold mb-1">Last Value Touch</h3>
-            <p class="text-gray-500 text-sm mb-4">One more piece of genuine value before the closing sequence.</p>
-
-            <!-- CALL -->
-            <div class="script-card bg-white rounded-xl p-5 shadow-sm border border-gray-100 mb-3">
-              <div class="flex items-center gap-2 mb-3">
-                <span class="bg-[#1B2A4A]/10 text-[#1B2A4A] text-xs font-bold px-2 py-1 rounded">&#128222; CALL</span>
-              </div>
-              <blockquote class="text-gray-700 italic leading-relaxed border-l-0">
-                "Hey <strong>[Name]</strong>, Tyler here. I know it's been a few weeks - just wanted to let you know we have some month-end incentives coming up that could save you some money on the <strong>[Vehicle]</strong>. Worth a conversation?"
-              </blockquote>
-              <p class="text-xs text-gray-400 mt-3"><strong>Why this works:</strong> Month-end incentives are real and time-limited. Genuine value with natural urgency.</p>
-            </div>
-          </div>
-        </div>
+        <span class="text-gray-400 text-sm">Days 25, 30</span>
       </div>
 
       <!-- DAY 25 -->
@@ -515,7 +427,7 @@
             <!-- CALL -->
             <div class="script-card bg-white rounded-xl p-5 shadow-sm border border-gray-100 mb-3">
               <div class="flex items-center gap-2 mb-3">
-                <span class="bg-[#1B2A4A]/10 text-[#1B2A4A] text-xs font-bold px-2 py-1 rounded">&#128222; CALL</span>
+                <span class="channel-label channel-label-call">CALL</span>
               </div>
               <blockquote class="text-gray-700 italic leading-relaxed border-l-0">
                 "Hey <strong>[Name]</strong>, I haven't heard back and I don't want to over-contact you. Should I close your file or is timing just not right yet?"
@@ -524,12 +436,22 @@
             </div>
 
             <!-- TEXT -->
-            <div class="script-card bg-white rounded-xl p-5 shadow-sm border border-gray-100">
+            <div class="script-card bg-white rounded-xl p-5 shadow-sm border border-gray-100 mb-3">
               <div class="flex items-center gap-2 mb-3">
-                <span class="bg-[#1B2A4A]/10 text-[#1B2A4A] text-xs font-bold px-2 py-1 rounded">&#128241; TEXT</span>
+                <span class="channel-label channel-label-text">TEXT</span>
               </div>
               <blockquote class="text-gray-700 italic leading-relaxed border-l-0">
-                "Hey <strong>[Name]</strong>, I'm going to close your file unless I hear back. No hard feelings either way - just don't want to keep bugging you. Should I keep you on my list or close it out?"
+                "Hey <strong>[Name]</strong>, last reach-out for now. If you ever want to pick this back up, I'm one text away."
+              </blockquote>
+            </div>
+
+            <!-- EMAIL -->
+            <div class="script-card bg-white rounded-xl p-5 shadow-sm border border-gray-100">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="channel-label channel-label-email">EMAIL</span>
+              </div>
+              <blockquote class="text-gray-700 italic leading-relaxed border-l-0">
+                "Hi <strong>[Name]</strong>, I've reached out a few times and I want to respect your time. I'm going to close your file, but before I do - if there's anything holding you back, I'd be happy to help sort it out. If the timing just isn't right, no hard feelings. You've got my number whenever you're ready."
               </blockquote>
             </div>
           </div>
@@ -546,13 +468,23 @@
             <h3 class="text-lg font-bold mb-1">Final Professional Close</h3>
             <p class="text-gray-500 text-sm mb-4">The last touch. Professional, clean, and door left open.</p>
 
+            <!-- CALL -->
+            <div class="script-card bg-white rounded-xl p-5 shadow-sm border border-gray-100 mb-3">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="channel-label channel-label-call">CALL</span>
+              </div>
+              <blockquote class="text-gray-700 italic leading-relaxed border-l-0">
+                "Hey <strong>[Name]</strong>, Tyler at <strong>Garber Chevrolet Midland</strong>. I know I've reached out a few times. Just want to respect your time - is this still something you're considering, or should I circle back later?"
+              </blockquote>
+            </div>
+
             <!-- TEXT -->
             <div class="script-card bg-white rounded-xl p-5 shadow-sm border border-gray-100">
               <div class="flex items-center gap-2 mb-3">
-                <span class="bg-[#1B2A4A]/10 text-[#1B2A4A] text-xs font-bold px-2 py-1 rounded">&#128241; TEXT</span>
+                <span class="channel-label channel-label-text">TEXT</span>
               </div>
               <blockquote class="text-gray-700 italic leading-relaxed border-l-0">
-                "Hey <strong>[Name]</strong>, Tyler here. I'm closing out your file today. If anything changes down the road, you've got my number. I'll always take care of you. Good luck with everything!"
+                "Hey <strong>[Name]</strong>, it was great connecting with you. I'm closing out your file for now, but if you ever need anything car-related - pricing, trade value, service - don't hesitate to reach out. Talk soon."
               </blockquote>
               <p class="text-xs text-gray-400 mt-3"><strong>Why this ends well:</strong> Professional. No guilt. The door stays open. Many customers come back weeks or months later because you treated them with respect.</p>
             </div>
@@ -583,14 +515,14 @@
           <span class="text-accent font-bold text-lg">03</span>
           <div>
             <div class="font-semibold">Multi-Channel Always</div>
-            <p class="text-white/60 text-sm">Call + voicemail + text. Three touches in one attempt triples your contact rate.</p>
+            <p class="text-white/60 text-sm">Call + voicemail + text + email. Multiple channels per touchpoint maximizes your contact rate.</p>
           </div>
         </div>
         <div class="flex items-start gap-3">
           <span class="text-accent font-bold text-lg">04</span>
           <div>
-            <div class="font-semibold">Close the File Professionally</div>
-            <p class="text-white/60 text-sm">The breakup script works. Give them an out and many will come back.</p>
+            <div class="font-semibold">Strategic Silence</div>
+            <p class="text-white/60 text-sm">The gaps between touchpoints are intentional. Silence makes your next contact feel purposeful, not desperate.</p>
           </div>
         </div>
       </div>
@@ -598,8 +530,8 @@
 
     <!-- Calendar Tool CTA -->
     <div class="bg-accent/10 border border-accent/20 rounded-2xl p-8 text-center mb-10 no-print">
-      <h3 class="text-xl font-bold mb-2">Full 30-Day Calendar</h3>
-      <p class="text-gray-600 mb-4">All 30 days with every script laid out.</p>
+      <h3 class="text-xl font-bold mb-2">Full Script Library</h3>
+      <p class="text-gray-600 mb-4">All 36 scripts across 6 touchpoints, filterable by channel.</p>
       <a href="../tools/calendar.html" class="inline-block bg-accent hover:bg-accent/90 text-white font-bold px-6 py-3 rounded-xl transition shadow-lg shadow-accent/25 cursor-pointer">
         Open 30-Day Calendar Tool &rarr;
       </a>

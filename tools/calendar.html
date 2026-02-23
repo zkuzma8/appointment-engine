@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>30-Day Follow-Up Calendar - The Appointment Engine™</title>
+  <title>30-Day Follow-Up Calendar - The Appointment Engine&#8482;</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -25,27 +25,40 @@
   <style>
     body { font-family: 'Inter', sans-serif; }
 
-    .day-tile { transition: all 0.2s ease; cursor: pointer; }
-    .day-tile:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
-    .day-tile.active-tile { ring: 2px; box-shadow: 0 0 0 3px rgba(232,150,62,0.6); }
-    .day-tile.rest-day { cursor: default; opacity: 0.6; }
-    .day-tile.rest-day:hover { transform: none; box-shadow: none; }
+    .touchpoint-card { transition: all 0.2s ease; cursor: pointer; }
+    .touchpoint-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
 
     .script-label-call { background: #1B2A4A; color: white; }
     .script-label-vm { background: #6B7280; color: white; }
     .script-label-text { background: #2ECC71; color: white; }
     .script-label-email { background: #E8963E; color: white; }
 
-    /* Print: show all days expanded */
+    .channel-tab { transition: all 0.15s ease; cursor: pointer; }
+
+    .timeline-segment { width: calc(100% / 30); min-width: 0; }
+    .timeline-segment.active { position: relative; }
+    .timeline-segment.active::after {
+      content: attr(data-day);
+      position: absolute;
+      top: -18px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 10px;
+      font-weight: 700;
+      color: #1B2A4A;
+    }
+
     @media print {
       .day-detail { display: block !important; }
       .day-detail.hidden { display: block !important; }
-      .day-tile { break-inside: avoid; }
-      .print-all-days .day-detail { display: block !important; }
       .no-print { display: none !important; }
       nav { display: none !important; }
       footer { display: none !important; }
-      #calendar-grid { display: none !important; }
+      #timeline-strip { display: none !important; }
+      #touchpoint-grid { display: none !important; }
+      .channel-tabs { display: none !important; }
+      .script-item { display: block !important; }
+      .script-item.hidden { display: block !important; }
       #phase-legend { break-after: avoid; }
     }
   </style>
@@ -56,7 +69,6 @@
   <nav class="bg-navy text-white sticky top-0 z-50 shadow-lg no-print">
     <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
       <a href="../index.html" class="flex items-center gap-2 cursor-pointer">
-        
         <span class="font-bold text-lg">The Appointment Engine<span class="text-accent">&#8482;</span></span>
       </a>
       <div class="hidden md:flex items-center gap-6 text-sm">
@@ -109,42 +121,83 @@
         30-Day Follow-Up Calendar
       </h1>
       <p class="text-lg text-white/70 max-w-2xl mx-auto">
-        Click a day to see the script.
+        6 strategic touchpoints. 36 scripts. Filter by channel.
       </p>
     </div>
   </section>
 
-  <main class="max-w-6xl mx-auto px-4 py-10 print-all-days">
+  <main class="max-w-6xl mx-auto px-4 py-10">
 
     <!-- Phase Legend -->
     <div id="phase-legend" class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-10">
       <div class="flex items-center gap-3 bg-white rounded-xl p-4 shadow-sm border border-gray-100">
         <div class="w-4 h-4 rounded-full flex-shrink-0" style="background:#E74C3C;"></div>
         <div>
-          <div class="font-bold text-sm">Phase 1: Days 1-3</div>
+          <div class="font-bold text-sm">Phase 1: Days 1-2</div>
           <div class="text-xs text-gray-500">Speed &amp; Urgency</div>
         </div>
       </div>
       <div class="flex items-center gap-3 bg-white rounded-xl p-4 shadow-sm border border-gray-100">
         <div class="w-4 h-4 rounded-full flex-shrink-0" style="background:#E8963E;"></div>
         <div>
-          <div class="font-bold text-sm">Phase 2: Days 4-10</div>
+          <div class="font-bold text-sm">Phase 2: Day 5</div>
           <div class="text-xs text-gray-500">Value Reinforcement</div>
         </div>
       </div>
       <div class="flex items-center gap-3 bg-white rounded-xl p-4 shadow-sm border border-gray-100">
         <div class="w-4 h-4 rounded-full flex-shrink-0" style="background:#3498DB;"></div>
         <div>
-          <div class="font-bold text-sm">Phase 3: Days 11-20</div>
+          <div class="font-bold text-sm">Phase 3: Day 12</div>
           <div class="text-xs text-gray-500">Pattern Interruption</div>
         </div>
       </div>
       <div class="flex items-center gap-3 bg-white rounded-xl p-4 shadow-sm border border-gray-100">
         <div class="w-4 h-4 rounded-full flex-shrink-0" style="background:#1B2A4A;"></div>
         <div>
-          <div class="font-bold text-sm">Phase 4: Days 21-30</div>
+          <div class="font-bold text-sm">Phase 4: Days 25, 30</div>
           <div class="text-xs text-gray-500">Professional Persistence</div>
         </div>
+      </div>
+    </div>
+
+    <!-- Timeline Strip (hidden on mobile) -->
+    <div id="timeline-strip" class="hidden sm:block mb-10 no-print">
+      <div class="text-xs font-semibold text-gray-400 mb-4 text-center">30-DAY TIMELINE</div>
+      <div class="flex h-6 rounded-lg overflow-hidden border border-gray-200">
+        <div class="timeline-segment active bg-[#E74C3C]" data-day="1"></div>
+        <div class="timeline-segment active bg-[#E74C3C]" data-day="2"></div>
+        <div class="timeline-segment bg-gray-200"></div>
+        <div class="timeline-segment bg-gray-200"></div>
+        <div class="timeline-segment active bg-[#E8963E]" data-day="5"></div>
+        <div class="timeline-segment bg-gray-200"></div>
+        <div class="timeline-segment bg-gray-200"></div>
+        <div class="timeline-segment bg-gray-200"></div>
+        <div class="timeline-segment bg-gray-200"></div>
+        <div class="timeline-segment bg-gray-200"></div>
+        <div class="timeline-segment bg-gray-200"></div>
+        <div class="timeline-segment active bg-[#3498DB]" data-day="12"></div>
+        <div class="timeline-segment bg-gray-200"></div>
+        <div class="timeline-segment bg-gray-200"></div>
+        <div class="timeline-segment bg-gray-200"></div>
+        <div class="timeline-segment bg-gray-200"></div>
+        <div class="timeline-segment bg-gray-200"></div>
+        <div class="timeline-segment bg-gray-200"></div>
+        <div class="timeline-segment bg-gray-200"></div>
+        <div class="timeline-segment bg-gray-200"></div>
+        <div class="timeline-segment bg-gray-200"></div>
+        <div class="timeline-segment bg-gray-200"></div>
+        <div class="timeline-segment bg-gray-200"></div>
+        <div class="timeline-segment bg-gray-200"></div>
+        <div class="timeline-segment active bg-[#1B2A4A]" data-day="25"></div>
+        <div class="timeline-segment bg-gray-200"></div>
+        <div class="timeline-segment bg-gray-200"></div>
+        <div class="timeline-segment bg-gray-200"></div>
+        <div class="timeline-segment bg-gray-200"></div>
+        <div class="timeline-segment active bg-[#1B2A4A]" data-day="30"></div>
+      </div>
+      <div class="flex justify-between text-xs text-gray-400 mt-1 px-1">
+        <span>Day 1</span>
+        <span>Day 30</span>
       </div>
     </div>
 
@@ -158,683 +211,381 @@
       </button>
     </div>
 
-    <!-- Calendar Grid -->
-    <div id="calendar-grid" class="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-6 gap-3 mb-10">
+    <!-- Touchpoint Cards Grid -->
+    <div id="touchpoint-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-10 no-print">
 
-      <!-- Day 1 -->
-      <div class="day-tile rounded-xl p-4 text-white text-center cursor-pointer" style="background:#E74C3C;" onclick="showDayDetail(1)">
-        <div class="text-2xl font-black">1</div>
-        <div class="text-xs opacity-80 mt-1">CALL &middot; VM &middot; TEXT</div>
-      </div>
-      <!-- Day 2 -->
-      <div class="day-tile rounded-xl p-4 text-white text-center cursor-pointer" style="background:#E74C3C;" onclick="showDayDetail(2)">
-        <div class="text-2xl font-black">2</div>
-        <div class="text-xs opacity-80 mt-1">CALL &middot; TEXT</div>
-      </div>
-      <!-- Day 3 -->
-      <div class="day-tile rounded-xl p-4 text-white text-center cursor-pointer" style="background:#E74C3C;" onclick="showDayDetail(3)">
-        <div class="text-2xl font-black">3</div>
-        <div class="text-xs opacity-80 mt-1">CALL &middot; TEXT</div>
-      </div>
-      <!-- Day 4 -->
-      <div class="day-tile rounded-xl p-4 text-white text-center cursor-pointer" style="background:#E8963E;" onclick="showDayDetail(4)">
-        <div class="text-2xl font-black">4</div>
-        <div class="text-xs opacity-80 mt-1">EMAIL / TEXT</div>
-      </div>
-      <!-- Day 5 -->
-      <div class="day-tile rounded-xl p-4 text-white text-center cursor-pointer" style="background:#E8963E;" onclick="showDayDetail(5)">
-        <div class="text-2xl font-black">5</div>
-        <div class="text-xs opacity-80 mt-1">CALL &middot; TEXT</div>
-      </div>
-      <!-- Day 6 -->
-      <div class="day-tile rounded-xl p-4 text-white text-center cursor-pointer" style="background:#E8963E;" onclick="showDayDetail(6)">
-        <div class="text-2xl font-black">6</div>
-        <div class="text-xs opacity-80 mt-1">TEXT</div>
-      </div>
-      <!-- Day 7 -->
-      <div class="day-tile rounded-xl p-4 text-white text-center cursor-pointer" style="background:#E8963E;" onclick="showDayDetail(7)">
-        <div class="text-2xl font-black">7</div>
-        <div class="text-xs opacity-80 mt-1">CALL &middot; TEXT</div>
-      </div>
-      <!-- Day 8 -->
-      <div class="day-tile rounded-xl p-4 text-white text-center cursor-pointer" style="background:#E8963E;" onclick="showDayDetail(8)">
-        <div class="text-2xl font-black">8</div>
-        <div class="text-xs opacity-80 mt-1">TEXT</div>
-      </div>
-      <!-- Day 9 -->
-      <div class="day-tile rounded-xl p-4 text-white text-center cursor-pointer" style="background:#E8963E;" onclick="showDayDetail(9)">
-        <div class="text-2xl font-black">9</div>
-        <div class="text-xs opacity-80 mt-1">CALL</div>
-      </div>
-      <!-- Day 10 -->
-      <div class="day-tile rounded-xl p-4 text-white text-center cursor-pointer" style="background:#E8963E;" onclick="showDayDetail(10)">
-        <div class="text-2xl font-black">10</div>
-        <div class="text-xs opacity-80 mt-1">TEXT</div>
-      </div>
-      <!-- Day 11 -->
-      <div class="day-tile rounded-xl p-4 text-white text-center cursor-pointer" style="background:#3498DB;" onclick="showDayDetail(11)">
-        <div class="text-2xl font-black">11</div>
-        <div class="text-xs opacity-80 mt-1">TEXT</div>
-      </div>
-      <!-- Day 12 -->
-      <div class="day-tile rounded-xl p-4 text-white text-center cursor-pointer" style="background:#3498DB;" onclick="showDayDetail(12)">
-        <div class="text-2xl font-black">12</div>
-        <div class="text-xs opacity-80 mt-1">CALL &middot; TEXT</div>
-      </div>
-      <!-- Day 13 -->
-      <div class="day-tile rounded-xl p-4 text-white text-center cursor-pointer" style="background:#3498DB;" onclick="showDayDetail(13)">
-        <div class="text-2xl font-black">13</div>
-        <div class="text-xs opacity-80 mt-1">TEXT</div>
-      </div>
-      <!-- Day 14 -->
-      <div class="day-tile rounded-xl p-4 text-white text-center cursor-pointer" style="background:#3498DB;" onclick="showDayDetail(14)">
-        <div class="text-2xl font-black">14</div>
-        <div class="text-xs opacity-80 mt-1">CALL</div>
-      </div>
-      <!-- Day 15 -->
-      <div class="day-tile rounded-xl p-4 text-white text-center cursor-pointer" style="background:#3498DB;" onclick="showDayDetail(15)">
-        <div class="text-2xl font-black">15</div>
-        <div class="text-xs opacity-80 mt-1">TEXT</div>
-      </div>
-      <!-- Day 16 -->
-      <div class="day-tile rounded-xl p-4 text-white text-center cursor-pointer" style="background:#3498DB;" onclick="showDayDetail(16)">
-        <div class="text-2xl font-black">16</div>
-        <div class="text-xs opacity-80 mt-1">CALL</div>
-      </div>
-      <!-- Day 17 -->
-      <div class="day-tile rounded-xl p-4 text-white text-center cursor-pointer" style="background:#3498DB;" onclick="showDayDetail(17)">
-        <div class="text-2xl font-black">17</div>
-        <div class="text-xs opacity-80 mt-1">TEXT</div>
-      </div>
-      <!-- Day 18 -->
-      <div class="day-tile rounded-xl p-4 text-white text-center cursor-pointer" style="background:#3498DB;" onclick="showDayDetail(18)">
-        <div class="text-2xl font-black">18</div>
-        <div class="text-xs opacity-80 mt-1">TEXT</div>
-      </div>
-      <!-- Day 19 -->
-      <div class="day-tile rounded-xl p-4 text-white text-center cursor-pointer" style="background:#3498DB;" onclick="showDayDetail(19)">
-        <div class="text-2xl font-black">19</div>
-        <div class="text-xs opacity-80 mt-1">CALL</div>
-      </div>
-      <!-- Day 20 -->
-      <div class="day-tile rounded-xl p-4 text-white text-center cursor-pointer" style="background:#3498DB;" onclick="showDayDetail(20)">
-        <div class="text-2xl font-black">20</div>
-        <div class="text-xs opacity-80 mt-1">TEXT</div>
-      </div>
-      <!-- Day 21 -->
-      <div class="day-tile rounded-xl p-4 text-white text-center cursor-pointer" style="background:#1B2A4A;" onclick="showDayDetail(21)">
-        <div class="text-2xl font-black">21</div>
-        <div class="text-xs opacity-80 mt-1">CALL</div>
-      </div>
-      <!-- Day 22 -->
-      <div class="day-tile rounded-xl p-4 text-white text-center cursor-pointer" style="background:#1B2A4A;" onclick="showDayDetail(22)">
-        <div class="text-2xl font-black">22</div>
-        <div class="text-xs opacity-80 mt-1">TEXT</div>
-      </div>
-      <!-- Day 23 -->
-      <div class="day-tile rounded-xl p-4 text-white text-center cursor-pointer" style="background:#1B2A4A;" onclick="showDayDetail(23)">
-        <div class="text-2xl font-black">23</div>
-        <div class="text-xs opacity-80 mt-1">TEXT</div>
-      </div>
-      <!-- Day 24 -->
-      <div class="day-tile rounded-xl p-4 text-white text-center cursor-pointer" style="background:#1B2A4A;" onclick="showDayDetail(24)">
-        <div class="text-2xl font-black">24</div>
-        <div class="text-xs opacity-80 mt-1">CALL</div>
-      </div>
-      <!-- Day 25 -->
-      <div class="day-tile rounded-xl p-4 text-white text-center cursor-pointer" style="background:#1B2A4A;" onclick="showDayDetail(25)">
-        <div class="text-2xl font-black">25</div>
-        <div class="text-xs opacity-80 mt-1">CALL &middot; TEXT</div>
-      </div>
-      <!-- Day 26 -->
-      <div class="day-tile rounded-xl p-4 text-white text-center cursor-pointer" style="background:#1B2A4A;" onclick="showDayDetail(26)">
-        <div class="text-2xl font-black">26</div>
-        <div class="text-xs opacity-80 mt-1">TEXT</div>
-      </div>
-      <!-- Day 27 - REST DAY -->
-      <div class="day-tile rest-day rounded-xl p-4 text-center bg-gray-300 text-gray-500">
-        <div class="text-2xl font-black">27</div>
-        <div class="text-xs mt-1">No Contact</div>
-      </div>
-      <!-- Day 28 -->
-      <div class="day-tile rounded-xl p-4 text-white text-center cursor-pointer" style="background:#1B2A4A;" onclick="showDayDetail(28)">
-        <div class="text-2xl font-black">28</div>
-        <div class="text-xs opacity-80 mt-1">TEXT</div>
-      </div>
-      <!-- Day 29 - REST DAY -->
-      <div class="day-tile rest-day rounded-xl p-4 text-center bg-gray-300 text-gray-500">
-        <div class="text-2xl font-black">29</div>
-        <div class="text-xs mt-1">No Contact</div>
-      </div>
-      <!-- Day 30 -->
-      <div class="day-tile rounded-xl p-4 text-white text-center cursor-pointer" style="background:#1B2A4A;" onclick="showDayDetail(30)">
-        <div class="text-2xl font-black">30</div>
-        <div class="text-xs opacity-80 mt-1">TEXT</div>
+      <!-- Day 1 Card -->
+      <div class="touchpoint-card rounded-xl p-5 text-white cursor-pointer" style="background:#E74C3C;" onclick="showDayDetail(1)">
+        <div class="text-3xl font-black mb-1">Day 1</div>
+        <div class="text-sm font-semibold opacity-90 mb-2">Speed &amp; Urgency</div>
+        <div class="text-xs opacity-70">9 scripts: CALL &middot; VM &middot; TEXT &middot; EMAIL</div>
       </div>
 
-    </div>
+      <!-- Day 2 Card -->
+      <div class="touchpoint-card rounded-xl p-5 text-white cursor-pointer" style="background:#E74C3C;" onclick="showDayDetail(2)">
+        <div class="text-3xl font-black mb-1">Day 2</div>
+        <div class="text-sm font-semibold opacity-90 mb-2">Speed &amp; Urgency</div>
+        <div class="text-xs opacity-70">5 scripts: CALL &middot; VM &middot; TEXT</div>
+      </div>
 
-    <!-- Click prompt -->
-    <div id="click-prompt" class="text-center py-8 text-gray-400 no-print">
-      <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 mx-auto mb-2 opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"/>
-      </svg>
-      Click a day above to see the scripts
+      <!-- Gap Label -->
+      <div class="flex items-center justify-center text-gray-400 text-sm font-medium col-span-1 sm:col-span-2 lg:col-span-1">
+        Days 3-4: No contact
+      </div>
+
+      <!-- Day 5 Card -->
+      <div class="touchpoint-card rounded-xl p-5 text-white cursor-pointer" style="background:#E8963E;" onclick="showDayDetail(5)">
+        <div class="text-3xl font-black mb-1">Day 5</div>
+        <div class="text-sm font-semibold opacity-90 mb-2">Value Reinforcement</div>
+        <div class="text-xs opacity-70">6 scripts: CALL &middot; VM &middot; TEXT &middot; EMAIL</div>
+      </div>
+
+      <!-- Gap Label -->
+      <div class="flex items-center justify-center text-gray-400 text-sm font-medium">
+        Days 6-11: No contact
+      </div>
+
+      <!-- Day 12 Card -->
+      <div class="touchpoint-card rounded-xl p-5 text-white cursor-pointer" style="background:#3498DB;" onclick="showDayDetail(12)">
+        <div class="text-3xl font-black mb-1">Day 12</div>
+        <div class="text-sm font-semibold opacity-90 mb-2">Pattern Interruption</div>
+        <div class="text-xs opacity-70">5 scripts: CALL &middot; VM &middot; TEXT</div>
+      </div>
+
+      <!-- Gap Label -->
+      <div class="flex items-center justify-center text-gray-400 text-sm font-medium col-span-1 sm:col-span-2 lg:col-span-1">
+        Days 13-24: No contact
+      </div>
+
+      <!-- Day 25 Card -->
+      <div class="touchpoint-card rounded-xl p-5 text-white cursor-pointer" style="background:#1B2A4A;" onclick="showDayDetail(25)">
+        <div class="text-3xl font-black mb-1">Day 25</div>
+        <div class="text-sm font-semibold opacity-90 mb-2">Professional Persistence</div>
+        <div class="text-xs opacity-70">6 scripts: CALL &middot; VM &middot; TEXT &middot; EMAIL</div>
+      </div>
+
+      <!-- Day 30 Card -->
+      <div class="touchpoint-card rounded-xl p-5 text-white cursor-pointer" style="background:#1B2A4A;" onclick="showDayDetail(30)">
+        <div class="text-3xl font-black mb-1">Day 30</div>
+        <div class="text-sm font-semibold opacity-90 mb-2">Professional Persistence</div>
+        <div class="text-xs opacity-70">5 scripts: CALL &middot; VM &middot; TEXT &middot; EMAIL</div>
+      </div>
+
     </div>
 
     <!-- ========================================== -->
     <!--            DAY DETAIL PANELS               -->
     <!-- ========================================== -->
 
-    <!-- DAY 1 -->
+    <!-- DAY 1 (9 scripts: 3 call, 2 vm, 3 text, 1 email) -->
     <div id="day-1" class="day-detail hidden bg-white rounded-2xl shadow-md border border-gray-100 p-6 md:p-8 mb-6 no-break">
-      <div class="flex items-center gap-3 mb-5">
+      <div class="flex items-center gap-3 mb-4">
         <span class="inline-flex items-center justify-center w-12 h-12 rounded-xl text-white font-black text-lg" style="background:#E74C3C;">1</span>
         <div>
           <h2 class="text-xl font-bold">Day 1</h2>
           <span class="text-sm font-semibold" style="color:#E74C3C;">Phase 1 - Speed &amp; Urgency</span>
         </div>
       </div>
-      <!-- CALL -->
-      <div class="mb-4">
-        <span class="inline-block script-label-call text-xs font-bold px-3 py-1 rounded-full mb-2">CALL</span>
-        <p class="text-gray-700 leading-relaxed bg-gray-50 rounded-xl p-4">&ldquo;Hey [Name], this is Tyler at Garber Chevrolet Midland. You inquired about the [Vehicle]. I wanted to see what stood out to you about it.&rdquo;</p>
+      <!-- Channel Filter Tabs -->
+      <div class="channel-tabs flex flex-wrap gap-2 mb-5 no-print">
+        <button class="channel-tab bg-[#1B2A4A] text-white text-xs font-bold px-3 py-1.5 rounded-full cursor-pointer" data-channel="all" onclick="filterChannel(1,'all')">ALL (9)</button>
+        <button class="channel-tab bg-gray-200 text-gray-700 text-xs font-bold px-3 py-1.5 rounded-full cursor-pointer" data-channel="call" onclick="filterChannel(1,'call')">CALL (3)</button>
+        <button class="channel-tab bg-gray-200 text-gray-700 text-xs font-bold px-3 py-1.5 rounded-full cursor-pointer" data-channel="vm" onclick="filterChannel(1,'vm')">VM (2)</button>
+        <button class="channel-tab bg-gray-200 text-gray-700 text-xs font-bold px-3 py-1.5 rounded-full cursor-pointer" data-channel="text" onclick="filterChannel(1,'text')">TEXT (3)</button>
+        <button class="channel-tab bg-gray-200 text-gray-700 text-xs font-bold px-3 py-1.5 rounded-full cursor-pointer" data-channel="email" onclick="filterChannel(1,'email')">EMAIL (1)</button>
       </div>
-      <!-- VM -->
-      <div class="mb-4">
-        <span class="inline-block script-label-vm text-xs font-bold px-3 py-1 rounded-full mb-2">VOICEMAIL</span>
-        <p class="text-gray-700 leading-relaxed bg-gray-50 rounded-xl p-4">&ldquo;Hi [Name], Tyler at Garber Chevrolet Midland. I&rsquo;m calling about the [Vehicle] you looked at. I&rsquo;ll send you a quick text as well.&rdquo;</p>
-      </div>
-      <!-- TEXT -->
-      <div>
-        <span class="inline-block script-label-text text-xs font-bold px-3 py-1 rounded-full mb-2">TEXT</span>
-        <p class="text-gray-700 leading-relaxed bg-gray-50 rounded-xl p-4">&ldquo;Hey [Name], it&rsquo;s Tyler at Garber Chevrolet Midland. Just tried you regarding the [Vehicle]. When&rsquo;s a good time to connect?&rdquo;</p>
+      <!-- Scripts -->
+      <div class="space-y-4">
+        <!-- Call 1 -->
+        <div class="script-item" data-type="call">
+          <span class="inline-block script-label-call text-xs font-bold px-3 py-1 rounded-full mb-2">CALL</span>
+          <p class="text-gray-700 leading-relaxed bg-gray-50 rounded-xl p-4">&ldquo;Hey [Name], this is Tyler at Garber Chevrolet Midland. You inquired about the [Vehicle]. I wanted to see what stood out to you about it.&rdquo;</p>
+        </div>
+        <!-- Call 2 -->
+        <div class="script-item" data-type="call">
+          <span class="inline-block script-label-call text-xs font-bold px-3 py-1 rounded-full mb-2">CALL</span>
+          <p class="text-gray-700 leading-relaxed bg-gray-50 rounded-xl p-4">&ldquo;Hey [Name], Tyler at Garber Chevrolet Midland. I see you were looking at the [Vehicle]. I actually have it right here on the lot - want me to walk you through what makes this one stand out?&rdquo;</p>
+        </div>
+        <!-- Call 3 -->
+        <div class="script-item" data-type="call">
+          <span class="inline-block script-label-call text-xs font-bold px-3 py-1 rounded-full mb-2">CALL</span>
+          <p class="text-gray-700 leading-relaxed bg-gray-50 rounded-xl p-4">&ldquo;Hey [Name], Tyler at Garber Chevrolet Midland. Quick question - are you looking to buy soon, or just starting the research phase? Either way, I can help.&rdquo;</p>
+        </div>
+        <!-- VM 1 -->
+        <div class="script-item" data-type="vm">
+          <span class="inline-block script-label-vm text-xs font-bold px-3 py-1 rounded-full mb-2">VOICEMAIL</span>
+          <p class="text-gray-700 leading-relaxed bg-gray-50 rounded-xl p-4">&ldquo;Hi [Name], Tyler at Garber Chevrolet Midland. I&rsquo;m calling about the [Vehicle] you looked at. I&rsquo;ll send you a quick text as well.&rdquo;</p>
+        </div>
+        <!-- VM 2 -->
+        <div class="script-item" data-type="vm">
+          <span class="inline-block script-label-vm text-xs font-bold px-3 py-1 rounded-full mb-2">VOICEMAIL</span>
+          <p class="text-gray-700 leading-relaxed bg-gray-50 rounded-xl p-4">&ldquo;Hi [Name], Tyler at Garber Chevrolet Midland. Just wanted to touch base about the [Vehicle]. I have some availability today if you&rsquo;d like to come see it. I&rsquo;ll text you my info.&rdquo;</p>
+        </div>
+        <!-- Text 1 -->
+        <div class="script-item" data-type="text">
+          <span class="inline-block script-label-text text-xs font-bold px-3 py-1 rounded-full mb-2">TEXT</span>
+          <p class="text-gray-700 leading-relaxed bg-gray-50 rounded-xl p-4">&ldquo;Hey [Name], it&rsquo;s Tyler at Garber Chevrolet Midland. Just tried you regarding the [Vehicle]. When&rsquo;s a good time to connect?&rdquo;</p>
+        </div>
+        <!-- Text 2 -->
+        <div class="script-item" data-type="text">
+          <span class="inline-block script-label-text text-xs font-bold px-3 py-1 rounded-full mb-2">TEXT</span>
+          <p class="text-gray-700 leading-relaxed bg-gray-50 rounded-xl p-4">&ldquo;Hey [Name], Tyler here from Garber Chevrolet Midland. I see you checked out the [Vehicle]. It&rsquo;s on the lot right now - want me to pull it up front for you?&rdquo;</p>
+        </div>
+        <!-- Text 3 -->
+        <div class="script-item" data-type="text">
+          <span class="inline-block script-label-text text-xs font-bold px-3 py-1 rounded-full mb-2">TEXT</span>
+          <p class="text-gray-700 leading-relaxed bg-gray-50 rounded-xl p-4">&ldquo;Hi [Name], this is Tyler at Garber Chevrolet Midland. I have some info on the [Vehicle] you were looking at. Would you prefer I call or text the details?&rdquo;</p>
+        </div>
+        <!-- Email 1 -->
+        <div class="script-item" data-type="email">
+          <span class="inline-block script-label-email text-xs font-bold px-3 py-1 rounded-full mb-2">EMAIL</span>
+          <div class="bg-gray-50 rounded-xl p-4">
+            <p class="text-xs font-semibold text-gray-500 mb-2">Subject: Your [Vehicle] inquiry at Garber Chevrolet Midland</p>
+            <p class="text-gray-700 leading-relaxed">&ldquo;Hi [Name],<br><br>Thanks for your interest in the [Vehicle]. I&rsquo;m Tyler at Garber Chevrolet Midland and I&rsquo;d like to help you get the information you need.<br><br>I have this vehicle on the lot right now. If you have any questions about pricing, features, or availability, I&rsquo;m here to help.<br><br>What&rsquo;s the best way to reach you - call or text?<br><br>Tyler<br>Garber Chevrolet Midland&rdquo;</p>
+          </div>
+        </div>
       </div>
     </div>
 
-    <!-- DAY 2 -->
+    <!-- DAY 2 (5 scripts: 2 call, 1 vm, 2 text) -->
     <div id="day-2" class="day-detail hidden bg-white rounded-2xl shadow-md border border-gray-100 p-6 md:p-8 mb-6 no-break">
-      <div class="flex items-center gap-3 mb-5">
+      <div class="flex items-center gap-3 mb-4">
         <span class="inline-flex items-center justify-center w-12 h-12 rounded-xl text-white font-black text-lg" style="background:#E74C3C;">2</span>
         <div>
           <h2 class="text-xl font-bold">Day 2</h2>
           <span class="text-sm font-semibold" style="color:#E74C3C;">Phase 1 - Speed &amp; Urgency</span>
         </div>
       </div>
-      <!-- CALL -->
-      <div class="mb-4">
-        <span class="inline-block script-label-call text-xs font-bold px-3 py-1 rounded-full mb-2">CALL</span>
-        <p class="text-gray-700 leading-relaxed bg-gray-50 rounded-xl p-4">&ldquo;Hey [Name], Tyler again at Garber Chevrolet Midland. Following up on your inquiry about the [Vehicle]. Did you have a chance to look at the details I sent over?&rdquo;</p>
+      <div class="channel-tabs flex flex-wrap gap-2 mb-5 no-print">
+        <button class="channel-tab bg-[#1B2A4A] text-white text-xs font-bold px-3 py-1.5 rounded-full cursor-pointer" data-channel="all" onclick="filterChannel(2,'all')">ALL (5)</button>
+        <button class="channel-tab bg-gray-200 text-gray-700 text-xs font-bold px-3 py-1.5 rounded-full cursor-pointer" data-channel="call" onclick="filterChannel(2,'call')">CALL (2)</button>
+        <button class="channel-tab bg-gray-200 text-gray-700 text-xs font-bold px-3 py-1.5 rounded-full cursor-pointer" data-channel="vm" onclick="filterChannel(2,'vm')">VM (1)</button>
+        <button class="channel-tab bg-gray-200 text-gray-700 text-xs font-bold px-3 py-1.5 rounded-full cursor-pointer" data-channel="text" onclick="filterChannel(2,'text')">TEXT (2)</button>
       </div>
-      <!-- TEXT -->
-      <div>
-        <span class="inline-block script-label-text text-xs font-bold px-3 py-1 rounded-full mb-2">TEXT</span>
-        <p class="text-gray-700 leading-relaxed bg-gray-50 rounded-xl p-4">&ldquo;Hi [Name], just checking in on the [Vehicle]. Have any questions I can answer?&rdquo;</p>
-      </div>
-    </div>
-
-    <!-- DAY 3 -->
-    <div id="day-3" class="day-detail hidden bg-white rounded-2xl shadow-md border border-gray-100 p-6 md:p-8 mb-6 no-break">
-      <div class="flex items-center gap-3 mb-5">
-        <span class="inline-flex items-center justify-center w-12 h-12 rounded-xl text-white font-black text-lg" style="background:#E74C3C;">3</span>
-        <div>
-          <h2 class="text-xl font-bold">Day 3</h2>
-          <span class="text-sm font-semibold" style="color:#E74C3C;">Phase 1 - Speed &amp; Urgency</span>
+      <div class="space-y-4">
+        <!-- Call 1 -->
+        <div class="script-item" data-type="call">
+          <span class="inline-block script-label-call text-xs font-bold px-3 py-1 rounded-full mb-2">CALL</span>
+          <p class="text-gray-700 leading-relaxed bg-gray-50 rounded-xl p-4">&ldquo;Hey [Name], Tyler again at Garber Chevrolet Midland. Following up on your inquiry about the [Vehicle]. Did you have a chance to look at the details I sent over?&rdquo;</p>
+        </div>
+        <!-- Call 2 -->
+        <div class="script-item" data-type="call">
+          <span class="inline-block script-label-call text-xs font-bold px-3 py-1 rounded-full mb-2">CALL</span>
+          <p class="text-gray-700 leading-relaxed bg-gray-50 rounded-xl p-4">&ldquo;Hey [Name], Tyler at Garber Chevrolet Midland. I know things get busy - just wanted to make sure you saw the info on the [Vehicle] before it gets scooped up.&rdquo;</p>
+        </div>
+        <!-- VM -->
+        <div class="script-item" data-type="vm">
+          <span class="inline-block script-label-vm text-xs font-bold px-3 py-1 rounded-full mb-2">VOICEMAIL</span>
+          <p class="text-gray-700 leading-relaxed bg-gray-50 rounded-xl p-4">&ldquo;Hi [Name], Tyler at Garber Chevrolet Midland. Following up on the [Vehicle]. I&rsquo;ve got some availability today if you&rsquo;d like to come see it. Give me a call back or I&rsquo;ll shoot you a text.&rdquo;</p>
+        </div>
+        <!-- Text 1 -->
+        <div class="script-item" data-type="text">
+          <span class="inline-block script-label-text text-xs font-bold px-3 py-1 rounded-full mb-2">TEXT</span>
+          <p class="text-gray-700 leading-relaxed bg-gray-50 rounded-xl p-4">&ldquo;Hi [Name], just checking in on the [Vehicle]. Have any questions I can answer?&rdquo;</p>
+        </div>
+        <!-- Text 2 -->
+        <div class="script-item" data-type="text">
+          <span class="inline-block script-label-text text-xs font-bold px-3 py-1 rounded-full mb-2">TEXT</span>
+          <p class="text-gray-700 leading-relaxed bg-gray-50 rounded-xl p-4">&ldquo;[Name], the [Vehicle] you looked at is getting a lot of attention. Wanted to give you first shot before we push it out more.&rdquo;</p>
         </div>
       </div>
-      <!-- CALL -->
-      <div class="mb-4">
-        <span class="inline-block script-label-call text-xs font-bold px-3 py-1 rounded-full mb-2">CALL</span>
-        <p class="text-gray-700 leading-relaxed bg-gray-50 rounded-xl p-4">&ldquo;Hey [Name], Tyler at Garber Chevrolet Midland. I know things get busy - just wanted to make sure you saw the info on the [Vehicle] before it gets scooped up.&rdquo;</p>
-      </div>
-      <!-- TEXT -->
-      <div>
-        <span class="inline-block script-label-text text-xs font-bold px-3 py-1 rounded-full mb-2">TEXT</span>
-        <p class="text-gray-700 leading-relaxed bg-gray-50 rounded-xl p-4">&ldquo;[Name], the [Vehicle] you looked at is getting a lot of attention. Wanted to give you first shot before we push it out more.&rdquo;</p>
-      </div>
     </div>
 
-    <!-- DAY 4 -->
-    <div id="day-4" class="day-detail hidden bg-white rounded-2xl shadow-md border border-gray-100 p-6 md:p-8 mb-6 no-break">
-      <div class="flex items-center gap-3 mb-5">
-        <span class="inline-flex items-center justify-center w-12 h-12 rounded-xl text-white font-black text-lg" style="background:#E8963E;">4</span>
-        <div>
-          <h2 class="text-xl font-bold">Day 4</h2>
-          <span class="text-sm font-semibold" style="color:#E8963E;">Phase 2 - Value Reinforcement</span>
-        </div>
-      </div>
-      <!-- EMAIL/TEXT -->
-      <div>
-        <span class="inline-block script-label-email text-xs font-bold px-3 py-1 rounded-full mb-2">EMAIL / TEXT</span>
-        <p class="text-gray-700 leading-relaxed bg-gray-50 rounded-xl p-4">&ldquo;Hey [Name], I put together some additional details on the [Vehicle] including current incentives. Let me know if you&rsquo;d like me to send those over.&rdquo;</p>
-      </div>
-    </div>
-
-    <!-- DAY 5 -->
+    <!-- DAY 5 (6 scripts: 2 call, 1 vm, 2 text, 1 email) -->
     <div id="day-5" class="day-detail hidden bg-white rounded-2xl shadow-md border border-gray-100 p-6 md:p-8 mb-6 no-break">
-      <div class="flex items-center gap-3 mb-5">
+      <div class="flex items-center gap-3 mb-4">
         <span class="inline-flex items-center justify-center w-12 h-12 rounded-xl text-white font-black text-lg" style="background:#E8963E;">5</span>
         <div>
           <h2 class="text-xl font-bold">Day 5</h2>
           <span class="text-sm font-semibold" style="color:#E8963E;">Phase 2 - Value Reinforcement</span>
         </div>
       </div>
-      <!-- CALL -->
-      <div class="mb-4">
-        <span class="inline-block script-label-call text-xs font-bold px-3 py-1 rounded-full mb-2">CALL</span>
-        <p class="text-gray-700 leading-relaxed bg-gray-50 rounded-xl p-4">&ldquo;Hey [Name], quick update - we just adjusted pricing on a few models similar to what you looked at.&rdquo;</p>
+      <div class="channel-tabs flex flex-wrap gap-2 mb-5 no-print">
+        <button class="channel-tab bg-[#1B2A4A] text-white text-xs font-bold px-3 py-1.5 rounded-full cursor-pointer" data-channel="all" onclick="filterChannel(5,'all')">ALL (6)</button>
+        <button class="channel-tab bg-gray-200 text-gray-700 text-xs font-bold px-3 py-1.5 rounded-full cursor-pointer" data-channel="call" onclick="filterChannel(5,'call')">CALL (2)</button>
+        <button class="channel-tab bg-gray-200 text-gray-700 text-xs font-bold px-3 py-1.5 rounded-full cursor-pointer" data-channel="vm" onclick="filterChannel(5,'vm')">VM (1)</button>
+        <button class="channel-tab bg-gray-200 text-gray-700 text-xs font-bold px-3 py-1.5 rounded-full cursor-pointer" data-channel="text" onclick="filterChannel(5,'text')">TEXT (2)</button>
+        <button class="channel-tab bg-gray-200 text-gray-700 text-xs font-bold px-3 py-1.5 rounded-full cursor-pointer" data-channel="email" onclick="filterChannel(5,'email')">EMAIL (1)</button>
       </div>
-      <!-- TEXT -->
-      <div>
-        <span class="inline-block script-label-text text-xs font-bold px-3 py-1 rounded-full mb-2">TEXT</span>
-        <p class="text-gray-700 leading-relaxed bg-gray-50 rounded-xl p-4">&ldquo;Hey [Name], heads up - some pricing adjustments just came through on models like the one you were looking at. Worth a look.&rdquo;</p>
-      </div>
-    </div>
-
-    <!-- DAY 6 -->
-    <div id="day-6" class="day-detail hidden bg-white rounded-2xl shadow-md border border-gray-100 p-6 md:p-8 mb-6 no-break">
-      <div class="flex items-center gap-3 mb-5">
-        <span class="inline-flex items-center justify-center w-12 h-12 rounded-xl text-white font-black text-lg" style="background:#E8963E;">6</span>
-        <div>
-          <h2 class="text-xl font-bold">Day 6</h2>
-          <span class="text-sm font-semibold" style="color:#E8963E;">Phase 2 - Value Reinforcement</span>
+      <div class="space-y-4">
+        <!-- Call 1 -->
+        <div class="script-item" data-type="call">
+          <span class="inline-block script-label-call text-xs font-bold px-3 py-1 rounded-full mb-2">CALL</span>
+          <p class="text-gray-700 leading-relaxed bg-gray-50 rounded-xl p-4">&ldquo;Hey [Name], quick update - we just adjusted pricing on a few models similar to what you looked at.&rdquo;</p>
+        </div>
+        <!-- Call 2 -->
+        <div class="script-item" data-type="call">
+          <span class="inline-block script-label-call text-xs font-bold px-3 py-1 rounded-full mb-2">CALL</span>
+          <p class="text-gray-700 leading-relaxed bg-gray-50 rounded-xl p-4">&ldquo;Hey [Name], Tyler at Garber Chevrolet Midland. I know you&rsquo;re still weighing options. What would it take to get you to come in for a quick test drive? No pressure, just information.&rdquo;</p>
+        </div>
+        <!-- VM -->
+        <div class="script-item" data-type="vm">
+          <span class="inline-block script-label-vm text-xs font-bold px-3 py-1 rounded-full mb-2">VOICEMAIL</span>
+          <p class="text-gray-700 leading-relaxed bg-gray-50 rounded-xl p-4">&ldquo;Hi [Name], Tyler at Garber Chevrolet Midland. We just got some updated pricing on models like the [Vehicle]. Give me a call and I&rsquo;ll fill you in, or I&rsquo;ll send a text with details.&rdquo;</p>
+        </div>
+        <!-- Text 1 -->
+        <div class="script-item" data-type="text">
+          <span class="inline-block script-label-text text-xs font-bold px-3 py-1 rounded-full mb-2">TEXT</span>
+          <p class="text-gray-700 leading-relaxed bg-gray-50 rounded-xl p-4">&ldquo;Hey [Name], heads up - some pricing adjustments just came through on models like the one you were looking at. Worth a look.&rdquo;</p>
+        </div>
+        <!-- Text 2 -->
+        <div class="script-item" data-type="text">
+          <span class="inline-block script-label-text text-xs font-bold px-3 py-1 rounded-full mb-2">TEXT</span>
+          <p class="text-gray-700 leading-relaxed bg-gray-50 rounded-xl p-4">&ldquo;Hey [Name], just wanted to check - is the [Vehicle] still on your radar, or has anything changed with what you&rsquo;re looking for?&rdquo;</p>
+        </div>
+        <!-- Email -->
+        <div class="script-item" data-type="email">
+          <span class="inline-block script-label-email text-xs font-bold px-3 py-1 rounded-full mb-2">EMAIL</span>
+          <div class="bg-gray-50 rounded-xl p-4">
+            <p class="text-xs font-semibold text-gray-500 mb-2">Subject: Pricing update on the [Vehicle]</p>
+            <p class="text-gray-700 leading-relaxed">&ldquo;Hi [Name],<br><br>I wanted to let you know we just got some pricing adjustments on models like the [Vehicle] you were looking at.<br><br>I put together some additional details including current incentives. If you&rsquo;d like me to send those over, just reply or give me a call.<br><br>Tyler<br>Garber Chevrolet Midland&rdquo;</p>
+          </div>
         </div>
       </div>
-      <!-- TEXT -->
-      <div>
-        <span class="inline-block script-label-text text-xs font-bold px-3 py-1 rounded-full mb-2">TEXT</span>
-        <p class="text-gray-700 leading-relaxed bg-gray-50 rounded-xl p-4">&ldquo;Hey [Name], just wanted to check - is the [Vehicle] still on your radar, or has anything changed with what you&rsquo;re looking for?&rdquo;</p>
-      </div>
     </div>
 
-    <!-- DAY 7 -->
-    <div id="day-7" class="day-detail hidden bg-white rounded-2xl shadow-md border border-gray-100 p-6 md:p-8 mb-6 no-break">
-      <div class="flex items-center gap-3 mb-5">
-        <span class="inline-flex items-center justify-center w-12 h-12 rounded-xl text-white font-black text-lg" style="background:#E8963E;">7</span>
-        <div>
-          <h2 class="text-xl font-bold">Day 7</h2>
-          <span class="text-sm font-semibold" style="color:#E8963E;">Phase 2 - Value Reinforcement</span>
-        </div>
-      </div>
-      <!-- CALL -->
-      <div class="mb-4">
-        <span class="inline-block script-label-call text-xs font-bold px-3 py-1 rounded-full mb-2">CALL</span>
-        <p class="text-gray-700 leading-relaxed bg-gray-50 rounded-xl p-4">&ldquo;Hey [Name], Tyler at Garber Chevrolet Midland. I know you&rsquo;re still weighing options. What would it take to get you to come in for a quick test drive? No pressure, just information.&rdquo;</p>
-      </div>
-      <!-- TEXT -->
-      <div>
-        <span class="inline-block script-label-text text-xs font-bold px-3 py-1 rounded-full mb-2">TEXT</span>
-        <p class="text-gray-700 leading-relaxed bg-gray-50 rounded-xl p-4">&ldquo;Would it help to just come take a quick drive? No commitment - just see how it feels.&rdquo;</p>
-      </div>
-    </div>
-
-    <!-- DAY 8 -->
-    <div id="day-8" class="day-detail hidden bg-white rounded-2xl shadow-md border border-gray-100 p-6 md:p-8 mb-6 no-break">
-      <div class="flex items-center gap-3 mb-5">
-        <span class="inline-flex items-center justify-center w-12 h-12 rounded-xl text-white font-black text-lg" style="background:#E8963E;">8</span>
-        <div>
-          <h2 class="text-xl font-bold">Day 8</h2>
-          <span class="text-sm font-semibold" style="color:#E8963E;">Phase 2 - Value Reinforcement</span>
-        </div>
-      </div>
-      <!-- TEXT -->
-      <div>
-        <span class="inline-block script-label-text text-xs font-bold px-3 py-1 rounded-full mb-2">TEXT</span>
-        <p class="text-gray-700 leading-relaxed bg-gray-50 rounded-xl p-4">&ldquo;Hey [Name], wanted to share a quick comparison I put together on the [Vehicle] vs. similar options. Want me to send it over?&rdquo;</p>
-      </div>
-    </div>
-
-    <!-- DAY 9 -->
-    <div id="day-9" class="day-detail hidden bg-white rounded-2xl shadow-md border border-gray-100 p-6 md:p-8 mb-6 no-break">
-      <div class="flex items-center gap-3 mb-5">
-        <span class="inline-flex items-center justify-center w-12 h-12 rounded-xl text-white font-black text-lg" style="background:#E8963E;">9</span>
-        <div>
-          <h2 class="text-xl font-bold">Day 9</h2>
-          <span class="text-sm font-semibold" style="color:#E8963E;">Phase 2 - Value Reinforcement</span>
-        </div>
-      </div>
-      <!-- CALL -->
-      <div>
-        <span class="inline-block script-label-call text-xs font-bold px-3 py-1 rounded-full mb-2">CALL</span>
-        <p class="text-gray-700 leading-relaxed bg-gray-50 rounded-xl p-4">&ldquo;Hey [Name], just touching base. I&rsquo;ve had a couple people ask about the [Vehicle] you were interested in. Want to make sure you&rsquo;re still in the loop.&rdquo;</p>
-      </div>
-    </div>
-
-    <!-- DAY 10 -->
-    <div id="day-10" class="day-detail hidden bg-white rounded-2xl shadow-md border border-gray-100 p-6 md:p-8 mb-6 no-break">
-      <div class="flex items-center gap-3 mb-5">
-        <span class="inline-flex items-center justify-center w-12 h-12 rounded-xl text-white font-black text-lg" style="background:#E8963E;">10</span>
-        <div>
-          <h2 class="text-xl font-bold">Day 10</h2>
-          <span class="text-sm font-semibold" style="color:#E8963E;">Phase 2 - Value Reinforcement</span>
-        </div>
-      </div>
-      <!-- TEXT -->
-      <div>
-        <span class="inline-block script-label-text text-xs font-bold px-3 py-1 rounded-full mb-2">TEXT</span>
-        <p class="text-gray-700 leading-relaxed bg-gray-50 rounded-xl p-4">&ldquo;Hey [Name], quick question - when you picture your next vehicle, what&rsquo;s the #1 thing that matters most to you?&rdquo;</p>
-      </div>
-    </div>
-
-    <!-- DAY 11 -->
-    <div id="day-11" class="day-detail hidden bg-white rounded-2xl shadow-md border border-gray-100 p-6 md:p-8 mb-6 no-break">
-      <div class="flex items-center gap-3 mb-5">
-        <span class="inline-flex items-center justify-center w-12 h-12 rounded-xl text-white font-black text-lg" style="background:#3498DB;">11</span>
-        <div>
-          <h2 class="text-xl font-bold">Day 11</h2>
-          <span class="text-sm font-semibold" style="color:#3498DB;">Phase 3 - Pattern Interruption</span>
-        </div>
-      </div>
-      <!-- TEXT -->
-      <div>
-        <span class="inline-block script-label-text text-xs font-bold px-3 py-1 rounded-full mb-2">TEXT</span>
-        <p class="text-gray-700 leading-relaxed bg-gray-50 rounded-xl p-4">&ldquo;Hey [Name], totally random but - have you ever looked at the [Alternative Vehicle]? Might be worth a peek based on what you told me.&rdquo;</p>
-      </div>
-    </div>
-
-    <!-- DAY 12 -->
+    <!-- DAY 12 (5 scripts: 2 call, 1 vm, 2 text) -->
     <div id="day-12" class="day-detail hidden bg-white rounded-2xl shadow-md border border-gray-100 p-6 md:p-8 mb-6 no-break">
-      <div class="flex items-center gap-3 mb-5">
+      <div class="flex items-center gap-3 mb-4">
         <span class="inline-flex items-center justify-center w-12 h-12 rounded-xl text-white font-black text-lg" style="background:#3498DB;">12</span>
         <div>
           <h2 class="text-xl font-bold">Day 12</h2>
           <span class="text-sm font-semibold" style="color:#3498DB;">Phase 3 - Pattern Interruption</span>
         </div>
       </div>
-      <!-- CALL -->
-      <div class="mb-4">
-        <span class="inline-block script-label-call text-xs font-bold px-3 py-1 rounded-full mb-2">CALL</span>
-        <p class="text-gray-700 leading-relaxed bg-gray-50 rounded-xl p-4">&ldquo;Hey [Name], quick question - are you still considering upgrading your vehicle this month?&rdquo;</p>
+      <div class="channel-tabs flex flex-wrap gap-2 mb-5 no-print">
+        <button class="channel-tab bg-[#1B2A4A] text-white text-xs font-bold px-3 py-1.5 rounded-full cursor-pointer" data-channel="all" onclick="filterChannel(12,'all')">ALL (5)</button>
+        <button class="channel-tab bg-gray-200 text-gray-700 text-xs font-bold px-3 py-1.5 rounded-full cursor-pointer" data-channel="call" onclick="filterChannel(12,'call')">CALL (2)</button>
+        <button class="channel-tab bg-gray-200 text-gray-700 text-xs font-bold px-3 py-1.5 rounded-full cursor-pointer" data-channel="vm" onclick="filterChannel(12,'vm')">VM (1)</button>
+        <button class="channel-tab bg-gray-200 text-gray-700 text-xs font-bold px-3 py-1.5 rounded-full cursor-pointer" data-channel="text" onclick="filterChannel(12,'text')">TEXT (2)</button>
       </div>
-      <!-- TEXT -->
-      <div>
-        <span class="inline-block script-label-text text-xs font-bold px-3 py-1 rounded-full mb-2">TEXT</span>
-        <p class="text-gray-700 leading-relaxed bg-gray-50 rounded-xl p-4">&ldquo;Hey [Name], still thinking about that upgrade? Just curious where you&rsquo;re at.&rdquo;</p>
-      </div>
-    </div>
-
-    <!-- DAY 13 -->
-    <div id="day-13" class="day-detail hidden bg-white rounded-2xl shadow-md border border-gray-100 p-6 md:p-8 mb-6 no-break">
-      <div class="flex items-center gap-3 mb-5">
-        <span class="inline-flex items-center justify-center w-12 h-12 rounded-xl text-white font-black text-lg" style="background:#3498DB;">13</span>
-        <div>
-          <h2 class="text-xl font-bold">Day 13</h2>
-          <span class="text-sm font-semibold" style="color:#3498DB;">Phase 3 - Pattern Interruption</span>
+      <div class="space-y-4">
+        <!-- Call 1 -->
+        <div class="script-item" data-type="call">
+          <span class="inline-block script-label-call text-xs font-bold px-3 py-1 rounded-full mb-2">CALL</span>
+          <p class="text-gray-700 leading-relaxed bg-gray-50 rounded-xl p-4">&ldquo;Hey [Name], quick question - are you still considering upgrading your vehicle this month?&rdquo;</p>
+        </div>
+        <!-- Call 2 -->
+        <div class="script-item" data-type="call">
+          <span class="inline-block script-label-call text-xs font-bold px-3 py-1 rounded-full mb-2">CALL</span>
+          <p class="text-gray-700 leading-relaxed bg-gray-50 rounded-xl p-4">&ldquo;Hey [Name], Tyler here. I saw we got some fresh inventory today and one of them reminded me of what you were looking for. Want me to send a pic?&rdquo;</p>
+        </div>
+        <!-- VM -->
+        <div class="script-item" data-type="vm">
+          <span class="inline-block script-label-vm text-xs font-bold px-3 py-1 rounded-full mb-2">VOICEMAIL</span>
+          <p class="text-gray-700 leading-relaxed bg-gray-50 rounded-xl p-4">&ldquo;Hi [Name], Tyler at Garber Chevrolet Midland. Quick question for you - give me a call when you get a moment. I&rsquo;ll shoot you a text too.&rdquo;</p>
+        </div>
+        <!-- Text 1 -->
+        <div class="script-item" data-type="text">
+          <span class="inline-block script-label-text text-xs font-bold px-3 py-1 rounded-full mb-2">TEXT</span>
+          <p class="text-gray-700 leading-relaxed bg-gray-50 rounded-xl p-4">&ldquo;Hey [Name], still thinking about that upgrade? Just curious where you&rsquo;re at.&rdquo;</p>
+        </div>
+        <!-- Text 2 -->
+        <div class="script-item" data-type="text">
+          <span class="inline-block script-label-text text-xs font-bold px-3 py-1 rounded-full mb-2">TEXT</span>
+          <p class="text-gray-700 leading-relaxed bg-gray-50 rounded-xl p-4">&ldquo;Hey [Name], no sales pitch - just genuinely curious if there&rsquo;s something specific holding you back. Sometimes I can help with things people don&rsquo;t think to ask about.&rdquo;</p>
         </div>
       </div>
-      <!-- TEXT -->
-      <div>
-        <span class="inline-block script-label-text text-xs font-bold px-3 py-1 rounded-full mb-2">TEXT</span>
-        <p class="text-gray-700 leading-relaxed bg-gray-50 rounded-xl p-4">&ldquo;Hey [Name], no sales pitch - just genuinely curious if there&rsquo;s something specific holding you back. Sometimes I can help with things people don&rsquo;t think to ask about.&rdquo;</p>
-      </div>
     </div>
 
-    <!-- DAY 14 -->
-    <div id="day-14" class="day-detail hidden bg-white rounded-2xl shadow-md border border-gray-100 p-6 md:p-8 mb-6 no-break">
-      <div class="flex items-center gap-3 mb-5">
-        <span class="inline-flex items-center justify-center w-12 h-12 rounded-xl text-white font-black text-lg" style="background:#3498DB;">14</span>
-        <div>
-          <h2 class="text-xl font-bold">Day 14</h2>
-          <span class="text-sm font-semibold" style="color:#3498DB;">Phase 3 - Pattern Interruption</span>
-        </div>
-      </div>
-      <!-- CALL -->
-      <div>
-        <span class="inline-block script-label-call text-xs font-bold px-3 py-1 rounded-full mb-2">CALL</span>
-        <p class="text-gray-700 leading-relaxed bg-gray-50 rounded-xl p-4">&ldquo;Hey [Name], Tyler here. I saw we got some fresh inventory today and one of them reminded me of what you were looking for. Want me to send a pic?&rdquo;</p>
-      </div>
-    </div>
-
-    <!-- DAY 15 -->
-    <div id="day-15" class="day-detail hidden bg-white rounded-2xl shadow-md border border-gray-100 p-6 md:p-8 mb-6 no-break">
-      <div class="flex items-center gap-3 mb-5">
-        <span class="inline-flex items-center justify-center w-12 h-12 rounded-xl text-white font-black text-lg" style="background:#3498DB;">15</span>
-        <div>
-          <h2 class="text-xl font-bold">Day 15</h2>
-          <span class="text-sm font-semibold" style="color:#3498DB;">Phase 3 - Pattern Interruption</span>
-        </div>
-      </div>
-      <!-- TEXT -->
-      <div>
-        <span class="inline-block script-label-text text-xs font-bold px-3 py-1 rounded-full mb-2">TEXT</span>
-        <p class="text-gray-700 leading-relaxed bg-gray-50 rounded-xl p-4">&ldquo;Hey [Name], just a thought - if monthly payment is the sticking point, there are some creative ways we can structure things. Want me to run some numbers?&rdquo;</p>
-      </div>
-    </div>
-
-    <!-- DAY 16 -->
-    <div id="day-16" class="day-detail hidden bg-white rounded-2xl shadow-md border border-gray-100 p-6 md:p-8 mb-6 no-break">
-      <div class="flex items-center gap-3 mb-5">
-        <span class="inline-flex items-center justify-center w-12 h-12 rounded-xl text-white font-black text-lg" style="background:#3498DB;">16</span>
-        <div>
-          <h2 class="text-xl font-bold">Day 16</h2>
-          <span class="text-sm font-semibold" style="color:#3498DB;">Phase 3 - Pattern Interruption</span>
-        </div>
-      </div>
-      <!-- CALL -->
-      <div>
-        <span class="inline-block script-label-call text-xs font-bold px-3 py-1 rounded-full mb-2">CALL</span>
-        <p class="text-gray-700 leading-relaxed bg-gray-50 rounded-xl p-4">&ldquo;Hey [Name], just checking in - not trying to be a pest, just want to make sure I&rsquo;m here if you need anything.&rdquo;</p>
-      </div>
-    </div>
-
-    <!-- DAY 17 -->
-    <div id="day-17" class="day-detail hidden bg-white rounded-2xl shadow-md border border-gray-100 p-6 md:p-8 mb-6 no-break">
-      <div class="flex items-center gap-3 mb-5">
-        <span class="inline-flex items-center justify-center w-12 h-12 rounded-xl text-white font-black text-lg" style="background:#3498DB;">17</span>
-        <div>
-          <h2 class="text-xl font-bold">Day 17</h2>
-          <span class="text-sm font-semibold" style="color:#3498DB;">Phase 3 - Pattern Interruption</span>
-        </div>
-      </div>
-      <!-- TEXT -->
-      <div>
-        <span class="inline-block script-label-text text-xs font-bold px-3 py-1 rounded-full mb-2">TEXT</span>
-        <p class="text-gray-700 leading-relaxed bg-gray-50 rounded-xl p-4">&ldquo;Hey [Name], quick poll - on a scale of 1-10, how serious are you about getting into something new? Just helps me know how to best help you.&rdquo;</p>
-      </div>
-    </div>
-
-    <!-- DAY 18 -->
-    <div id="day-18" class="day-detail hidden bg-white rounded-2xl shadow-md border border-gray-100 p-6 md:p-8 mb-6 no-break">
-      <div class="flex items-center gap-3 mb-5">
-        <span class="inline-flex items-center justify-center w-12 h-12 rounded-xl text-white font-black text-lg" style="background:#3498DB;">18</span>
-        <div>
-          <h2 class="text-xl font-bold">Day 18</h2>
-          <span class="text-sm font-semibold" style="color:#3498DB;">Phase 3 - Pattern Interruption</span>
-        </div>
-      </div>
-      <!-- TEXT -->
-      <div>
-        <span class="inline-block script-label-text text-xs font-bold px-3 py-1 rounded-full mb-2">TEXT</span>
-        <p class="text-gray-700 leading-relaxed bg-gray-50 rounded-xl p-4">&ldquo;Hey [Name], no pressure at all. Just a reminder that I&rsquo;m here whenever you&rsquo;re ready. Even if it&rsquo;s months from now.&rdquo;</p>
-      </div>
-    </div>
-
-    <!-- DAY 19 -->
-    <div id="day-19" class="day-detail hidden bg-white rounded-2xl shadow-md border border-gray-100 p-6 md:p-8 mb-6 no-break">
-      <div class="flex items-center gap-3 mb-5">
-        <span class="inline-flex items-center justify-center w-12 h-12 rounded-xl text-white font-black text-lg" style="background:#3498DB;">19</span>
-        <div>
-          <h2 class="text-xl font-bold">Day 19</h2>
-          <span class="text-sm font-semibold" style="color:#3498DB;">Phase 3 - Pattern Interruption</span>
-        </div>
-      </div>
-      <!-- CALL -->
-      <div>
-        <span class="inline-block script-label-call text-xs font-bold px-3 py-1 rounded-full mb-2">CALL</span>
-        <p class="text-gray-700 leading-relaxed bg-gray-50 rounded-xl p-4">&ldquo;Hey [Name], I know I&rsquo;ve reached out a few times. Just want to respect your time - is this still something you&rsquo;re considering, or should I circle back later?&rdquo;</p>
-      </div>
-    </div>
-
-    <!-- DAY 20 -->
-    <div id="day-20" class="day-detail hidden bg-white rounded-2xl shadow-md border border-gray-100 p-6 md:p-8 mb-6 no-break">
-      <div class="flex items-center gap-3 mb-5">
-        <span class="inline-flex items-center justify-center w-12 h-12 rounded-xl text-white font-black text-lg" style="background:#3498DB;">20</span>
-        <div>
-          <h2 class="text-xl font-bold">Day 20</h2>
-          <span class="text-sm font-semibold" style="color:#3498DB;">Phase 3 - Pattern Interruption</span>
-        </div>
-      </div>
-      <!-- TEXT -->
-      <div>
-        <span class="inline-block script-label-text text-xs font-bold px-3 py-1 rounded-full mb-2">TEXT</span>
-        <p class="text-gray-700 leading-relaxed bg-gray-50 rounded-xl p-4">&ldquo;Hey [Name], some new incentives just dropped. Could change the math. Want a quick breakdown?&rdquo;</p>
-      </div>
-    </div>
-
-    <!-- DAY 21 -->
-    <div id="day-21" class="day-detail hidden bg-white rounded-2xl shadow-md border border-gray-100 p-6 md:p-8 mb-6 no-break">
-      <div class="flex items-center gap-3 mb-5">
-        <span class="inline-flex items-center justify-center w-12 h-12 rounded-xl text-white font-black text-lg" style="background:#1B2A4A;">21</span>
-        <div>
-          <h2 class="text-xl font-bold">Day 21</h2>
-          <span class="text-sm font-semibold" style="color:#1B2A4A;">Phase 4 - Professional Persistence</span>
-        </div>
-      </div>
-      <!-- CALL -->
-      <div>
-        <span class="inline-block script-label-call text-xs font-bold px-3 py-1 rounded-full mb-2">CALL</span>
-        <p class="text-gray-700 leading-relaxed bg-gray-50 rounded-xl p-4">&ldquo;Hey [Name], Tyler at Garber Chevrolet Midland. Just wanted to check in one more time - any update on your vehicle search?&rdquo;</p>
-      </div>
-    </div>
-
-    <!-- DAY 22 -->
-    <div id="day-22" class="day-detail hidden bg-white rounded-2xl shadow-md border border-gray-100 p-6 md:p-8 mb-6 no-break">
-      <div class="flex items-center gap-3 mb-5">
-        <span class="inline-flex items-center justify-center w-12 h-12 rounded-xl text-white font-black text-lg" style="background:#1B2A4A;">22</span>
-        <div>
-          <h2 class="text-xl font-bold">Day 22</h2>
-          <span class="text-sm font-semibold" style="color:#1B2A4A;">Phase 4 - Professional Persistence</span>
-        </div>
-      </div>
-      <!-- TEXT -->
-      <div>
-        <span class="inline-block script-label-text text-xs font-bold px-3 py-1 rounded-full mb-2">TEXT</span>
-        <p class="text-gray-700 leading-relaxed bg-gray-50 rounded-xl p-4">&ldquo;Hey [Name], I don&rsquo;t want to keep bugging you. Should I check back in 30 days, or is sooner better?&rdquo;</p>
-      </div>
-    </div>
-
-    <!-- DAY 23 -->
-    <div id="day-23" class="day-detail hidden bg-white rounded-2xl shadow-md border border-gray-100 p-6 md:p-8 mb-6 no-break">
-      <div class="flex items-center gap-3 mb-5">
-        <span class="inline-flex items-center justify-center w-12 h-12 rounded-xl text-white font-black text-lg" style="background:#1B2A4A;">23</span>
-        <div>
-          <h2 class="text-xl font-bold">Day 23</h2>
-          <span class="text-sm font-semibold" style="color:#1B2A4A;">Phase 4 - Professional Persistence</span>
-        </div>
-      </div>
-      <!-- TEXT -->
-      <div>
-        <span class="inline-block script-label-text text-xs font-bold px-3 py-1 rounded-full mb-2">TEXT</span>
-        <p class="text-gray-700 leading-relaxed bg-gray-50 rounded-xl p-4">&ldquo;Hey [Name], totally understand if the timing isn&rsquo;t right. Just know the offer stands whenever you&rsquo;re ready.&rdquo;</p>
-      </div>
-    </div>
-
-    <!-- DAY 24 -->
-    <div id="day-24" class="day-detail hidden bg-white rounded-2xl shadow-md border border-gray-100 p-6 md:p-8 mb-6 no-break">
-      <div class="flex items-center gap-3 mb-5">
-        <span class="inline-flex items-center justify-center w-12 h-12 rounded-xl text-white font-black text-lg" style="background:#1B2A4A;">24</span>
-        <div>
-          <h2 class="text-xl font-bold">Day 24</h2>
-          <span class="text-sm font-semibold" style="color:#1B2A4A;">Phase 4 - Professional Persistence</span>
-        </div>
-      </div>
-      <!-- CALL -->
-      <div>
-        <span class="inline-block script-label-call text-xs font-bold px-3 py-1 rounded-full mb-2">CALL</span>
-        <p class="text-gray-700 leading-relaxed bg-gray-50 rounded-xl p-4">&ldquo;Hey [Name], I&rsquo;m closing out my files for the month. Before I do, wanted to give you one last chance to take advantage of the current pricing.&rdquo;</p>
-      </div>
-    </div>
-
-    <!-- DAY 25 -->
+    <!-- DAY 25 (6 scripts: 2 call, 1 vm, 2 text, 1 email) -->
     <div id="day-25" class="day-detail hidden bg-white rounded-2xl shadow-md border border-gray-100 p-6 md:p-8 mb-6 no-break">
-      <div class="flex items-center gap-3 mb-5">
+      <div class="flex items-center gap-3 mb-4">
         <span class="inline-flex items-center justify-center w-12 h-12 rounded-xl text-white font-black text-lg" style="background:#1B2A4A;">25</span>
         <div>
           <h2 class="text-xl font-bold">Day 25</h2>
           <span class="text-sm font-semibold" style="color:#1B2A4A;">Phase 4 - Professional Persistence</span>
         </div>
       </div>
-      <!-- CALL -->
-      <div class="mb-4">
-        <span class="inline-block script-label-call text-xs font-bold px-3 py-1 rounded-full mb-2">CALL</span>
-        <p class="text-gray-700 leading-relaxed bg-gray-50 rounded-xl p-4">&ldquo;Hey [Name], I haven&rsquo;t heard back and I don&rsquo;t want to over-contact you. Should I close your file or is timing just not right yet?&rdquo;</p>
+      <div class="channel-tabs flex flex-wrap gap-2 mb-5 no-print">
+        <button class="channel-tab bg-[#1B2A4A] text-white text-xs font-bold px-3 py-1.5 rounded-full cursor-pointer" data-channel="all" onclick="filterChannel(25,'all')">ALL (6)</button>
+        <button class="channel-tab bg-gray-200 text-gray-700 text-xs font-bold px-3 py-1.5 rounded-full cursor-pointer" data-channel="call" onclick="filterChannel(25,'call')">CALL (2)</button>
+        <button class="channel-tab bg-gray-200 text-gray-700 text-xs font-bold px-3 py-1.5 rounded-full cursor-pointer" data-channel="vm" onclick="filterChannel(25,'vm')">VM (1)</button>
+        <button class="channel-tab bg-gray-200 text-gray-700 text-xs font-bold px-3 py-1.5 rounded-full cursor-pointer" data-channel="text" onclick="filterChannel(25,'text')">TEXT (2)</button>
+        <button class="channel-tab bg-gray-200 text-gray-700 text-xs font-bold px-3 py-1.5 rounded-full cursor-pointer" data-channel="email" onclick="filterChannel(25,'email')">EMAIL (1)</button>
       </div>
-      <!-- TEXT -->
-      <div>
-        <span class="inline-block script-label-text text-xs font-bold px-3 py-1 rounded-full mb-2">TEXT</span>
-        <p class="text-gray-700 leading-relaxed bg-gray-50 rounded-xl p-4">&ldquo;Hey [Name], last reach-out for now. If you ever want to pick this back up, I&rsquo;m one text away.&rdquo;</p>
-      </div>
-    </div>
-
-    <!-- DAY 26 -->
-    <div id="day-26" class="day-detail hidden bg-white rounded-2xl shadow-md border border-gray-100 p-6 md:p-8 mb-6 no-break">
-      <div class="flex items-center gap-3 mb-5">
-        <span class="inline-flex items-center justify-center w-12 h-12 rounded-xl text-white font-black text-lg" style="background:#1B2A4A;">26</span>
-        <div>
-          <h2 class="text-xl font-bold">Day 26</h2>
-          <span class="text-sm font-semibold" style="color:#1B2A4A;">Phase 4 - Professional Persistence</span>
+      <div class="space-y-4">
+        <!-- Call 1 -->
+        <div class="script-item" data-type="call">
+          <span class="inline-block script-label-call text-xs font-bold px-3 py-1 rounded-full mb-2">CALL</span>
+          <p class="text-gray-700 leading-relaxed bg-gray-50 rounded-xl p-4">&ldquo;Hey [Name], I haven&rsquo;t heard back and I don&rsquo;t want to over-contact you. Should I close your file or is timing just not right yet?&rdquo;</p>
+        </div>
+        <!-- Call 2 -->
+        <div class="script-item" data-type="call">
+          <span class="inline-block script-label-call text-xs font-bold px-3 py-1 rounded-full mb-2">CALL</span>
+          <p class="text-gray-700 leading-relaxed bg-gray-50 rounded-xl p-4">&ldquo;Hey [Name], I&rsquo;m closing out my files for the month. Before I do, wanted to give you one last chance to take advantage of the current pricing.&rdquo;</p>
+        </div>
+        <!-- VM -->
+        <div class="script-item" data-type="vm">
+          <span class="inline-block script-label-vm text-xs font-bold px-3 py-1 rounded-full mb-2">VOICEMAIL</span>
+          <p class="text-gray-700 leading-relaxed bg-gray-50 rounded-xl p-4">&ldquo;Hi [Name], Tyler at Garber Chevrolet Midland. Just a quick one - I&rsquo;m wrapping up my files and wanted to check in before I close yours out. Give me a call or text back.&rdquo;</p>
+        </div>
+        <!-- Text 1 -->
+        <div class="script-item" data-type="text">
+          <span class="inline-block script-label-text text-xs font-bold px-3 py-1 rounded-full mb-2">TEXT</span>
+          <p class="text-gray-700 leading-relaxed bg-gray-50 rounded-xl p-4">&ldquo;Hey [Name], last reach-out for now. If you ever want to pick this back up, I&rsquo;m one text away.&rdquo;</p>
+        </div>
+        <!-- Text 2 -->
+        <div class="script-item" data-type="text">
+          <span class="inline-block script-label-text text-xs font-bold px-3 py-1 rounded-full mb-2">TEXT</span>
+          <p class="text-gray-700 leading-relaxed bg-gray-50 rounded-xl p-4">&ldquo;Hey [Name], I don&rsquo;t want to keep bugging you. Should I check back in 30 days, or is sooner better?&rdquo;</p>
+        </div>
+        <!-- Email -->
+        <div class="script-item" data-type="email">
+          <span class="inline-block script-label-email text-xs font-bold px-3 py-1 rounded-full mb-2">EMAIL</span>
+          <div class="bg-gray-50 rounded-xl p-4">
+            <p class="text-xs font-semibold text-gray-500 mb-2">Subject: Closing your file - one last thing</p>
+            <p class="text-gray-700 leading-relaxed">&ldquo;Hi [Name],<br><br>I&rsquo;ve reached out a few times and I want to respect your time. I&rsquo;m going to close your file, but before I do - if there&rsquo;s anything holding you back (pricing, timing, the vehicle itself), I&rsquo;d be happy to help sort it out.<br><br>If the timing just isn&rsquo;t right, no hard feelings. You&rsquo;ve got my number whenever you&rsquo;re ready.<br><br>Tyler<br>Garber Chevrolet Midland&rdquo;</p>
+          </div>
         </div>
       </div>
-      <!-- TEXT -->
-      <div>
-        <span class="inline-block script-label-text text-xs font-bold px-3 py-1 rounded-full mb-2">TEXT</span>
-        <p class="text-gray-700 leading-relaxed bg-gray-50 rounded-xl p-4">&ldquo;Hey [Name], still here, still happy to help. No pressure ever.&rdquo;</p>
-      </div>
     </div>
 
-    <!-- DAY 27 - REST DAY (no detail panel needed, but include for print) -->
-    <div id="day-27" class="day-detail hidden bg-white rounded-2xl shadow-md border border-gray-100 p-6 md:p-8 mb-6 no-break">
-      <div class="flex items-center gap-3 mb-5">
-        <span class="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-gray-300 text-gray-500 font-black text-lg">27</span>
-        <div>
-          <h2 class="text-xl font-bold">Day 27</h2>
-          <span class="text-sm font-semibold text-gray-400">Rest Day - No Contact</span>
-        </div>
-      </div>
-      <p class="text-gray-500 italic bg-gray-50 rounded-xl p-4">No contact today. Give them breathing room.</p>
-    </div>
-
-    <!-- DAY 28 -->
-    <div id="day-28" class="day-detail hidden bg-white rounded-2xl shadow-md border border-gray-100 p-6 md:p-8 mb-6 no-break">
-      <div class="flex items-center gap-3 mb-5">
-        <span class="inline-flex items-center justify-center w-12 h-12 rounded-xl text-white font-black text-lg" style="background:#1B2A4A;">28</span>
-        <div>
-          <h2 class="text-xl font-bold">Day 28</h2>
-          <span class="text-sm font-semibold" style="color:#1B2A4A;">Phase 4 - Professional Persistence</span>
-        </div>
-      </div>
-      <!-- TEXT -->
-      <div>
-        <span class="inline-block script-label-text text-xs font-bold px-3 py-1 rounded-full mb-2">TEXT</span>
-        <p class="text-gray-700 leading-relaxed bg-gray-50 rounded-xl p-4">&ldquo;Hey [Name], hope all is well. If anything changes, you know where to find me.&rdquo;</p>
-      </div>
-    </div>
-
-    <!-- DAY 29 - REST DAY -->
-    <div id="day-29" class="day-detail hidden bg-white rounded-2xl shadow-md border border-gray-100 p-6 md:p-8 mb-6 no-break">
-      <div class="flex items-center gap-3 mb-5">
-        <span class="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-gray-300 text-gray-500 font-black text-lg">29</span>
-        <div>
-          <h2 class="text-xl font-bold">Day 29</h2>
-          <span class="text-sm font-semibold text-gray-400">Rest Day - No Contact</span>
-        </div>
-      </div>
-      <p class="text-gray-500 italic bg-gray-50 rounded-xl p-4">No contact today. Give them breathing room.</p>
-    </div>
-
-    <!-- DAY 30 -->
+    <!-- DAY 30 (5 scripts: 1 call, 1 vm, 2 text, 1 email) -->
     <div id="day-30" class="day-detail hidden bg-white rounded-2xl shadow-md border border-gray-100 p-6 md:p-8 mb-6 no-break">
-      <div class="flex items-center gap-3 mb-5">
+      <div class="flex items-center gap-3 mb-4">
         <span class="inline-flex items-center justify-center w-12 h-12 rounded-xl text-white font-black text-lg" style="background:#1B2A4A;">30</span>
         <div>
           <h2 class="text-xl font-bold">Day 30</h2>
           <span class="text-sm font-semibold" style="color:#1B2A4A;">Phase 4 - Professional Persistence</span>
         </div>
       </div>
-      <!-- TEXT -->
-      <div>
-        <span class="inline-block script-label-text text-xs font-bold px-3 py-1 rounded-full mb-2">TEXT</span>
-        <p class="text-gray-700 leading-relaxed bg-gray-50 rounded-xl p-4">&ldquo;Hey [Name], it was great connecting with you. I&rsquo;m going to close your file for now, but if you ever need anything car-related - pricing, trade value, service - don&rsquo;t hesitate to reach out. Talk soon.&rdquo;</p>
+      <div class="channel-tabs flex flex-wrap gap-2 mb-5 no-print">
+        <button class="channel-tab bg-[#1B2A4A] text-white text-xs font-bold px-3 py-1.5 rounded-full cursor-pointer" data-channel="all" onclick="filterChannel(30,'all')">ALL (5)</button>
+        <button class="channel-tab bg-gray-200 text-gray-700 text-xs font-bold px-3 py-1.5 rounded-full cursor-pointer" data-channel="call" onclick="filterChannel(30,'call')">CALL (1)</button>
+        <button class="channel-tab bg-gray-200 text-gray-700 text-xs font-bold px-3 py-1.5 rounded-full cursor-pointer" data-channel="vm" onclick="filterChannel(30,'vm')">VM (1)</button>
+        <button class="channel-tab bg-gray-200 text-gray-700 text-xs font-bold px-3 py-1.5 rounded-full cursor-pointer" data-channel="text" onclick="filterChannel(30,'text')">TEXT (2)</button>
+        <button class="channel-tab bg-gray-200 text-gray-700 text-xs font-bold px-3 py-1.5 rounded-full cursor-pointer" data-channel="email" onclick="filterChannel(30,'email')">EMAIL (1)</button>
+      </div>
+      <div class="space-y-4">
+        <!-- Call -->
+        <div class="script-item" data-type="call">
+          <span class="inline-block script-label-call text-xs font-bold px-3 py-1 rounded-full mb-2">CALL</span>
+          <p class="text-gray-700 leading-relaxed bg-gray-50 rounded-xl p-4">&ldquo;Hey [Name], Tyler at Garber Chevrolet Midland. I know I&rsquo;ve reached out a few times. Just want to respect your time - is this still something you&rsquo;re considering, or should I circle back later?&rdquo;</p>
+        </div>
+        <!-- VM -->
+        <div class="script-item" data-type="vm">
+          <span class="inline-block script-label-vm text-xs font-bold px-3 py-1 rounded-full mb-2">VOICEMAIL</span>
+          <p class="text-gray-700 leading-relaxed bg-gray-50 rounded-xl p-4">&ldquo;Hi [Name], Tyler at Garber Chevrolet Midland. Just a final check-in. I&rsquo;m closing your file today but if anything changes down the road, you&rsquo;ve got my number. Take care.&rdquo;</p>
+        </div>
+        <!-- Text 1 -->
+        <div class="script-item" data-type="text">
+          <span class="inline-block script-label-text text-xs font-bold px-3 py-1 rounded-full mb-2">TEXT</span>
+          <p class="text-gray-700 leading-relaxed bg-gray-50 rounded-xl p-4">&ldquo;Hey [Name], it was great connecting with you. I&rsquo;m going to close your file for now, but if you ever need anything car-related - pricing, trade value, service - don&rsquo;t hesitate to reach out. Talk soon.&rdquo;</p>
+        </div>
+        <!-- Text 2 -->
+        <div class="script-item" data-type="text">
+          <span class="inline-block script-label-text text-xs font-bold px-3 py-1 rounded-full mb-2">TEXT</span>
+          <p class="text-gray-700 leading-relaxed bg-gray-50 rounded-xl p-4">&ldquo;Hey [Name], totally understand if the timing isn&rsquo;t right. Just know the offer stands whenever you&rsquo;re ready.&rdquo;</p>
+        </div>
+        <!-- Email -->
+        <div class="script-item" data-type="email">
+          <span class="inline-block script-label-email text-xs font-bold px-3 py-1 rounded-full mb-2">EMAIL</span>
+          <div class="bg-gray-50 rounded-xl p-4">
+            <p class="text-xs font-semibold text-gray-500 mb-2">Subject: Thanks for your time, [Name]</p>
+            <p class="text-gray-700 leading-relaxed">&ldquo;Hi [Name],<br><br>I wanted to thank you for considering Garber Chevrolet Midland. I&rsquo;m closing your file today, but this isn&rsquo;t goodbye.<br><br>If anything changes - new vehicle needs, trade-in questions, service, or just pricing curiosity - I&rsquo;m always here. Save my number and reach out anytime.<br><br>Wishing you the best.<br><br>Tyler<br>Garber Chevrolet Midland&rdquo;</p>
+          </div>
+        </div>
       </div>
     </div>
 
